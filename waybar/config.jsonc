@@ -1,39 +1,57 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 38,
+    "height": 42,
     "spacing": 0,
-    "margin-top": 4,
-    "margin-left": 8,
-    "margin-right": 8,
+    "margin-top": 6,
+    "margin-left": 12,
+    "margin-right": 12,
+    "reload_style_on_change": true,
 
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "tray"],
+    "modules-right": ["custom/media", "pulseaudio", "network", "cpu", "memory", "tray", "custom/notification"],
 
     "hyprland/workspaces": {
         "disable-scroll": false,
         "all-outputs": true,
-        "format": "{id}",
+        "format": "{icon}",
+        "format-icons": {
+            "1": "I",
+            "2": "II",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            "active": "",
+            "default": ""
+        },
         "persistent-workspaces": {
             "*": 5
         }
     },
 
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 40,
+        "separate-outputs": true
+    },
+
     "clock": {
-        "format": "  {:%H:%M}",
-        "format-alt": "  {:%A, %B %d}",
-        "tooltip-format": "<tt>{calendar}</tt>"
+        "format": "{:%H:%M}",
+        "format-alt": "  {:%A, %B %d, %Y}",
+        "tooltip-format": "<tt><big>{:%B %Y}</big>\n{calendar}</tt>"
     },
 
     "cpu": {
         "format": "  {usage}%",
-        "interval": 2
+        "interval": 2,
+        "on-click": "kitty -e btop"
     },
 
     "memory": {
         "format": "  {used:0.1f}G",
-        "interval": 2
+        "interval": 2,
+        "on-click": "kitty -e btop"
     },
 
     "pulseaudio": {
@@ -42,14 +60,47 @@
         "format-icons": {
             "default": ["", "", ""]
         },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
     },
 
     "network": {
         "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "󰈀  {ipaddr}",
+        "format-ethernet": "󰈀  {bandwidthTotalBytes}",
         "format-disconnected": "󰖪  offline",
-        "tooltip-format": "{ifname}: {ipaddr}"
+        "tooltip-format": "{ifname}: {ipaddr}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "interval": 2
+    },
+
+    "custom/media": {
+        "format": "{icon} {text}",
+        "format-icons": {
+            "playing": "󰎆 ",
+            "paused": "󰏤 "
+        },
+        "max-length": 30,
+        "exec": "playerctl metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
+        "exec-if": "playerctl status 2>/dev/null",
+        "interval": 3,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󰂚 ",
+            "none": "󰂜 ",
+            "dnd-notification": "󰂛 ",
+            "dnd-none": "󰪑 "
+        },
+        "return-type": "json",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
 
     "tray": {

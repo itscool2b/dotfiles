@@ -29,6 +29,11 @@
 !wallpapers/**
 !waybar/
 !waybar/**
+!rofi/
+!rofi/**
+!swaync/
+!swaync/**
+!starship.toml
 !wofi/
 !wofi/**
 !xsettingsd/

@@ -1,0 +1,12 @@
+configuration {
+    modi: "drun,run,filebrowser";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: " ";
+    display-run: " ";
+    display-filebrowser: " ";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+@theme "~/.config/rofi/gruvbox-dark.rasi"
