@@ -1,0 +1,98 @@
+/* ━━━ Gruvbox Dark Waybar ━━━ */
+
+@define-color bg0     #1d2021;
+@define-color bg1     #282828;
+@define-color bg2     #3c3836;
+@define-color bg3     #504945;
+@define-color fg      #ebdbb2;
+@define-color fg_dim  #a89984;
+@define-color red     #fb4934;
+@define-color green   #b8bb26;
+@define-color yellow  #fabd2f;
+@define-color blue    #83a598;
+@define-color purple  #d3869b;
+@define-color aqua    #8ec07c;
+@define-color orange  #fe8019;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@bg0, 0.85);
+    color: @fg;
+    border-radius: 12px;
+    border: 2px solid alpha(@bg3, 0.5);
+}
+
+#workspaces button {
+    padding: 0 8px;
+    margin: 4px 2px;
+    color: @fg_dim;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: @bg0;
+    background: @yellow;
+    font-weight: bold;
+}
+
+#workspaces button:hover {
+    background: alpha(@bg3, 0.6);
+    color: @fg;
+}
+
+#clock {
+    color: @green;
+    font-weight: bold;
+    padding: 0 12px;
+}
+
+#cpu {
+    color: @blue;
+    padding: 0 10px;
+}
+
+#memory {
+    color: @purple;
+    padding: 0 10px;
+}
+
+#pulseaudio {
+    color: @aqua;
+    padding: 0 10px;
+}
+
+#pulseaudio.muted {
+    color: @fg_dim;
+}
+
+#network {
+    color: @orange;
+    padding: 0 10px;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+tooltip {
+    background: @bg1;
+    border: 1px solid @bg3;
+    border-radius: 8px;
+    color: @fg;
+}
