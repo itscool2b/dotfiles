@@ -33,7 +33,14 @@
 !rofi/**
 !swaync/
 !swaync/**
+!mozilla/
+!mozilla/firefox/
+!mozilla/firefox/tvcju5ep.default-release/
+!mozilla/firefox/tvcju5ep.default-release/user.js
+!mozilla/firefox/tvcju5ep.default-release/chrome/
+!mozilla/firefox/tvcju5ep.default-release/chrome/**
 !starship.toml
+!Trolltech.conf
 !wofi/
 !wofi/**
 !VSCodium/

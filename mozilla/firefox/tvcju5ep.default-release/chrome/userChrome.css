@@ -1,0 +1,175 @@
+/* Firefox userChrome — Gruvbox Dark */
+
+:root {
+    --gruvbox-bg0: #1d2021;
+    --gruvbox-bg1: #282828;
+    --gruvbox-bg2: #3c3836;
+    --gruvbox-bg3: #504945;
+    --gruvbox-fg: #ebdbb2;
+    --gruvbox-fg-dim: #a89984;
+    --gruvbox-red: #fb4934;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-blue: #83a598;
+    --gruvbox-purple: #d3869b;
+    --gruvbox-aqua: #8ec07c;
+    --gruvbox-orange: #fe8019;
+    --gruvbox-dark-yellow: #d79921;
+}
+
+/* --- Main toolbar / navigation bar --- */
+#navigator-toolbox {
+    background-color: var(--gruvbox-bg0) !important;
+    border-bottom: 1px solid var(--gruvbox-bg3) !important;
+}
+
+#nav-bar {
+    background-color: var(--gruvbox-bg0) !important;
+    border: none !important;
+}
+
+/* --- URL bar --- */
+#urlbar-background {
+    background-color: var(--gruvbox-bg1) !important;
+    border: 1px solid var(--gruvbox-bg3) !important;
+}
+
+#urlbar:not([focused]) #urlbar-background {
+    background-color: var(--gruvbox-bg1) !important;
+}
+
+#urlbar[focused] #urlbar-background {
+    background-color: var(--gruvbox-bg1) !important;
+    border-color: var(--gruvbox-dark-yellow) !important;
+}
+
+#urlbar-input {
+    color: var(--gruvbox-fg) !important;
+}
+
+/* --- Tab bar --- */
+#titlebar {
+    background-color: var(--gruvbox-bg0) !important;
+}
+
+#TabsToolbar {
+    background-color: var(--gruvbox-bg0) !important;
+}
+
+.tabbrowser-tab {
+    background-color: var(--gruvbox-bg0) !important;
+}
+
+.tabbrowser-tab .tab-background {
+    background-color: var(--gruvbox-bg0) !important;
+    border: none !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+    background-color: var(--gruvbox-bg1) !important;
+    border-bottom: 2px solid var(--gruvbox-dark-yellow) !important;
+}
+
+.tabbrowser-tab .tab-label {
+    color: var(--gruvbox-fg-dim) !important;
+}
+
+.tabbrowser-tab[selected] .tab-label {
+    color: var(--gruvbox-fg) !important;
+}
+
+.tabbrowser-tab:hover:not([selected]) .tab-background {
+    background-color: var(--gruvbox-bg2) !important;
+}
+
+/* --- Tab close button --- */
+.tab-close-button:hover {
+    background-color: var(--gruvbox-red) !important;
+    color: var(--gruvbox-bg0) !important;
+}
+
+/* --- New tab button --- */
+#tabs-newtab-button:hover,
+#new-tab-button:hover {
+    background-color: var(--gruvbox-bg2) !important;
+}
+
+/* --- Toolbar buttons --- */
+#nav-bar toolbarbutton:hover:not([disabled]),
+#TabsToolbar toolbarbutton:hover {
+    background-color: var(--gruvbox-bg2) !important;
+}
+
+/* --- Autocomplete / URL dropdown --- */
+.urlbarView {
+    background-color: var(--gruvbox-bg1) !important;
+    color: var(--gruvbox-fg) !important;
+}
+
+.urlbarView-row[selected] {
+    background-color: var(--gruvbox-bg2) !important;
+}
+
+.urlbarView-row:hover {
+    background-color: var(--gruvbox-bg2) !important;
+}
+
+.urlbarView-url {
+    color: var(--gruvbox-blue) !important;
+}
+
+.urlbarView-title {
+    color: var(--gruvbox-fg) !important;
+}
+
+/* --- Sidebar --- */
+#sidebar-header {
+    background-color: var(--gruvbox-bg0) !important;
+    border-bottom: 1px solid var(--gruvbox-bg3) !important;
+    color: var(--gruvbox-fg) !important;
+}
+
+#sidebar-box {
+    background-color: var(--gruvbox-bg0) !important;
+}
+
+/* --- Findbar --- */
+findbar {
+    background-color: var(--gruvbox-bg1) !important;
+    border-top: 1px solid var(--gruvbox-bg3) !important;
+    color: var(--gruvbox-fg) !important;
+}
+
+/* --- Context menus / popups --- */
+menupopup,
+panel {
+    --panel-background: var(--gruvbox-bg1) !important;
+    --panel-color: var(--gruvbox-fg) !important;
+    --panel-border-color: var(--gruvbox-bg3) !important;
+}
+
+menupopup {
+    background-color: var(--gruvbox-bg1) !important;
+    color: var(--gruvbox-fg) !important;
+    border: 1px solid var(--gruvbox-bg3) !important;
+}
+
+menuitem:hover,
+menu:hover {
+    background-color: var(--gruvbox-bg2) !important;
+    color: var(--gruvbox-yellow) !important;
+}
+
+menuitem[disabled="true"] {
+    color: var(--gruvbox-fg-dim) !important;
+}
+
+/* --- Bookmarks bar --- */
+#PersonalToolbar {
+    background-color: var(--gruvbox-bg0) !important;
+    border-bottom: 1px solid var(--gruvbox-bg3) !important;
+}
+
+#PlacesToolbarItems toolbarbutton:hover {
+    background-color: var(--gruvbox-bg2) !important;
+}
