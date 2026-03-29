@@ -36,5 +36,8 @@
 !starship.toml
 !wofi/
 !wofi/**
+!VSCodium/
+!VSCodium/User/
+!VSCodium/User/settings.json
 !xsettingsd/
 !xsettingsd/**
