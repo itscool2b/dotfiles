@@ -1,0 +1,131 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "logo": {
+        "source": "CachyOS_small",
+        "color": {
+            "1": "{{ colors.bright_blue | ansi }}",
+            "2": "{{ colors.bright_cyan | ansi }}"
+        },
+        "padding": {
+            "top": 5,
+            "left": 2,
+            "right": 2
+        }
+    },
+
+    "display": {
+        "separator": "",
+        "key": {
+            "width": 1
+        },
+        "color": {
+            "output": "{{ colors.fg | ansi }}"
+        }
+    },
+
+    "modules": [
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m╭─────────────────────────────────────────╮'"
+        },
+        {
+            "type": "title",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_yellow | ansi }}m{user-name}\u001b[{{ colors.bg3 | ansi }}m@\u001b[{{ colors.bright_green | ansi }}m{host-name}",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}"
+        },
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m├─────────────────────────────────────────┤'"
+        },
+        {
+            "type": "os",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_blue | ansi }}m\u001b[{{ colors.bg3 | ansi }}m os    \u001b[{{ colors.bright_blue | ansi }}m{pretty-name} {arch}"
+        },
+        {
+            "type": "kernel",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_cyan | ansi }}m\u001b[{{ colors.bg3 | ansi }}m kern  \u001b[{{ colors.bright_cyan | ansi }}m{release}"
+        },
+        {
+            "type": "packages",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_orange | ansi }}m\u001b[{{ colors.bg3 | ansi }}m pkgs  \u001b[{{ colors.bright_orange | ansi }}m{all}"
+        },
+        {
+            "type": "shell",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_green | ansi }}m\u001b[{{ colors.bg3 | ansi }}m sh    \u001b[{{ colors.bright_green | ansi }}m{pretty-name} {version}"
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_yellow | ansi }}m\u001b[{{ colors.bg3 | ansi }}m up    \u001b[{{ colors.bright_yellow | ansi }}m{formatted}"
+        },
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m├─────────────────────────────────────────┤'"
+        },
+        {
+            "type": "wm",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_purple | ansi }}m\u001b[{{ colors.bg3 | ansi }}m wm    \u001b[{{ colors.bright_purple | ansi }}m{pretty-name} {version}"
+        },
+        {
+            "type": "terminal",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_blue | ansi }}m\u001b[{{ colors.bg3 | ansi }}m term  \u001b[{{ colors.bright_blue | ansi }}m{pretty-name}"
+        },
+        {
+            "type": "cpu",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_green | ansi }}m\u001b[{{ colors.bg3 | ansi }}m cpu   \u001b[{{ colors.bright_green | ansi }}m{name}"
+        },
+        {
+            "type": "gpu",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_red | ansi }}m\u001b[{{ colors.bg3 | ansi }}m gpu   \u001b[{{ colors.bright_red | ansi }}m{name}"
+        },
+        {
+            "type": "memory",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "format": "\u001b[{{ colors.bg3 | ansi }}m│  \u001b[{{ colors.bright_yellow | ansi }}m\u001b[{{ colors.bg3 | ansi }}m mem   \u001b[{{ colors.bright_yellow | ansi }}m{used} / {total}"
+        },
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m├─────────────────────────────────────────┤'"
+        },
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m│  \\033[{{ colors.bright_red | ansi }}m● \\033[{{ colors.bright_orange | ansi }}m● \\033[{{ colors.bright_yellow | ansi }}m● \\033[{{ colors.bright_green | ansi }}m● \\033[{{ colors.bright_cyan | ansi }}m● \\033[{{ colors.bright_blue | ansi }}m● \\033[{{ colors.bright_purple | ansi }}m● \\033[{{ colors.fg | ansi }}m●'"
+        },
+        {
+            "type": "command",
+            "key": " ",
+            "keyColor": "{{ colors.bg3 | ansi }}",
+            "text": "printf '\\033[{{ colors.bg3 | ansi }}m╰─────────────────────────────────────────╯'"
+        }
+    ]
+}

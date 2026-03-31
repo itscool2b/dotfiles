@@ -1,0 +1,247 @@
+# ~/.config/theme.toml — Single source of truth for all visual settings
+# Change values here, then run: ./theme-generate.py
+
+[meta]
+name = "Glass Noir"
+
+# ════════════════════════════════════════════
+#  COLORS — Monochrome glass with muted accents
+# ════════════════════════════════════════════
+
+[colors]
+# Backgrounds (dark glass layers)
+bg0      = "#181818"
+bg1      = "#212121"
+bg2      = "#2c2c2c"
+bg3      = "#3a3a3a"
+bg4      = "#484848"
+gray     = "#686868"
+
+# Foregrounds (whites/grays)
+fg       = "#e8e8e8"
+fg_dim   = "#808080"
+fg_light = "#ffffff"
+
+# Normal accent colors (muted, lifted)
+red      = "#7d4d4d"
+green    = "#4d7d4d"
+yellow   = "#7d7d4d"
+blue     = "#4d6580"
+purple   = "#4d6d80"
+cyan     = "#4d807d"
+orange   = "#80654d"
+
+# Bright accent colors (muted but clearly readable)
+bright_red     = "#b08080"
+bright_green   = "#80b080"
+bright_yellow  = "#b0b080"
+bright_blue    = "#80a0b8"
+bright_purple  = "#80a8b8"
+bright_cyan    = "#80b8a8"
+bright_orange  = "#b8a080"
+
+# ════════════════════════════════════════════
+#  FONTS
+# ════════════════════════════════════════════
+
+[fonts]
+mono = "JetBrainsMono Nerd Font"
+sans = "Noto Sans"
+
+[fonts.size]
+terminal       = 12
+bar            = 13
+bar_clock      = 14
+bar_title      = 12
+notification   = 13
+dunst          = 11
+rofi           = 12
+rofi_prompt    = 14
+wofi           = 14
+gtk            = 10
+sddm_time      = 64
+sddm_date      = 16
+sddm_input     = 14
+sddm_greeting  = 13
+sddm_label     = 11
+sddm_button    = 12
+hyprlock_time   = 96
+hyprlock_date   = 20
+
+# ════════════════════════════════════════════
+#  CURSOR
+# ════════════════════════════════════════════
+
+[cursor]
+theme              = "Bibata-Modern-Classic"
+size               = 24
+kitty_shape        = "beam"
+kitty_blink        = 0.5
+kitty_thickness    = 1.8
+kitty_trail        = 3
+kitty_trail_decay  = "0.1 0.3"
+alacritty_shape    = "Beam"
+alacritty_blinking = "On"
+alacritty_thickness = 0.15
+
+# ════════════════════════════════════════════
+#  ICONS & THEMES
+# ════════════════════════════════════════════
+
+[icons]
+theme           = "Papirus-Dark"
+gtk_theme       = "Breeze"
+xsettings_theme = "Breeze-Dark"
+
+# ════════════════════════════════════════════
+#  WALLPAPER
+# ════════════════════════════════════════════
+
+[wallpaper]
+path = "~/.config/wallpapers/wallpaper.png"
+
+# ════════════════════════════════════════════
+#  GEOMETRY — Gaps, borders, radii, padding
+# ════════════════════════════════════════════
+
+[geometry]
+# Hyprland
+gaps_in            = 6
+gaps_out           = 16
+border_size        = 1
+rounding           = 12
+
+# Terminal padding
+terminal_pad_x     = 18
+terminal_pad_y     = 14
+
+# Waybar
+bar_height         = 42
+bar_margin_top     = 6
+bar_margin_side    = 12
+bar_radius         = 14
+bar_tooltip_radius = 12
+
+# Dunst
+dunst_width        = 350
+dunst_height       = 100
+dunst_offset       = "12x12"
+dunst_radius       = 10
+dunst_frame_width  = 1
+dunst_padding      = 12
+dunst_h_padding    = 16
+dunst_gap          = 6
+
+# Rofi
+rofi_width           = 600
+rofi_radius          = 16
+rofi_inputbar_radius = 12
+rofi_element_radius  = 10
+rofi_icon_size       = 28
+rofi_lines           = 8
+
+# Wofi
+wofi_border        = 1
+wofi_radius        = 12
+wofi_input_radius  = 8
+wofi_entry_radius  = 8
+
+# Swaync
+swaync_cc_radius    = 16
+swaync_notif_radius = 12
+swaync_cc_width     = 400
+swaync_notif_width  = 360
+
+# Hyprlock
+hyprlock_input_width  = 320
+hyprlock_input_height = 50
+hyprlock_input_border = 2
+hyprlock_input_radius = 14
+
+# SDDM
+sddm_login_radius  = 16
+sddm_input_radius  = 10
+sddm_button_radius = 15
+
+# ════════════════════════════════════════════
+#  OPACITY & BLUR — Glass effect
+# ════════════════════════════════════════════
+
+[opacity]
+terminal         = 0.85
+inactive_window  = 0.88
+kitty_dim        = 0.80
+bar_module_bg    = 0.55
+bar_module_hover = 0.70
+bar_tooltip      = 0.90
+rofi_bg_alpha    = "bb"
+swaync_cc        = 0.70
+swaync_notif     = 0.80
+sddm_login_box   = 0.80
+sddm_overlay     = 0.55
+
+[blur]
+hypr_size              = 12
+hypr_passes            = 4
+hypr_noise             = 0.01
+hypr_contrast          = 1.0
+hypr_brightness        = 0.8
+hypr_vibrancy          = 0.1
+hypr_vibrancy_darkness = 0.4
+lock_passes            = 5
+lock_size              = 12
+lock_noise             = 0.01
+lock_contrast          = 0.7
+lock_brightness        = 0.5
+sddm_radius            = 56
+
+# ════════════════════════════════════════════
+#  SHADOWS
+# ════════════════════════════════════════════
+
+[shadow]
+hypr_range        = 30
+hypr_render_power = 4
+hypr_offset       = "0 6"
+hypr_scale        = 0.96
+hypr_alpha        = "cc"
+
+# ════════════════════════════════════════════
+#  ANIMATIONS
+# ════════════════════════════════════════════
+
+[animations]
+bar_transition      = "0.2s"
+swaync_transition   = 200
+sddm_clock_fade     = 800
+sddm_box_fade       = 900
+sddm_buttons_fade   = 1000
+
+[animations.beziers]
+wind   = [0.05, 0.9, 0.1, 1.05]
+winIn  = [0.1, 1.1, 0.1, 1.0]
+winOut = [0.3, -0.3, 0.0, 1.0]
+liner  = [1.0, 1.0, 1.0, 1.0]
+smooth = [0.25, 1.0, 0.5, 1.0]
+
+[animations.hyprland]
+windows     = [1, 4, "wind", "slide"]
+windowsIn   = [1, 4, "winIn", "slide"]
+windowsOut  = [1, 3, "winOut", "slide"]
+windowsMove = [1, 4, "smooth", ""]
+fade        = [1, 4, "liner", ""]
+workspaces  = [1, 4, "smooth", "slide"]
+layers      = [1, 3, "wind", "fade"]
+layersIn    = [1, 3, "winIn", "fade"]
+layersOut   = [1, 2, "winOut", "fade"]
+border      = [1, 10, "liner", ""]
+borderangle = [1, 60, "liner", "loop"]
+
+# ════════════════════════════════════════════
+#  BORDER — Subtle muted gradient
+# ════════════════════════════════════════════
+
+[border]
+active_colors  = ["bright_blue", "bright_cyan"]
+active_angle   = "45deg"
+inactive_alpha = "00"

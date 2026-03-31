@@ -1,26 +1,26 @@
-@define-color bg0     #181818;
-@define-color bg1     #212121;
-@define-color bg2     #2c2c2c;
-@define-color bg3     #3a3a3a;
-@define-color fg      #e8e8e8;
-@define-color fg_dim  #808080;
-@define-color red     #b08080;
-@define-color green   #80b080;
-@define-color yellow  #b0b080;
-@define-color blue    #80a0b8;
-@define-color purple  #80a8b8;
-@define-color aqua    #80b8a8;
-@define-color orange  #b8a080;
+@define-color bg0     {{ colors.bg0 }};
+@define-color bg1     {{ colors.bg1 }};
+@define-color bg2     {{ colors.bg2 }};
+@define-color bg3     {{ colors.bg3 }};
+@define-color fg      {{ colors.fg }};
+@define-color fg_dim  {{ colors.fg_dim }};
+@define-color red     {{ colors.bright_red }};
+@define-color green   {{ colors.bright_green }};
+@define-color yellow  {{ colors.bright_yellow }};
+@define-color blue    {{ colors.bright_blue }};
+@define-color purple  {{ colors.bright_purple }};
+@define-color aqua    {{ colors.bright_cyan }};
+@define-color orange  {{ colors.bright_orange }};
 
 * {
-    font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 13px;
+    font-family: "{{ fonts.mono }}", sans-serif;
+    font-size: {{ fonts.size.notification }}px;
 }
 
 .control-center {
-    background: alpha(@bg0, 0.7);
+    background: alpha(@bg0, {{ opacity.swaync_cc }});
     border: 2px solid alpha(@bg3, 0.5);
-    border-radius: 16px;
+    border-radius: {{ geometry.swaync_cc_radius }}px;
     padding: 12px;
 }
 
@@ -30,9 +30,9 @@
 }
 
 .notification {
-    background: alpha(@bg1, 0.8);
+    background: alpha(@bg1, {{ opacity.swaync_notif }});
     border: 1px solid alpha(@bg3, 0.4);
-    border-radius: 12px;
+    border-radius: {{ geometry.swaync_notif_radius }}px;
     padding: 8px;
     margin: 4px;
 }

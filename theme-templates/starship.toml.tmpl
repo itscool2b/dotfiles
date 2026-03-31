@@ -1,0 +1,87 @@
+# ━━━ {{ meta.name }} Starship Prompt ━━━
+
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$fill\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
+
+palette = "gruvbox_dark"
+
+[palettes.gruvbox_dark]
+bg0 = "{{ colors.bg0 }}"
+bg1 = "{{ colors.bg1 }}"
+bg2 = "{{ colors.bg2 }}"
+bg3 = "{{ colors.bg3 }}"
+fg = "{{ colors.fg }}"
+fg_dim = "{{ colors.fg_dim }}"
+red = "{{ colors.bright_red }}"
+green = "{{ colors.bright_green }}"
+yellow = "{{ colors.bright_yellow }}"
+blue = "{{ colors.bright_blue }}"
+purple = "{{ colors.bright_purple }}"
+aqua = "{{ colors.bright_cyan }}"
+orange = "{{ colors.bright_orange }}"
+
+[os]
+format = "[$symbol ](bold fg:{{ colors.yellow }})"
+disabled = false
+
+[os.symbols]
+Arch = "󰣇"
+
+[directory]
+format = "[$path]($style) "
+style = "bold fg:{{ colors.bright_blue }}"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "fg:{{ colors.bright_green }}"
+symbol = " "
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "fg:{{ colors.bright_red }}"
+
+[python]
+format = "[ $version( $virtualenv)]($style) "
+style = "fg:{{ colors.bright_blue }}"
+symbol = " "
+
+[nodejs]
+format = "[󰎙 $version]($style) "
+style = "fg:{{ colors.bright_green }}"
+
+[rust]
+format = "[󱘗 $version]($style) "
+style = "fg:{{ colors.bright_orange }}"
+
+[cmd_duration]
+format = "[ $duration]($style) "
+style = "fg:{{ colors.fg_dim }}"
+min_time = 2_000
+
+[time]
+format = "[ $time]($style)"
+style = "fg:{{ colors.bg3 }}"
+disabled = false
+
+[fill]
+symbol = " "
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[❯](bold fg:{{ colors.bright_green }})"
+error_symbol = "[❯](bold fg:{{ colors.bright_red }})"

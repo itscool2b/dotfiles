@@ -1,0 +1,12 @@
+configuration {
+    modi: "drun,run,filebrowser";
+    show-icons: true;
+    icon-theme: "{{ icons.theme }}";
+    display-drun: " ";
+    display-run: " ";
+    display-filebrowser: " ";
+    drun-display-format: "{name}";
+    font: "{{ fonts.mono }} {{ fonts.size.rofi }}";
+}
+
+@theme "~/.config/rofi/gruvbox-dark.rasi"

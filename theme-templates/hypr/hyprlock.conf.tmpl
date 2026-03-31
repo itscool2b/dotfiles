@@ -1,0 +1,63 @@
+general {
+    grace = 5
+    hide_cursor = true
+}
+
+background {
+    monitor =
+    path = {{ wallpaper.path }}
+    blur_passes = {{ blur.lock_passes }}
+    blur_size = {{ blur.lock_size }}
+    noise = {{ blur.lock_noise }}
+    contrast = {{ blur.lock_contrast }}
+    brightness = {{ blur.lock_brightness }}
+    vibrancy = 0.15
+}
+
+label {
+    monitor =
+    text = $TIME
+    color = {{ colors.fg | rgba("ff") }}
+    font_size = {{ fonts.size.hyprlock_time }}
+    font_family = {{ fonts.mono }}
+    position = 0, 160
+    halign = center
+    valign = center
+    shadow_passes = 2
+    shadow_size = 4
+    shadow_color = {{ colors.bg0 | rgba("99") }}
+}
+
+label {
+    monitor =
+    text = cmd[update:3600000] date +"%A, %B %d"
+    color = {{ colors.fg_dim | rgba("ff") }}
+    font_size = {{ fonts.size.hyprlock_date }}
+    font_family = {{ fonts.mono }}
+    position = 0, 70
+    halign = center
+    valign = center
+}
+
+input-field {
+    monitor =
+    size = {{ geometry.hyprlock_input_width }}, {{ geometry.hyprlock_input_height }}
+    outline_thickness = {{ geometry.hyprlock_input_border }}
+    dots_size = 0.25
+    dots_spacing = 0.3
+    dots_center = true
+    outer_color = {{ colors.yellow | rgba("ff") }}
+    inner_color = {{ colors.bg1 | rgba("99") }}
+    font_color = {{ colors.fg | rgba("ff") }}
+    fade_on_empty = true
+    placeholder_text = <span foreground="##{{ colors.fg_dim | bare }}">  Password...</span>
+    hide_input = false
+    rounding = {{ geometry.hyprlock_input_radius }}
+    check_color = {{ colors.bright_green | rgba("ff") }}
+    fail_color = {{ colors.bright_red | rgba("ff") }}
+    fail_text = <span foreground="##{{ colors.bright_red | bare }}">  $FAIL</span>
+    position = 0, -40
+    halign = center
+    valign = center
+    shadow_passes = 2
+}

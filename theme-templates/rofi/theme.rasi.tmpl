@@ -1,27 +1,27 @@
 * {
-    bg0:     #181818bb;
-    bg1:     #212121;
-    bg2:     #2c2c2c;
-    bg3:     #3a3a3a;
-    fg0:     #e8e8e8;
-    fg1:     #808080;
-    red:     #b08080;
-    green:   #80b080;
-    yellow:  #b0b080;
-    blue:    #80a0b8;
-    orange:  #b8a080;
+    bg0:     {{ colors.bg0 }}{{ opacity.rofi_bg_alpha }};
+    bg1:     {{ colors.bg1 }};
+    bg2:     {{ colors.bg2 }};
+    bg3:     {{ colors.bg3 }};
+    fg0:     {{ colors.fg }};
+    fg1:     {{ colors.fg_dim }};
+    red:     {{ colors.bright_red }};
+    green:   {{ colors.bright_green }};
+    yellow:  {{ colors.bright_yellow }};
+    blue:    {{ colors.bright_blue }};
+    orange:  {{ colors.bright_orange }};
 
     background-color: transparent;
     text-color: @fg0;
 }
 
 window {
-    width: 600px;
+    width: {{ geometry.rofi_width }}px;
     padding: 20px;
     background-color: @bg0;
     border: 2px solid;
     border-color: @bg3;
-    border-radius: 16px;
+    border-radius: {{ geometry.rofi_radius }}px;
     location: center;
     anchor: center;
 }
@@ -36,12 +36,12 @@ inputbar {
     spacing: 8px;
     padding: 12px 16px;
     background-color: @bg1;
-    border-radius: 12px;
+    border-radius: {{ geometry.rofi_inputbar_radius }}px;
 }
 
 prompt {
     text-color: @yellow;
-    font: "JetBrainsMono Nerd Font 14";
+    font: "{{ fonts.mono }} {{ fonts.size.rofi_prompt }}";
 }
 
 entry {
@@ -51,7 +51,7 @@ entry {
 }
 
 listview {
-    lines: 8;
+    lines: {{ geometry.rofi_lines }};
     columns: 1;
     fixed-height: true;
     spacing: 4px;
@@ -60,7 +60,7 @@ listview {
 
 element {
     padding: 10px 14px;
-    border-radius: 10px;
+    border-radius: {{ geometry.rofi_element_radius }}px;
     spacing: 12px;
 }
 
@@ -76,7 +76,7 @@ element selected.normal {
 }
 
 element-icon {
-    size: 28px;
+    size: {{ geometry.rofi_icon_size }}px;
     vertical-align: 0.5;
 }
 

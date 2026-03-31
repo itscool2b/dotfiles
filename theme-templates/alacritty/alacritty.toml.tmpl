@@ -1,0 +1,72 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+dynamic_padding = true
+decorations = "none"
+opacity = {{ opacity.terminal }}
+decorations_theme_variant = "Dark"
+
+[window.padding]
+x = {{ geometry.terminal_pad_x }}
+y = {{ geometry.terminal_pad_y }}
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[colors.primary]
+background = "{{ colors.bg0 }}"
+foreground = "{{ colors.fg }}"
+
+[colors.normal]
+black = "{{ colors.bg1 }}"
+red = "{{ colors.red }}"
+green = "{{ colors.green }}"
+yellow = "{{ colors.yellow }}"
+blue = "{{ colors.blue }}"
+magenta = "{{ colors.purple }}"
+cyan = "{{ colors.cyan }}"
+white = "{{ colors.fg_dim }}"
+
+[colors.bright]
+black = "{{ colors.gray }}"
+red = "{{ colors.bright_red }}"
+green = "{{ colors.bright_green }}"
+yellow = "{{ colors.bright_yellow }}"
+blue = "{{ colors.bright_blue }}"
+magenta = "{{ colors.bright_purple }}"
+cyan = "{{ colors.bright_cyan }}"
+white = "{{ colors.fg }}"
+
+[colors.selection]
+background = "{{ colors.fg }}"
+text = "{{ colors.bg0 }}"
+
+[font]
+size = {{ fonts.size.terminal }}.0
+
+[font.normal]
+family = "{{ fonts.mono }}"
+style = "Regular"
+
+[font.bold]
+family = "{{ fonts.mono }}"
+style = "Bold"
+
+[font.italic]
+family = "{{ fonts.mono }}"
+style = "Italic"
+
+[cursor]
+style = { shape = "{{ cursor.alacritty_shape }}", blinking = "{{ cursor.alacritty_blinking }}" }
+thickness = {{ cursor.alacritty_thickness }}
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[general]
+live_config_reload = true

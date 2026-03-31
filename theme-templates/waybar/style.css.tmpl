@@ -1,22 +1,22 @@
 /* ━━━ Gruvbox Dark Waybar — Pill Modules ━━━ */
 
-@define-color bg0     #181818;
-@define-color bg1     #212121;
-@define-color bg2     #2c2c2c;
-@define-color bg3     #3a3a3a;
-@define-color fg      #e8e8e8;
-@define-color fg_dim  #808080;
-@define-color red     #b08080;
-@define-color green   #80b080;
-@define-color yellow  #b0b080;
-@define-color blue    #80a0b8;
-@define-color purple  #80a8b8;
-@define-color aqua    #80b8a8;
-@define-color orange  #b8a080;
+@define-color bg0     {{ colors.bg0 }};
+@define-color bg1     {{ colors.bg1 }};
+@define-color bg2     {{ colors.bg2 }};
+@define-color bg3     {{ colors.bg3 }};
+@define-color fg      {{ colors.fg }};
+@define-color fg_dim  {{ colors.fg_dim }};
+@define-color red     {{ colors.bright_red }};
+@define-color green   {{ colors.bright_green }};
+@define-color yellow  {{ colors.bright_yellow }};
+@define-color blue    {{ colors.bright_blue }};
+@define-color purple  {{ colors.bright_purple }};
+@define-color aqua    {{ colors.bright_cyan }};
+@define-color orange  {{ colors.bright_orange }};
 
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 13px;
+    font-family: "{{ fonts.mono }}", monospace;
+    font-size: {{ fonts.size.bar }}px;
     min-height: 0;
     padding: 0;
     margin: 0;
@@ -38,12 +38,12 @@ window#waybar {
 #custom-media,
 #custom-notification,
 #tray {
-    background: alpha(@bg0, 0.55);
+    background: alpha(@bg0, {{ opacity.bar_module_bg }});
     border: 1px solid alpha(@bg3, 0.4);
-    border-radius: 14px;
+    border-radius: {{ geometry.bar_radius }}px;
     padding: 4px 14px;
     margin: 5px 3px;
-    transition: all 0.2s ease;
+    transition: all {{ animations.bar_transition }} ease;
 }
 
 #workspaces:hover,
@@ -54,7 +54,7 @@ window#waybar {
 #network:hover,
 #custom-media:hover,
 #custom-notification:hover {
-    background: alpha(@bg1, 0.7);
+    background: alpha(@bg1, {{ opacity.bar_module_hover }});
     border-color: alpha(@bg3, 0.6);
 }
 
@@ -70,7 +70,7 @@ window#waybar {
     background: transparent;
     border: none;
     border-radius: 10px;
-    transition: all 0.2s ease;
+    transition: all {{ animations.bar_transition }} ease;
     min-width: 24px;
 }
 
@@ -90,14 +90,14 @@ window#waybar {
 #window {
     color: alpha(@fg_dim, 0.7);
     font-style: italic;
-    font-size: 12px;
+    font-size: {{ fonts.size.bar_title }}px;
 }
 
 /* ━━━ Clock ━━━ */
 #clock {
     color: @green;
     font-weight: bold;
-    font-size: 14px;
+    font-size: {{ fonts.size.bar_clock }}px;
     padding: 4px 16px;
 }
 
@@ -151,9 +151,9 @@ window#waybar {
 
 /* ━━━ Tooltip ━━━ */
 tooltip {
-    background: alpha(@bg1, 0.9);
+    background: alpha(@bg1, {{ opacity.bar_tooltip }});
     border: 1px solid @bg3;
-    border-radius: 12px;
+    border-radius: {{ geometry.bar_tooltip_radius }}px;
     color: @fg;
     padding: 8px;
 }

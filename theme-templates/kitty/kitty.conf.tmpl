@@ -1,0 +1,85 @@
+# ━━━ Kitty — {{ meta.name }} ━━━
+
+font_family      {{ fonts.mono }}
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size        {{ fonts.size.terminal }}.0
+font_features    JetBrainsMonoNF +liga +calt
+
+# Cursor
+cursor_shape          {{ cursor.kitty_shape }}
+cursor_blink_interval {{ cursor.kitty_blink }}
+cursor_beam_thickness {{ cursor.kitty_thickness }}
+cursor_trail          {{ cursor.kitty_trail }}
+cursor_trail_decay    {{ cursor.kitty_trail_decay }}
+
+# Window
+window_padding_width    {{ geometry.terminal_pad_y }} {{ geometry.terminal_pad_x }}
+background_opacity      {{ opacity.terminal }}
+background_blur         1
+dim_opacity             {{ opacity.kitty_dim }}
+confirm_os_window_close 0
+hide_window_decorations yes
+
+# Bell
+enable_audio_bell no
+
+# Scrollback
+scrollback_lines 10000
+
+# ━━━ {{ meta.name }} Colors ━━━
+
+foreground {{ colors.fg }}
+background {{ colors.bg0 }}
+
+# Black
+color0  {{ colors.bg1 }}
+color8  {{ colors.gray }}
+
+# Red
+color1  {{ colors.red }}
+color9  {{ colors.bright_red }}
+
+# Green
+color2  {{ colors.green }}
+color10 {{ colors.bright_green }}
+
+# Yellow
+color3  {{ colors.yellow }}
+color11 {{ colors.bright_yellow }}
+
+# Blue
+color4  {{ colors.blue }}
+color12 {{ colors.bright_blue }}
+
+# Magenta
+color5  {{ colors.purple }}
+color13 {{ colors.bright_purple }}
+
+# Cyan
+color6  {{ colors.cyan }}
+color14 {{ colors.bright_cyan }}
+
+# White
+color7  {{ colors.fg_dim }}
+color15 {{ colors.fg }}
+
+# Selection
+selection_foreground {{ colors.bg0 }}
+selection_background {{ colors.fg }}
+
+# URL
+url_color {{ colors.bright_blue }}
+url_style curly
+
+# Tab bar
+tab_bar_style           powerline
+tab_powerline_style     angled
+tab_bar_min_tabs        1
+tab_bar_edge            top
+active_tab_foreground   {{ colors.bg0 }}
+active_tab_background   {{ colors.yellow }}
+active_tab_font_style   bold
+inactive_tab_foreground {{ colors.fg_dim }}
+inactive_tab_background {{ colors.bg1 }}

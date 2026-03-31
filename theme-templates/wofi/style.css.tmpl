@@ -1,0 +1,61 @@
+/* ━━━ Wofi — Gruvbox Dark ━━━ */
+
+window {
+    margin: 0;
+    background-color: {{ colors.bg0 }};
+    border: 2px solid {{ colors.bg3 }};
+    border-radius: {{ geometry.wofi_radius }}px;
+    font-family: "{{ fonts.mono }}", monospace;
+    font-size: {{ fonts.size.wofi }}px;
+}
+
+#input {
+    margin: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 2px solid {{ colors.yellow }};
+    border-radius: {{ geometry.wofi_input_radius }}px;
+    background-color: {{ colors.bg1 }};
+    color: {{ colors.fg }};
+    font-size: {{ fonts.size.wofi }}px;
+}
+
+#input:focus {
+    border-bottom-color: {{ colors.bright_yellow }};
+}
+
+#inner-box {
+    margin: 4px 8px;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 0;
+    padding: 0;
+}
+
+#scroll {
+    margin: 0;
+}
+
+#text {
+    margin: 0;
+    padding: 6px 12px;
+    color: {{ colors.fg }};
+}
+
+#entry {
+    margin: 2px 0;
+    padding: 4px;
+    border-radius: {{ geometry.wofi_entry_radius }}px;
+}
+
+#entry:selected {
+    background-color: {{ colors.bg2 }};
+    border-left: 3px solid {{ colors.yellow }};
+}
+
+#entry:selected #text {
+    color: {{ colors.bright_yellow }};
+    font-weight: bold;
+}

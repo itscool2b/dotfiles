@@ -48,3 +48,7 @@
 !VSCodium/User/settings.json
 !xsettingsd/
 !xsettingsd/**
+!theme.toml
+!theme-generate.py
+!theme-templates/
+!theme-templates/**

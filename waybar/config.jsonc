@@ -7,11 +7,22 @@
     "margin-left": 12,
     "margin-right": 12,
     "reload_style_on_change": true,
-
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/media", "pulseaudio", "network", "cpu", "memory", "tray", "custom/notification"],
-
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/media",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "tray",
+        "custom/notification"
+    ],
     "hyprland/workspaces": {
         "disable-scroll": false,
         "all-outputs": true,
@@ -29,41 +40,39 @@
             "*": 5
         }
     },
-
     "hyprland/window": {
         "format": "{}",
         "max-length": 40,
         "separate-outputs": true
     },
-
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "  {:%A, %B %d, %Y}",
         "tooltip-format": "<tt><big>{:%B %Y}</big>\n{calendar}</tt>"
     },
-
     "cpu": {
         "format": "  {usage}%",
         "interval": 2,
         "on-click": "kitty -e btop"
     },
-
     "memory": {
         "format": "  {used:0.1f}G",
         "interval": 2,
         "on-click": "kitty -e btop"
     },
-
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "  muted",
         "format-icons": {
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol"
     },
-
     "network": {
         "format-wifi": "  {signalStrength}%",
         "format-ethernet": "󰈀  {bandwidthTotalBytes}",
@@ -71,7 +80,6 @@
         "tooltip-format": "{ifname}: {ipaddr}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
         "interval": 2
     },
-
     "custom/media": {
         "format": "{icon} {text}",
         "format-icons": {
@@ -86,7 +94,6 @@
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous"
     },
-
     "custom/notification": {
         "tooltip": false,
         "format": "{icon}",
@@ -102,7 +109,6 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true
     },
-
     "tray": {
         "icon-size": 16,
         "spacing": 8

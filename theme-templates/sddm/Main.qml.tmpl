@@ -1,0 +1,520 @@
+import QtQuick 2.15
+import QtGraphicalEffects 1.15
+import SddmComponents 2.0
+
+Rectangle {
+    id: root
+    width: 640
+    height: 480
+
+    property color bg0:     "{{ colors.bg0 }}"
+    property color bg1:     "{{ colors.bg1 }}"
+    property color bg2:     "{{ colors.bg2 }}"
+    property color bg3:     "{{ colors.bg3 }}"
+    property color fg:      "{{ colors.fg }}"
+    property color fgDim:   "{{ colors.fg_dim }}"
+    property color yellow:  "{{ colors.yellow }}"
+    property color yellowBright: "{{ colors.bright_yellow }}"
+    property color green:   "{{ colors.bright_green }}"
+    property color red:     "{{ colors.bright_red }}"
+    property color orange:  "{{ colors.orange }}"
+    property color blue:    "{{ colors.blue }}"
+    property color aqua:    "{{ colors.cyan }}"
+
+    TextConstants { id: textConstants }
+
+    Connections {
+        target: sddm
+        onLoginSucceeded: {
+            errorMessage.text = textConstants.loginSucceeded
+            errorMessage.color = green
+        }
+        onLoginFailed: {
+            errorMessage.text = textConstants.loginFailed
+            errorMessage.color = red
+            passwordField.text = ""
+        }
+    }
+
+    // Background wallpaper
+    Repeater {
+        model: screenModel
+        Background {
+            x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
+            source: config.background
+            fillMode: Image.PreserveAspectCrop
+            onStatusChanged: {
+                if (status == Image.Error && source != config.defaultBackground) {
+                    source = config.defaultBackground
+                }
+            }
+        }
+    }
+
+    // Primary screen container
+    Rectangle {
+        property variant geometry: screenModel.geometry(screenModel.primary)
+        x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
+        color: "transparent"
+
+        // Dark overlay
+        Rectangle {
+            anchors.fill: parent
+            color: Qt.rgba(0, 0, 0, {{ opacity.sddm_overlay }})
+        }
+
+        // Blurred background source behind login box
+        Item {
+            id: blurSource
+            anchors.fill: parent
+            visible: false
+
+            Repeater {
+                model: screenModel
+                Background {
+                    x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
+                    source: config.background
+                    fillMode: Image.PreserveAspectCrop
+                }
+            }
+        }
+
+        // Blur effect positioned behind login box
+        ShaderEffectSource {
+            id: loginBlurSource
+            sourceItem: blurSource
+            sourceRect: Qt.rect(loginBox.x + mainColumn.x, loginBox.y + mainColumn.y, loginBox.width, loginBox.height)
+            visible: false
+        }
+
+        FastBlur {
+            id: loginBlur
+            anchors.fill: loginBox
+            source: loginBlurSource
+            radius: {{ blur.sddm_radius }}
+            visible: false
+        }
+
+        // Rounded mask for the blur
+        Rectangle {
+            id: blurMask
+            anchors.fill: loginBox
+            radius: {{ geometry.sddm_login_radius }}
+            visible: false
+        }
+
+        OpacityMask {
+            anchors.fill: loginBlur
+            source: loginBlur
+            maskSource: blurMask
+            opacity: 0.3
+        }
+
+        // Main layout — offset down so clock isn't clipped
+        Column {
+            id: mainColumn
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 20
+            spacing: 30
+            width: 380
+
+            // Clock
+            Column {
+                id: clockColumn
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: 4
+                opacity: 0
+
+                Text {
+                    id: timeLabel
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: "{{ fonts.mono }}"
+                    font.pixelSize: {{ fonts.size.sddm_time }}
+                    font.bold: true
+                    color: yellow
+                    renderType: Text.NativeRendering
+
+                    layer.enabled: true
+                    layer.effect: Glow {
+                        radius: 8
+                        samples: 17
+                        color: Qt.rgba({{ colors.yellow | qt_rgb }}, 0.25)
+                        spread: 0.1
+                    }
+                }
+
+                Text {
+                    id: dateLabel
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: "{{ fonts.mono }}"
+                    font.pixelSize: {{ fonts.size.sddm_date }}
+                    color: fgDim
+                    renderType: Text.NativeRendering
+                }
+
+                Timer {
+                    interval: 1000
+                    running: true
+                    repeat: true
+                    triggeredOnStart: true
+                    onTriggered: {
+                        var now = new Date()
+                        timeLabel.text = Qt.formatTime(now, "HH:mm")
+                        dateLabel.text = Qt.formatDate(now, "dddd, MMMM d, yyyy")
+                    }
+                }
+
+                // Fade-in only (no y animation — Column manages position)
+                OpacityAnimator on opacity {
+                    from: 0; to: 1; duration: {{ animations.sddm_clock_fade }}
+                    easing.type: Easing.OutCubic
+                    running: true
+                }
+            }
+
+            // Login box
+            Rectangle {
+                id: loginBox
+                width: parent.width
+                height: loginColumn.implicitHeight + 50
+                color: Qt.rgba({{ colors.bg0 | qt_rgb }}, {{ opacity.sddm_login_box }})
+                radius: {{ geometry.sddm_login_radius }}
+                border.color: bg3
+                border.width: 1
+                opacity: 0
+
+                // Subtle yellow glow around login box
+                layer.enabled: true
+                layer.effect: Glow {
+                    radius: 12
+                    samples: 25
+                    color: Qt.rgba({{ colors.yellow | qt_rgb }}, 0.15)
+                    spread: 0.0
+                }
+
+                // Fade-in only (no y animation — Column manages position)
+                OpacityAnimator on opacity {
+                    from: 0; to: 1; duration: {{ animations.sddm_box_fade }}
+                    easing.type: Easing.OutCubic
+                    running: true
+                }
+
+                Column {
+                    id: loginColumn
+                    anchors.centerIn: parent
+                    width: parent.width - 50
+                    spacing: 16
+
+                    // Greeting based on time of day
+                    Text {
+                        id: greetingText
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.family: "{{ fonts.mono }}"
+                        font.pixelSize: {{ fonts.size.sddm_greeting }}
+                        color: yellow
+                        renderType: Text.NativeRendering
+
+                        function updateGreeting() {
+                            var hour = new Date().getHours()
+                            if (hour >= 5 && hour < 12)
+                                text = "Good morning"
+                            else if (hour >= 12 && hour < 17)
+                                text = "Good afternoon"
+                            else if (hour >= 17 && hour < 21)
+                                text = "Good evening"
+                            else
+                                text = "Good night"
+                        }
+
+                        Component.onCompleted: updateGreeting()
+                    }
+
+                    // Welcome
+                    Text {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        text: textConstants.welcomeText.arg(sddm.hostName)
+                        color: fg
+                        font.family: "{{ fonts.mono }}"
+                        font.pixelSize: {{ fonts.size.sddm_date }}
+                        renderType: Text.NativeRendering
+                    }
+
+                    // Separator with gradient fade
+                    Rectangle {
+                        width: parent.width
+                        height: 1
+                        gradient: Gradient {
+                            orientation: Gradient.Horizontal
+                            GradientStop { position: 0.0; color: "transparent" }
+                            GradientStop { position: 0.3; color: bg3 }
+                            GradientStop { position: 0.7; color: bg3 }
+                            GradientStop { position: 1.0; color: "transparent" }
+                        }
+                    }
+
+                    // Username field
+                    Column {
+                        width: parent.width
+                        spacing: 6
+
+                        Text {
+                            text: "  " + textConstants.userName
+                            color: fgDim
+                            font.family: "{{ fonts.mono }}"
+                            font.pixelSize: {{ fonts.size.sddm_label }}
+                            renderType: Text.NativeRendering
+                        }
+
+                        Rectangle {
+                            id: userFieldBg
+                            width: parent.width
+                            height: 42
+                            color: bg1
+                            radius: {{ geometry.sddm_input_radius }}
+                            border.color: userField.activeFocus ? yellow : bg3
+                            border.width: userField.activeFocus ? 2 : 1
+
+                            Behavior on border.color {
+                                ColorAnimation { duration: 200 }
+                            }
+
+                            TextInput {
+                                id: userField
+                                anchors.fill: parent
+                                anchors.leftMargin: 14
+                                anchors.rightMargin: 14
+                                verticalAlignment: TextInput.AlignVCenter
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_input }}
+                                color: fg
+                                selectionColor: yellow
+                                selectedTextColor: bg0
+                                clip: true
+                                text: userModel.lastUser
+                                KeyNavigation.tab: passwordField
+                                Keys.onReturnPressed: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
+                                Keys.onEnterPressed: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
+                            }
+                        }
+                    }
+
+                    // Password field
+                    Column {
+                        width: parent.width
+                        spacing: 6
+
+                        Text {
+                            text: "  " + textConstants.password
+                            color: fgDim
+                            font.family: "{{ fonts.mono }}"
+                            font.pixelSize: {{ fonts.size.sddm_label }}
+                            renderType: Text.NativeRendering
+                        }
+
+                        Rectangle {
+                            id: passFieldBg
+                            width: parent.width
+                            height: 42
+                            color: bg1
+                            radius: {{ geometry.sddm_input_radius }}
+                            border.color: passwordField.activeFocus ? yellow : bg3
+                            border.width: passwordField.activeFocus ? 2 : 1
+
+                            Behavior on border.color {
+                                ColorAnimation { duration: 200 }
+                            }
+
+                            TextInput {
+                                id: passwordField
+                                anchors.fill: parent
+                                anchors.leftMargin: 14
+                                anchors.rightMargin: 14
+                                verticalAlignment: TextInput.AlignVCenter
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_input }}
+                                color: fg
+                                selectionColor: yellow
+                                selectedTextColor: bg0
+                                echoMode: TextInput.Password
+                                clip: true
+                                KeyNavigation.backtab: userField
+                                Keys.onReturnPressed: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
+                                Keys.onEnterPressed: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
+                            }
+                        }
+
+                        // Caps Lock indicator
+                        Text {
+                            id: capsWarning
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: "Caps Lock is on"
+                            color: orange
+                            font.family: "{{ fonts.mono }}"
+                            font.pixelSize: {{ fonts.size.sddm_label }}
+                            visible: keyboard.capsLock
+                            renderType: Text.NativeRendering
+                        }
+                    }
+
+                    // Login button
+                    Rectangle {
+                        id: loginBtn
+                        width: parent.width
+                        height: 42
+                        radius: {{ geometry.sddm_input_radius }}
+                        color: loginBtnMouse.containsMouse ? yellowBright : yellow
+
+                        Behavior on color {
+                            ColorAnimation { duration: 150 }
+                        }
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: textConstants.login
+                            color: bg0
+                            font.family: "{{ fonts.mono }}"
+                            font.pixelSize: {{ fonts.size.sddm_input }}
+                            font.bold: true
+                            renderType: Text.NativeRendering
+                        }
+
+                        MouseArea {
+                            id: loginBtnMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
+                        }
+                    }
+
+                    // Error message
+                    Text {
+                        id: errorMessage
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.family: "{{ fonts.mono }}"
+                        font.pixelSize: {{ fonts.size.sddm_button }}
+                        color: red
+                        text: ""
+                        renderType: Text.NativeRendering
+                    }
+                }
+            }
+
+            // Power buttons + session
+            Column {
+                id: powerColumn
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: 10
+                opacity: 0
+
+                OpacityAnimator on opacity {
+                    from: 0; to: 1; duration: {{ animations.sddm_buttons_fade }}
+                    easing.type: Easing.OutCubic
+                    running: true
+                }
+
+                Row {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    spacing: 14
+
+                    // Shutdown pill button
+                    Rectangle {
+                        width: shutdownRow.width + 24
+                        height: 30
+                        radius: {{ geometry.sddm_button_radius }}
+                        color: powerOffMouse.containsMouse ? bg3 : bg2
+                        Behavior on color { ColorAnimation { duration: 150 } }
+
+                        Row {
+                            id: shutdownRow
+                            anchors.centerIn: parent
+                            spacing: 6
+
+                            Text {
+                                text: "\u23FB"
+                                color: powerOffMouse.containsMouse ? red : fgDim
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_input }}
+                                renderType: Text.NativeRendering
+                                Behavior on color { ColorAnimation { duration: 150 } }
+                            }
+                            Text {
+                                text: "Shutdown"
+                                color: powerOffMouse.containsMouse ? fg : fgDim
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_button }}
+                                renderType: Text.NativeRendering
+                                Behavior on color { ColorAnimation { duration: 150 } }
+                            }
+                        }
+
+                        MouseArea {
+                            id: powerOffMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: sddm.powerOff()
+                        }
+                    }
+
+                    // Reboot pill button
+                    Rectangle {
+                        width: rebootRow.width + 24
+                        height: 30
+                        radius: {{ geometry.sddm_button_radius }}
+                        color: rebootMouse.containsMouse ? bg3 : bg2
+                        Behavior on color { ColorAnimation { duration: 150 } }
+
+                        Row {
+                            id: rebootRow
+                            anchors.centerIn: parent
+                            spacing: 6
+
+                            Text {
+                                text: "\u27F3"
+                                color: rebootMouse.containsMouse ? yellow : fgDim
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_input }}
+                                renderType: Text.NativeRendering
+                                Behavior on color { ColorAnimation { duration: 150 } }
+                            }
+                            Text {
+                                text: "Reboot"
+                                color: rebootMouse.containsMouse ? fg : fgDim
+                                font.family: "{{ fonts.mono }}"
+                                font.pixelSize: {{ fonts.size.sddm_button }}
+                                renderType: Text.NativeRendering
+                                Behavior on color { ColorAnimation { duration: 150 } }
+                            }
+                        }
+
+                        MouseArea {
+                            id: rebootMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: sddm.reboot()
+                        }
+                    }
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: sessionModel.data(sessionModel.index(sessionModel.lastIndex, 0), Qt.DisplayRole) || ""
+                    color: bg3
+                    font.family: "{{ fonts.mono }}"
+                    font.pixelSize: 10
+                    renderType: Text.NativeRendering
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        if (userField.text === "")
+            userField.forceActiveFocus()
+        else
+            passwordField.forceActiveFocus()
+    }
+}

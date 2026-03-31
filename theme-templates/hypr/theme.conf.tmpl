@@ -1,0 +1,59 @@
+# ━━━ Hyprland Theme — {{ meta.name }} ━━━
+# Generated from theme.toml — do not edit directly
+
+env = XCURSOR_SIZE,{{ cursor.size }}
+env = XCURSOR_THEME,{{ cursor.theme }}
+env = HYPRCURSOR_SIZE,{{ cursor.size }}
+env = HYPRCURSOR_THEME,{{ cursor.theme }}
+
+general {
+    gaps_in = {{ geometry.gaps_in }}
+    gaps_out = {{ geometry.gaps_out }}
+    border_size = {{ geometry.border_size }}
+    col.active_border = {% for c in border_gradient_colors %}{{ c | rgba("ff") }} {% endfor %}{{ border.active_angle }}
+    col.inactive_border = {{ colors.bg1 | rgba(border.inactive_alpha) }}
+    resize_on_border = true
+    allow_tearing = false
+    layout = dwindle
+}
+
+decoration {
+    rounding = {{ geometry.rounding }}
+
+    active_opacity = 1.0
+    inactive_opacity = {{ opacity.inactive_window }}
+
+    shadow {
+        enabled = true
+        range = {{ shadow.hypr_range }}
+        render_power = {{ shadow.hypr_render_power }}
+        color = {{ colors.bg0 | rgba(shadow.hypr_alpha) }}
+        offset = {{ shadow.hypr_offset }}
+        scale = {{ shadow.hypr_scale }}
+    }
+
+    blur {
+        enabled = true
+        size = {{ blur.hypr_size }}
+        passes = {{ blur.hypr_passes }}
+        noise = {{ blur.hypr_noise }}
+        contrast = {{ blur.hypr_contrast }}
+        brightness = {{ blur.hypr_brightness }}
+        vibrancy = {{ blur.hypr_vibrancy }}
+        vibrancy_darkness = {{ blur.hypr_vibrancy_darkness }}
+        new_optimizations = true
+        xray = false
+        popups = true
+    }
+}
+
+animations {
+    enabled = true
+{% for name, points in animations.beziers.items() %}
+    bezier = {{ name }}, {{ points[0] }}, {{ points[1] }}, {{ points[2] }}, {{ points[3] }}
+{%- endfor %}
+{% for name, params in animations.hyprland.items() %}
+    animation = {{ name }}, {{ params[0] }}, {{ params[1] }}, {{ params[2] }}{% if params[3] %}, {{ params[3] }}{% endif %}
+
+{%- endfor %}
+}
