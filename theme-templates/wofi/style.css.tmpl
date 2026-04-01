@@ -13,7 +13,7 @@ window {
     margin: 8px;
     padding: 10px 16px;
     border: none;
-    border-bottom: 2px solid {{ colors.yellow }};
+    border-bottom: 2px solid {{ accents.wofi.focus }};
     border-radius: {{ geometry.wofi_input_radius }}px;
     background-color: {{ colors.bg1 }};
     color: {{ colors.fg }};
@@ -21,7 +21,7 @@ window {
 }
 
 #input:focus {
-    border-bottom-color: {{ colors.bright_yellow }};
+    border-bottom-color: {{ accents.wofi.focus }};
 }
 
 #inner-box {
@@ -52,10 +52,10 @@ window {
 
 #entry:selected {
     background-color: {{ colors.bg2 }};
-    border-left: 3px solid {{ colors.yellow }};
+    border-left: 3px solid {{ accents.wofi.selection }};
 }
 
 #entry:selected #text {
-    color: {{ colors.bright_yellow }};
+    color: {{ accents.wofi.selection }};
     font-weight: bold;
 }

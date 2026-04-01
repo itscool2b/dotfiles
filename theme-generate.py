@@ -163,6 +163,15 @@ def build_context(theme):
         border_colors.append(c[name])
     ctx["border_gradient_colors"] = border_colors
 
+    # Resolve accent references to hex values
+    if "accents" in theme:
+        resolved = {}
+        for group, mappings in theme["accents"].items():
+            resolved[group] = {}
+            for key, color_name in mappings.items():
+                resolved[group][key] = c.get(color_name, color_name)
+        ctx["accents"] = resolved
+
     return ctx
 
 def create_jinja_env():

@@ -245,3 +245,63 @@ borderangle = [1, 60, "liner", "loop"]
 active_colors  = ["bright_blue", "bright_cyan"]
 active_angle   = "45deg"
 inactive_alpha = "00"
+
+# ════════════════════════════════════════════
+#  ACCENTS — Per-module color assignments
+#  Values reference color names from [colors]
+# ════════════════════════════════════════════
+
+[accents.bar]
+workspace_active = "bright_blue"
+clock            = "fg"
+cpu              = "bright_blue"
+memory           = "bright_purple"
+audio            = "bright_cyan"
+network          = "bright_blue"
+media            = "bright_green"
+notification     = "bright_cyan"
+
+[accents.fetch]
+os       = "bright_blue"
+kernel   = "bright_cyan"
+packages = "bright_blue"
+shell    = "bright_green"
+uptime   = "bright_yellow"
+wm       = "bright_purple"
+terminal = "bright_blue"
+cpu      = "bright_green"
+gpu      = "bright_red"
+memory   = "bright_yellow"
+disk     = "bright_cyan"
+
+[accents.starship]
+directory   = "bright_blue"
+git_branch  = "bright_cyan"
+git_status  = "bright_red"
+python      = "bright_blue"
+nodejs      = "bright_green"
+rust        = "bright_cyan"
+
+[accents.rofi]
+selection = "bright_blue"
+
+[accents.wofi]
+focus     = "bright_blue"
+selection = "bright_blue"
+
+[accents.btop]
+highlight   = "bright_blue"
+selected    = "bright_blue"
+proc_misc   = "bright_blue"
+cpu_box     = "bright_cyan"
+mem_box     = "bright_blue"
+net_box     = "bright_purple"
+proc_box    = "bright_blue"
+download    = "bright_blue"
+upload      = "bright_purple"
+
+[accents.kitty]
+url_color = "bright_blue"
+
+[accents.sddm]
+login_button = "bright_blue"

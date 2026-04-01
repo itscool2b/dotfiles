@@ -46,7 +46,7 @@ truncate_to_repo = true
 
 [git_branch]
 format = "[$symbol$branch]($style) "
-style = "fg:#b8bb26"
+style = "fg:#8ec07c"
 symbol = " "
 
 [git_status]
@@ -64,7 +64,7 @@ style = "fg:#b8bb26"
 
 [rust]
 format = "[󱘗 $version]($style) "
-style = "fg:#fe8019"
+style = "fg:#8ec07c"
 
 [cmd_duration]
 format = "[ $duration]($style) "

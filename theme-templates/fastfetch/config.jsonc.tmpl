@@ -41,69 +41,69 @@
         {
             "type": "os",
             "key": " ",
-            "keyColor": "{{ colors.bright_blue | ansi }}",
-            "format": "\u001b[{{ colors.bright_blue | ansi }}m󰣇 \u001b[{{ colors.gray | ansi }}mos    \u001b[{{ colors.bright_blue | ansi }}m{pretty-name}"
+            "keyColor": "{{ accents.fetch.os | ansi }}",
+            "format": "\u001b[{{ accents.fetch.os | ansi }}m󰣇 \u001b[{{ colors.gray | ansi }}mos    \u001b[{{ accents.fetch.os | ansi }}m{pretty-name}"
         },
         {
             "type": "kernel",
             "key": " ",
-            "keyColor": "{{ colors.bright_cyan | ansi }}",
-            "format": "\u001b[{{ colors.bright_cyan | ansi }}m󰌽 \u001b[{{ colors.gray | ansi }}mkern  \u001b[{{ colors.bright_cyan | ansi }}m{release}"
+            "keyColor": "{{ accents.fetch.kernel | ansi }}",
+            "format": "\u001b[{{ accents.fetch.kernel | ansi }}m󰌽 \u001b[{{ colors.gray | ansi }}mkern  \u001b[{{ accents.fetch.kernel | ansi }}m{release}"
         },
         {
             "type": "packages",
             "key": " ",
-            "keyColor": "{{ colors.bright_orange | ansi }}",
-            "format": "\u001b[{{ colors.bright_orange | ansi }}m󰏗 \u001b[{{ colors.gray | ansi }}mpkgs  \u001b[{{ colors.bright_orange | ansi }}m{all}"
+            "keyColor": "{{ accents.fetch.packages | ansi }}",
+            "format": "\u001b[{{ accents.fetch.packages | ansi }}m󰏗 \u001b[{{ colors.gray | ansi }}mpkgs  \u001b[{{ accents.fetch.packages | ansi }}m{all}"
         },
         {
             "type": "shell",
             "key": " ",
-            "keyColor": "{{ colors.bright_green | ansi }}",
-            "format": "\u001b[{{ colors.bright_green | ansi }}m󰆍 \u001b[{{ colors.gray | ansi }}msh    \u001b[{{ colors.bright_green | ansi }}m{pretty-name} {version}"
+            "keyColor": "{{ accents.fetch.shell | ansi }}",
+            "format": "\u001b[{{ accents.fetch.shell | ansi }}m󰆍 \u001b[{{ colors.gray | ansi }}msh    \u001b[{{ accents.fetch.shell | ansi }}m{pretty-name} {version}"
         },
         {
             "type": "uptime",
             "key": " ",
-            "keyColor": "{{ colors.bright_yellow | ansi }}",
-            "format": "\u001b[{{ colors.bright_yellow | ansi }}m󰥔 \u001b[{{ colors.gray | ansi }}mup    \u001b[{{ colors.bright_yellow | ansi }}m{formatted}"
+            "keyColor": "{{ accents.fetch.uptime | ansi }}",
+            "format": "\u001b[{{ accents.fetch.uptime | ansi }}m󰥔 \u001b[{{ colors.gray | ansi }}mup    \u001b[{{ accents.fetch.uptime | ansi }}m{formatted}"
         },
         "break",
         {
             "type": "wm",
             "key": " ",
-            "keyColor": "{{ colors.bright_purple | ansi }}",
-            "format": "\u001b[{{ colors.bright_purple | ansi }}m󰍹 \u001b[{{ colors.gray | ansi }}mwm    \u001b[{{ colors.bright_purple | ansi }}m{pretty-name}"
+            "keyColor": "{{ accents.fetch.wm | ansi }}",
+            "format": "\u001b[{{ accents.fetch.wm | ansi }}m󰍹 \u001b[{{ colors.gray | ansi }}mwm    \u001b[{{ accents.fetch.wm | ansi }}m{pretty-name}"
         },
         {
             "type": "terminal",
             "key": " ",
-            "keyColor": "{{ colors.bright_blue | ansi }}",
-            "format": "\u001b[{{ colors.bright_blue | ansi }}m󰞷 \u001b[{{ colors.gray | ansi }}mterm  \u001b[{{ colors.bright_blue | ansi }}m{pretty-name}"
+            "keyColor": "{{ accents.fetch.terminal | ansi }}",
+            "format": "\u001b[{{ accents.fetch.terminal | ansi }}m󰞷 \u001b[{{ colors.gray | ansi }}mterm  \u001b[{{ accents.fetch.terminal | ansi }}m{pretty-name}"
         },
         {
             "type": "cpu",
             "key": " ",
-            "keyColor": "{{ colors.bright_green | ansi }}",
-            "format": "\u001b[{{ colors.bright_green | ansi }}m󰘚 \u001b[{{ colors.gray | ansi }}mcpu   \u001b[{{ colors.bright_green | ansi }}m{name}"
+            "keyColor": "{{ accents.fetch.cpu | ansi }}",
+            "format": "\u001b[{{ accents.fetch.cpu | ansi }}m󰘚 \u001b[{{ colors.gray | ansi }}mcpu   \u001b[{{ accents.fetch.cpu | ansi }}m{name}"
         },
         {
             "type": "gpu",
             "key": " ",
-            "keyColor": "{{ colors.bright_red | ansi }}",
-            "format": "\u001b[{{ colors.bright_red | ansi }}m󰢮 \u001b[{{ colors.gray | ansi }}mgpu   \u001b[{{ colors.bright_red | ansi }}m{name}"
+            "keyColor": "{{ accents.fetch.gpu | ansi }}",
+            "format": "\u001b[{{ accents.fetch.gpu | ansi }}m󰢮 \u001b[{{ colors.gray | ansi }}mgpu   \u001b[{{ accents.fetch.gpu | ansi }}m{name}"
         },
         {
             "type": "memory",
             "key": " ",
-            "keyColor": "{{ colors.bright_yellow | ansi }}",
-            "format": "\u001b[{{ colors.bright_yellow | ansi }}m󰍛 \u001b[{{ colors.gray | ansi }}mmem   \u001b[{{ colors.bright_yellow | ansi }}m{used} \u001b[{{ colors.gray | ansi }}m/ \u001b[{{ colors.fg_dim | ansi }}m{total}"
+            "keyColor": "{{ accents.fetch.memory | ansi }}",
+            "format": "\u001b[{{ accents.fetch.memory | ansi }}m󰍛 \u001b[{{ colors.gray | ansi }}mmem   \u001b[{{ accents.fetch.memory | ansi }}m{used} \u001b[{{ colors.gray | ansi }}m/ \u001b[{{ colors.fg_dim | ansi }}m{total}"
         },
         {
             "type": "disk",
             "key": " ",
-            "keyColor": "{{ colors.bright_orange | ansi }}",
-            "format": "\u001b[{{ colors.bright_orange | ansi }}m󰋊 \u001b[{{ colors.gray | ansi }}mdisk  \u001b[{{ colors.bright_orange | ansi }}m{size-used} \u001b[{{ colors.gray | ansi }}m/ \u001b[{{ colors.fg_dim | ansi }}m{size-total}",
+            "keyColor": "{{ accents.fetch.disk | ansi }}",
+            "format": "\u001b[{{ accents.fetch.disk | ansi }}m󰋊 \u001b[{{ colors.gray | ansi }}mdisk  \u001b[{{ accents.fetch.disk | ansi }}m{size-used} \u001b[{{ colors.gray | ansi }}m/ \u001b[{{ colors.fg_dim | ansi }}m{size-total}",
             "folders": "/"
         },
         "break",

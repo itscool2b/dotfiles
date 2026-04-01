@@ -13,7 +13,7 @@ window {
     margin: 8px;
     padding: 10px 16px;
     border: none;
-    border-bottom: 2px solid #d79921;
+    border-bottom: 2px solid #83a598;
     border-radius: 8px;
     background-color: #282828;
     color: #ebdbb2;
@@ -21,7 +21,7 @@ window {
 }
 
 #input:focus {
-    border-bottom-color: #fabd2f;
+    border-bottom-color: #83a598;
 }
 
 #inner-box {
@@ -52,10 +52,10 @@ window {
 
 #entry:selected {
     background-color: #3c3836;
-    border-left: 3px solid #d79921;
+    border-left: 3px solid #83a598;
 }
 
 #entry:selected #text {
-    color: #fabd2f;
+    color: #83a598;
     font-weight: bold;
 }

@@ -14,6 +14,15 @@
 @define-color aqua    {{ colors.bright_cyan }};
 @define-color orange  {{ colors.bright_orange }};
 
+@define-color accent_workspace {{ accents.bar.workspace_active }};
+@define-color accent_clock     {{ accents.bar.clock }};
+@define-color accent_cpu       {{ accents.bar.cpu }};
+@define-color accent_memory    {{ accents.bar.memory }};
+@define-color accent_audio     {{ accents.bar.audio }};
+@define-color accent_network   {{ accents.bar.network }};
+@define-color accent_media     {{ accents.bar.media }};
+@define-color accent_notif     {{ accents.bar.notification }};
+
 * {
     font-family: "{{ fonts.mono }}", monospace;
     font-size: {{ fonts.size.bar }}px;
@@ -98,16 +107,16 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: @yellow;
+    color: @accent_workspace;
     background: transparent;
-    border-bottom: 2px solid @yellow;
+    border-bottom: 2px solid @accent_workspace;
     font-weight: bold;
 }
 
 #workspaces button:hover {
-    color: @yellow;
+    color: @accent_workspace;
     background: transparent;
-    border-bottom: 2px solid alpha(@yellow, 0.4);
+    border-bottom: 2px solid alpha(@accent_workspace, 0.4);
 }
 
 /* ━━━ Window title ━━━ */
@@ -120,7 +129,7 @@ window#waybar {
 
 /* ━━━ Clock ━━━ */
 #clock {
-    color: @fg;
+    color: @accent_clock;
     font-weight: bold;
     font-size: {{ fonts.size.bar_clock }}px;
     padding: 2px 16px;
@@ -128,16 +137,16 @@ window#waybar {
 
 /* ━━━ Hardware ━━━ */
 #cpu {
-    color: @blue;
+    color: @accent_cpu;
 }
 
 #memory {
-    color: @purple;
+    color: @accent_memory;
 }
 
 /* ━━━ Audio ━━━ */
 #pulseaudio {
-    color: @aqua;
+    color: @accent_audio;
 }
 
 #pulseaudio.muted {
@@ -146,7 +155,7 @@ window#waybar {
 
 /* ━━━ Network ━━━ */
 #network {
-    color: @orange;
+    color: @accent_network;
 }
 
 #network.disconnected {
@@ -155,13 +164,13 @@ window#waybar {
 
 /* ━━━ Media ━━━ */
 #custom-media {
-    color: @green;
+    color: @accent_media;
     font-style: italic;
 }
 
 /* ━━━ Notification bell ━━━ */
 #custom-notification {
-    color: @yellow;
+    color: @accent_notif;
 }
 
 /* ━━━ Tray ━━━ */

@@ -40,31 +40,31 @@ Arch = "󰣇"
 
 [directory]
 format = "[$path]($style) "
-style = "bold fg:{{ colors.bright_blue }}"
+style = "bold fg:{{ accents.starship.directory }}"
 truncation_length = 3
 truncate_to_repo = true
 
 [git_branch]
 format = "[$symbol$branch]($style) "
-style = "fg:{{ colors.bright_green }}"
+style = "fg:{{ accents.starship.git_branch }}"
 symbol = " "
 
 [git_status]
 format = "[$all_status$ahead_behind]($style)"
-style = "fg:{{ colors.bright_red }}"
+style = "fg:{{ accents.starship.git_status }}"
 
 [python]
 format = "[ $version( $virtualenv)]($style) "
-style = "fg:{{ colors.bright_blue }}"
+style = "fg:{{ accents.starship.python }}"
 symbol = " "
 
 [nodejs]
 format = "[󰎙 $version]($style) "
-style = "fg:{{ colors.bright_green }}"
+style = "fg:{{ accents.starship.nodejs }}"
 
 [rust]
 format = "[󱘗 $version]($style) "
-style = "fg:{{ colors.bright_orange }}"
+style = "fg:{{ accents.starship.rust }}"
 
 [cmd_duration]
 format = "[ $duration]($style) "

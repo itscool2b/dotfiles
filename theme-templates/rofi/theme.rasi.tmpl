@@ -40,7 +40,7 @@ inputbar {
 }
 
 prompt {
-    text-color: @yellow;
+    text-color: {{ accents.rofi.selection }};
     font: "{{ fonts.mono }} {{ fonts.size.rofi_prompt }}";
 }
 
@@ -70,9 +70,9 @@ element normal.normal {
 
 element selected.normal {
     background-color: @bg2;
-    text-color: @yellow;
+    text-color: {{ accents.rofi.selection }};
     border: 0 0 0 3px solid;
-    border-color: @yellow;
+    border-color: {{ accents.rofi.selection }};
 }
 
 element-icon {

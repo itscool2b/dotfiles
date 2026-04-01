@@ -40,7 +40,7 @@ inputbar {
 }
 
 prompt {
-    text-color: @yellow;
+    text-color: #83a598;
     font: "JetBrainsMono Nerd Font 14";
 }
 
@@ -70,9 +70,9 @@ element normal.normal {
 
 element selected.normal {
     background-color: @bg2;
-    text-color: @yellow;
+    text-color: #83a598;
     border: 0 0 0 3px solid;
-    border-color: @yellow;
+    border-color: #83a598;
 }
 
 element-icon {

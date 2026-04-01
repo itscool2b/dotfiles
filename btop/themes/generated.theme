@@ -6,11 +6,11 @@ theme[main_fg]="#ebdbb2"
 
 # Title and highlight
 theme[title_fg]="#ebdbb2"
-theme[hi_fg]="#fabd2f"
+theme[hi_fg]="#83a598"
 
 # Selection
 theme[selected_bg]="#3c3836"
-theme[selected_fg]="#fabd2f"
+theme[selected_fg]="#83a598"
 
 # Inactive
 theme[inactive_fg]="#a89984"
@@ -19,8 +19,8 @@ theme[inactive_fg]="#a89984"
 theme[proc_misc]="#83a598"
 
 # Box outlines
-theme[cpu_box]="#b8bb26"
-theme[mem_box]="#fabd2f"
+theme[cpu_box]="#8ec07c"
+theme[mem_box]="#83a598"
 theme[net_box]="#d3869b"
 theme[proc_box]="#83a598"
 
