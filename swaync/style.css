@@ -1,16 +1,16 @@
-@define-color bg0     #181818;
-@define-color bg1     #212121;
-@define-color bg2     #2c2c2c;
-@define-color bg3     #3a3a3a;
-@define-color fg      #e8e8e8;
-@define-color fg_dim  #808080;
-@define-color red     #b08080;
-@define-color green   #80b080;
-@define-color yellow  #b0b080;
-@define-color blue    #80a0b8;
-@define-color purple  #80a8b8;
-@define-color aqua    #80b8a8;
-@define-color orange  #b8a080;
+@define-color bg0     #1d2021;
+@define-color bg1     #282828;
+@define-color bg2     #3c3836;
+@define-color bg3     #504945;
+@define-color fg      #ebdbb2;
+@define-color fg_dim  #a89984;
+@define-color red     #fb4934;
+@define-color green   #b8bb26;
+@define-color yellow  #fabd2f;
+@define-color blue    #83a598;
+@define-color purple  #d3869b;
+@define-color aqua    #8ec07c;
+@define-color orange  #fe8019;
 
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
@@ -18,7 +18,7 @@
 }
 
 .control-center {
-    background: alpha(@bg0, 0.7);
+    background: alpha(@bg0, 0.6);
     border: 2px solid alpha(@bg3, 0.5);
     border-radius: 16px;
     padding: 12px;
@@ -30,7 +30,7 @@
 }
 
 .notification {
-    background: alpha(@bg1, 0.8);
+    background: alpha(@bg1, 0.72);
     border: 1px solid alpha(@bg3, 0.4);
     border-radius: 12px;
     padding: 8px;

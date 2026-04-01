@@ -2,43 +2,43 @@
 # Change values here, then run: ./theme-generate.py
 
 [meta]
-name = "Glass Noir"
+name = "Gruvbox Glass"
 
 # ════════════════════════════════════════════
-#  COLORS — Monochrome glass with muted accents
+#  COLORS — Gruvbox Dark Hard + vivid accents
 # ════════════════════════════════════════════
 
 [colors]
-# Backgrounds (dark glass layers)
-bg0      = "#181818"
-bg1      = "#212121"
-bg2      = "#2c2c2c"
-bg3      = "#3a3a3a"
-bg4      = "#484848"
-gray     = "#686868"
+# Backgrounds (Gruvbox dark hard layers)
+bg0      = "#1d2021"
+bg1      = "#282828"
+bg2      = "#3c3836"
+bg3      = "#504945"
+bg4      = "#665c54"
+gray     = "#928374"
 
-# Foregrounds (whites/grays)
-fg       = "#e8e8e8"
-fg_dim   = "#808080"
-fg_light = "#ffffff"
+# Foregrounds (warm cream)
+fg       = "#ebdbb2"
+fg_dim   = "#a89984"
+fg_light = "#fbf1c7"
 
-# Normal accent colors (muted, lifted)
-red      = "#7d4d4d"
-green    = "#4d7d4d"
-yellow   = "#7d7d4d"
-blue     = "#4d6580"
-purple   = "#4d6d80"
-cyan     = "#4d807d"
-orange   = "#80654d"
+# Normal accent colors (canonical Gruvbox)
+red      = "#cc241d"
+green    = "#98971a"
+yellow   = "#d79921"
+blue     = "#458588"
+purple   = "#b16286"
+cyan     = "#689d6a"
+orange   = "#d65d0e"
 
-# Bright accent colors (muted but clearly readable)
-bright_red     = "#b08080"
-bright_green   = "#80b080"
-bright_yellow  = "#b0b080"
-bright_blue    = "#80a0b8"
-bright_purple  = "#80a8b8"
-bright_cyan    = "#80b8a8"
-bright_orange  = "#b8a080"
+# Bright accent colors (canonical Gruvbox)
+bright_red     = "#fb4934"
+bright_green   = "#b8bb26"
+bright_yellow  = "#fabd2f"
+bright_blue    = "#83a598"
+bright_purple  = "#d3869b"
+bright_cyan    = "#8ec07c"
+bright_orange  = "#fe8019"
 
 # ════════════════════════════════════════════
 #  FONTS
@@ -108,7 +108,7 @@ path = "~/.config/wallpapers/wallpaper.png"
 # Hyprland
 gaps_in            = 6
 gaps_out           = 16
-border_size        = 1
+border_size        = 2
 rounding           = 12
 
 # Terminal padding
@@ -116,10 +116,10 @@ terminal_pad_x     = 18
 terminal_pad_y     = 14
 
 # Waybar
-bar_height         = 42
-bar_margin_top     = 6
-bar_margin_side    = 12
-bar_radius         = 14
+bar_height         = 32
+bar_margin_top     = 5
+bar_margin_side    = 10
+bar_radius         = 10
 bar_tooltip_radius = 12
 
 # Dunst
@@ -168,26 +168,26 @@ sddm_button_radius = 15
 # ════════════════════════════════════════════
 
 [opacity]
-terminal         = 0.85
-inactive_window  = 0.88
-kitty_dim        = 0.80
-bar_module_bg    = 0.55
-bar_module_hover = 0.70
+terminal         = 0.82
+inactive_window  = 0.85
+kitty_dim        = 0.75
+bar_module_bg    = 0.25
+bar_module_hover = 0.12
 bar_tooltip      = 0.90
-rofi_bg_alpha    = "bb"
-swaync_cc        = 0.70
-swaync_notif     = 0.80
-sddm_login_box   = 0.80
+rofi_bg_alpha    = "aa"
+swaync_cc        = 0.60
+swaync_notif     = 0.72
+sddm_login_box   = 0.72
 sddm_overlay     = 0.55
 
 [blur]
-hypr_size              = 12
-hypr_passes            = 4
+hypr_size              = 14
+hypr_passes            = 5
 hypr_noise             = 0.01
 hypr_contrast          = 1.0
-hypr_brightness        = 0.8
-hypr_vibrancy          = 0.1
-hypr_vibrancy_darkness = 0.4
+hypr_brightness        = 0.88
+hypr_vibrancy          = 0.25
+hypr_vibrancy_darkness = 0.5
 lock_passes            = 5
 lock_size              = 12
 lock_noise             = 0.01
@@ -200,11 +200,11 @@ sddm_radius            = 56
 # ════════════════════════════════════════════
 
 [shadow]
-hypr_range        = 30
-hypr_render_power = 4
+hypr_range        = 35
+hypr_render_power = 3
 hypr_offset       = "0 6"
 hypr_scale        = 0.96
-hypr_alpha        = "cc"
+hypr_alpha        = "dd"
 
 # ════════════════════════════════════════════
 #  ANIMATIONS

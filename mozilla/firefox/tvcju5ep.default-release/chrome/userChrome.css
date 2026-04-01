@@ -1,20 +1,20 @@
 /* Firefox userChrome — Gruvbox Dark */
 
 :root {
-    --gruvbox-bg0: #181818;
-    --gruvbox-bg1: #212121;
-    --gruvbox-bg2: #2c2c2c;
-    --gruvbox-bg3: #3a3a3a;
-    --gruvbox-fg: #e8e8e8;
-    --gruvbox-fg-dim: #808080;
-    --gruvbox-red: #b08080;
-    --gruvbox-green: #80b080;
-    --gruvbox-yellow: #b0b080;
-    --gruvbox-blue: #80a0b8;
-    --gruvbox-purple: #80a8b8;
-    --gruvbox-aqua: #80b8a8;
-    --gruvbox-orange: #b8a080;
-    --gruvbox-dark-yellow: #7d7d4d;
+    --gruvbox-bg0: #1d2021;
+    --gruvbox-bg1: #282828;
+    --gruvbox-bg2: #3c3836;
+    --gruvbox-bg3: #504945;
+    --gruvbox-fg: #ebdbb2;
+    --gruvbox-fg-dim: #a89984;
+    --gruvbox-red: #fb4934;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-blue: #83a598;
+    --gruvbox-purple: #d3869b;
+    --gruvbox-aqua: #8ec07c;
+    --gruvbox-orange: #fe8019;
+    --gruvbox-dark-yellow: #d79921;
 }
 
 /* --- Main toolbar / navigation bar --- */

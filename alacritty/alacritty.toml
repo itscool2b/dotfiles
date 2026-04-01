@@ -4,7 +4,7 @@ TERM = "xterm-256color"
 [window]
 dynamic_padding = true
 decorations = "none"
-opacity = 0.85
+opacity = 0.82
 decorations_theme_variant = "Dark"
 
 [window.padding]
@@ -16,32 +16,32 @@ history = 10000
 multiplier = 3
 
 [colors.primary]
-background = "#181818"
-foreground = "#e8e8e8"
+background = "#1d2021"
+foreground = "#ebdbb2"
 
 [colors.normal]
-black = "#212121"
-red = "#7d4d4d"
-green = "#4d7d4d"
-yellow = "#7d7d4d"
-blue = "#4d6580"
-magenta = "#4d6d80"
-cyan = "#4d807d"
-white = "#808080"
+black = "#282828"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+magenta = "#b16286"
+cyan = "#689d6a"
+white = "#a89984"
 
 [colors.bright]
-black = "#686868"
-red = "#b08080"
-green = "#80b080"
-yellow = "#b0b080"
-blue = "#80a0b8"
-magenta = "#80a8b8"
-cyan = "#80b8a8"
-white = "#e8e8e8"
+black = "#928374"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+magenta = "#d3869b"
+cyan = "#8ec07c"
+white = "#ebdbb2"
 
 [colors.selection]
-background = "#e8e8e8"
-text = "#181818"
+background = "#ebdbb2"
+text = "#1d2021"
 
 [font]
 size = 12.0
