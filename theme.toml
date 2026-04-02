@@ -133,11 +133,17 @@ dunst_h_padding    = 16
 dunst_gap          = 6
 
 # Rofi
-rofi_width           = 600
-rofi_radius          = 16
-rofi_inputbar_radius = 12
-rofi_element_radius  = 10
-rofi_icon_size       = 28
+rofi_width           = 550
+rofi_padding         = 14
+rofi_radius          = 24
+rofi_inputbar_radius = 16
+rofi_inputbar_pad_v  = 10
+rofi_inputbar_pad_h  = 16
+rofi_element_radius  = 16
+rofi_element_pad_v   = 8
+rofi_element_pad_h   = 16
+rofi_element_spacing = 4
+rofi_icon_size       = 24
 rofi_lines           = 8
 
 # Wofi
@@ -174,7 +180,9 @@ kitty_dim        = 0.75
 bar_module_bg    = 0.25
 bar_module_hover = 0.12
 bar_tooltip      = 0.90
-rofi_bg_alpha    = "aa"
+rofi_bg_alpha    = "99"
+rofi_glass_input = 5
+rofi_glass_sel   = 8
 swaync_cc        = 0.60
 swaync_notif     = 0.72
 sddm_login_box   = 0.72
