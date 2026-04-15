@@ -4,7 +4,7 @@
     offset = 12x12
     origin = top-right
     transparency = 10
-    frame_color = "#504945"
+    frame_color = "#424a56"
     frame_width = 2
     corner_radius = 10
     font = JetBrainsMono Nerd Font 11
@@ -16,18 +16,18 @@
     gap_size = 6
 
 [urgency_low]
-    background = "#1d2021"
-    foreground = "#a89984"
+    background = "#22272e"
+    foreground = "#8b949e"
     timeout = 4
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#ebdbb2"
-    highlight = "#d79921"
+    background = "#2c323b"
+    foreground = "#c9d1d9"
+    highlight = "#c49a3a"
     timeout = 6
 
 [urgency_critical]
-    background = "#cc241d"
-    foreground = "#ebdbb2"
-    frame_color = "#fb4934"
+    background = "#c0526a"
+    foreground = "#c9d1d9"
+    frame_color = "#ff7b72"
     timeout = 0
