@@ -2,43 +2,43 @@
 # Change values here, then run: ./theme-generate.py
 
 [meta]
-name = "Midnight Glass"
+name = "Gruvbox Refined"
 
 # ════════════════════════════════════════════
-#  COLORS — Blackish blue-tinted base + blue hero
+#  COLORS — Gruvbox Material palette (softer, smoother than canonical)
 # ════════════════════════════════════════════
 
 [colors]
-# Backgrounds (grayer, cool blue undertone)
-bg0      = "#22272e"
-bg1      = "#2c323b"
-bg2      = "#363d48"
-bg3      = "#424a56"
-bg4      = "#525c6b"
-gray     = "#768390"
+# Backgrounds (warm dark, hard-contrast bg0 retained)
+bg0      = "#1d2021"
+bg1      = "#282828"
+bg2      = "#32302f"
+bg3      = "#3c3836"
+bg4      = "#504945"
+gray     = "#7c6f64"
 
-# Foregrounds (cool cream)
-fg       = "#c9d1d9"
-fg_dim   = "#8b949e"
-fg_light = "#f0f6fc"
+# Foregrounds (Gruvbox Material soft cream — less yellow than canonical)
+fg       = "#d4be98"
+fg_dim   = "#928374"
+fg_light = "#ddc7a1"
 
-# Normal ANSI
-red      = "#c0526a"
-green    = "#56b66a"
-yellow   = "#c49a3a"
-blue     = "#4a8fd1"
-purple   = "#8258d8"
-cyan     = "#2eadb6"
-orange   = "#d06a2e"
+# Normal ANSI (Gruvbox Material — softer, modern)
+red      = "#ea6962"
+green    = "#a9b665"
+yellow   = "#d8a657"
+blue     = "#7daea3"
+purple   = "#d3869b"
+cyan     = "#89b482"
+orange   = "#e78a4e"
 
-# Bright ANSI (blue = hero, pale-blue secondary)
-bright_red     = "#ff7b72"
-bright_green   = "#7ee787"
-bright_yellow  = "#d29922"
-bright_blue    = "#6b8fb8"
-bright_purple  = "#a371f7"
-bright_cyan    = "#8aa8c8"
-bright_orange  = "#f0883e"
+# Bright ANSI (slightly warmer pops — yellow = hero, orange = secondary)
+bright_red     = "#f2594b"
+bright_green   = "#b0b846"
+bright_yellow  = "#e5b975"
+bright_blue    = "#8fbcbb"
+bright_purple  = "#e0a0b5"
+bright_cyan    = "#9ac197"
+bright_orange  = "#f49269"
 
 # ════════════════════════════════════════════
 #  FONTS
@@ -263,32 +263,32 @@ inactive_alpha = "00"
 workspace_active = "bright_blue"
 clock            = "fg"
 cpu              = "bright_blue"
-memory           = "bright_cyan"
-audio            = "bright_blue"
+memory           = "bright_purple"
+audio            = "bright_cyan"
 network          = "bright_blue"
-media            = "bright_cyan"
-notification     = "bright_blue"
+media            = "bright_green"
+notification     = "bright_cyan"
 
 [accents.fetch]
 os       = "bright_blue"
 kernel   = "bright_cyan"
 packages = "bright_blue"
-shell    = "bright_cyan"
-uptime   = "bright_blue"
-wm       = "bright_blue"
-terminal = "bright_cyan"
-cpu      = "bright_blue"
-gpu      = "bright_blue"
-memory   = "bright_cyan"
-disk     = "bright_blue"
+shell    = "bright_green"
+uptime   = "bright_yellow"
+wm       = "bright_purple"
+terminal = "bright_blue"
+cpu      = "bright_green"
+gpu      = "bright_orange"
+memory   = "bright_yellow"
+disk     = "bright_cyan"
 
 [accents.starship]
 directory   = "bright_blue"
 git_branch  = "bright_cyan"
 git_status  = "fg_dim"
 python      = "bright_blue"
-nodejs      = "bright_cyan"
-rust        = "bright_blue"
+nodejs      = "bright_green"
+rust        = "bright_cyan"
 
 [accents.rofi]
 selection = "bright_blue"
@@ -303,13 +303,24 @@ selected    = "bright_blue"
 proc_misc   = "bright_blue"
 cpu_box     = "bright_cyan"
 mem_box     = "bright_blue"
-net_box     = "bright_cyan"
+net_box     = "bright_purple"
 proc_box    = "bright_blue"
 download    = "bright_blue"
-upload      = "bright_cyan"
+upload      = "bright_purple"
 
 [accents.kitty]
 url_color = "bright_blue"
 
 [accents.sddm]
 login_button = "bright_blue"
+
+# ════════════════════════════════════════════
+#  FASTFETCH LOGO — custom ASCII art
+# ════════════════════════════════════════════
+
+[fastfetch]
+logo_source  = "~/.config/fastfetch/cachyos-logo.txt"
+logo_type    = "file"
+logo_padding_top   = 6
+logo_padding_left  = 2
+logo_padding_right = 3

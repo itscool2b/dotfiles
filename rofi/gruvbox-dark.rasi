@@ -1,6 +1,6 @@
 * {
     background-color: transparent;
-    text-color:       #c9d1d9;
+    text-color:       #d4be98;
     margin:           0px;
     padding:          0px;
     spacing:          0px;
@@ -8,7 +8,7 @@
 
 window {
     width:            550px;
-    background-color: #22272e99;
+    background-color: #1d202199;
     border:           0px;
     border-radius:    24px;
     location:         center;
@@ -28,20 +28,20 @@ inputbar {
     padding:          10px 16px;
     background-color: white / 5%;
     border:           2px;
-    border-color:     #424a56;
+    border-color:     #3c3836;
     border-radius:    16px;
 }
 
 prompt {
-    text-color:     #6b8fb8;
+    text-color:     #8fbcbb;
     font:           "JetBrainsMono Nerd Font 14";
     vertical-align: 0.5;
 }
 
 entry {
     placeholder:       "Search...";
-    placeholder-color: #525c6b;
-    text-color:        #c9d1d9;
+    placeholder-color: #504945;
+    text-color:        #d4be98;
     vertical-align:    0.5;
 }
 
@@ -62,12 +62,12 @@ element {
 element normal.normal,
 element alternate.normal {
     background-color: transparent;
-    text-color:       #8b949e;
+    text-color:       #928374;
 }
 
 element selected.normal {
     background-color: white / 8%;
-    text-color:       #c9d1d9;
+    text-color:       #d4be98;
 }
 
 element-icon {

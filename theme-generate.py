@@ -143,6 +143,11 @@ def build_context(theme):
     wp = dict(theme["wallpaper"])
     wp["path"] = os.path.expanduser(wp["path"])
     ctx["wallpaper"] = wp
+    # Expand ~ in fastfetch logo source (if section present)
+    if "fastfetch" in theme:
+        ff = dict(theme["fastfetch"])
+        ff["logo_source"] = os.path.expanduser(ff["logo_source"])
+        ctx["fastfetch"] = ff
     ctx["geometry"] = theme["geometry"]
     ctx["opacity"] = theme["opacity"]
     ctx["blur"] = theme["blur"]

@@ -1,27 +1,27 @@
 /* ━━━ Gruvbox Glass Waybar — Unified Slim Bar ━━━ */
 
-@define-color bg0     #22272e;
-@define-color bg1     #2c323b;
-@define-color bg2     #363d48;
-@define-color bg3     #424a56;
-@define-color fg      #c9d1d9;
-@define-color fg_dim  #8b949e;
-@define-color red     #ff7b72;
-@define-color green   #7ee787;
-@define-color yellow  #d29922;
-@define-color blue    #6b8fb8;
-@define-color purple  #a371f7;
-@define-color aqua    #8aa8c8;
-@define-color orange  #f0883e;
+@define-color bg0     #1d2021;
+@define-color bg1     #282828;
+@define-color bg2     #32302f;
+@define-color bg3     #3c3836;
+@define-color fg      #d4be98;
+@define-color fg_dim  #928374;
+@define-color red     #f2594b;
+@define-color green   #b0b846;
+@define-color yellow  #e5b975;
+@define-color blue    #8fbcbb;
+@define-color purple  #e0a0b5;
+@define-color aqua    #9ac197;
+@define-color orange  #f49269;
 
-@define-color accent_workspace #6b8fb8;
-@define-color accent_clock     #c9d1d9;
-@define-color accent_cpu       #6b8fb8;
-@define-color accent_memory    #8aa8c8;
-@define-color accent_audio     #6b8fb8;
-@define-color accent_network   #6b8fb8;
-@define-color accent_media     #8aa8c8;
-@define-color accent_notif     #6b8fb8;
+@define-color accent_workspace #8fbcbb;
+@define-color accent_clock     #d4be98;
+@define-color accent_cpu       #8fbcbb;
+@define-color accent_memory    #e0a0b5;
+@define-color accent_audio     #9ac197;
+@define-color accent_network   #8fbcbb;
+@define-color accent_media     #b0b846;
+@define-color accent_notif     #9ac197;
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
