@@ -1,4 +1,5 @@
-/* ━━━ Gruvbox Glass Waybar — Unified Slim Bar ━━━ */
+/* ━━━ {{ meta.name }} Waybar — Unified Slim Bar ━━━ */
+/* Generated from theme.toml — do not edit directly */
 
 @define-color bg0     {{ colors.bg0 }};
 @define-color bg1     {{ colors.bg1 }};
@@ -39,7 +40,7 @@ window#waybar {
     color: @fg;
 }
 
-/* ━━━ Module base — no pills ━━━ */
+/* ━━━ Modules — transparent base ━━━ */
 #workspaces,
 #window,
 #clock,
@@ -55,7 +56,8 @@ window#waybar {
     border-radius: 0;
     padding: 2px 12px;
     margin: 0 1px;
-    transition: all {{ animations.bar_transition }} ease;
+    transition: background-color {{ waybar.hover.duration }} ease,
+                color {{ waybar.hover.duration }} ease;
 }
 
 /* ━━━ Hover — subtle warm wash ━━━ */
@@ -66,57 +68,50 @@ window#waybar {
 #network:hover,
 #custom-media:hover,
 #custom-notification:hover {
-    background: alpha(@fg, {{ opacity.bar_module_hover }});
-    border-radius: 6px;
+    background: alpha(@fg, {{ waybar.hover.bg_alpha }});
+    border-radius: {{ waybar.hover.radius }}px;
 }
 
 /* ━━━ Group separators ━━━ */
-#workspaces {
-    border-right: 1px solid alpha(@bg3, 0.35);
-    padding-right: 14px;
-    margin-right: 6px;
-}
-
-#custom-media {
-    border-right: 1px solid alpha(@bg3, 0.35);
-    padding-right: 14px;
-    margin-right: 6px;
-}
-
+#workspaces,
+#custom-media,
 #memory {
     border-right: 1px solid alpha(@bg3, 0.35);
     padding-right: 14px;
     margin-right: 6px;
 }
 
-/* ━━━ Workspaces — underline indicator ━━━ */
+/* ━━━ Workspaces — dot indicators ━━━ */
 #workspaces {
     padding: 2px 8px;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    margin: 0 2px;
-    color: alpha(@fg_dim, 0.5);
+    color: alpha(@fg_dim, 0.45);
     background: transparent;
     border: none;
-    border-radius: 0;
-    border-bottom: 2px solid transparent;
-    transition: all {{ animations.bar_transition }} ease;
-    min-width: 22px;
+    border-radius: {{ waybar.hover.radius }}px;
+    padding: 0 7px;
+    margin: 0 2px;
+    min-width: 18px;
+    transition: all {{ waybar.hover.duration }} cubic-bezier(0.22, 1.0, 0.36, 1.0);
 }
 
 #workspaces button.active {
     color: @accent_workspace;
-    background: transparent;
-    border-bottom: 2px solid @accent_workspace;
+    background: alpha(@accent_workspace, 0.14);
     font-weight: bold;
+    padding: 0 10px;
+}
+
+#workspaces button.urgent {
+    color: @yellow;
+    background: alpha(@yellow, 0.18);
 }
 
 #workspaces button:hover {
     color: @accent_workspace;
-    background: transparent;
-    border-bottom: 2px solid alpha(@accent_workspace, 0.4);
+    background: alpha(@accent_workspace, 0.08);
 }
 
 /* ━━━ Window title ━━━ */
@@ -135,58 +130,32 @@ window#waybar {
     padding: 2px 16px;
 }
 
-/* ━━━ Hardware ━━━ */
-#cpu {
-    color: @accent_cpu;
-}
+/* ━━━ Module colors ━━━ */
+#cpu                   { color: @accent_cpu; }
+#memory                { color: @accent_memory; }
+#pulseaudio            { color: @accent_audio; }
+#network               { color: @accent_network; }
+#custom-media          { color: @accent_media; font-style: italic; }
+#custom-notification   { color: @accent_notif; }
 
-#memory {
-    color: @accent_memory;
-}
-
-/* ━━━ Audio ━━━ */
-#pulseaudio {
-    color: @accent_audio;
-}
-
-#pulseaudio.muted {
-    color: alpha(@fg_dim, 0.5);
-}
-
-/* ━━━ Network ━━━ */
-#network {
-    color: @accent_network;
-}
-
-#network.disconnected {
-    color: @red;
-}
-
-/* ━━━ Media ━━━ */
-#custom-media {
-    color: @accent_media;
-    font-style: italic;
-}
-
-/* ━━━ Notification bell ━━━ */
-#custom-notification {
-    color: @accent_notif;
-}
+#pulseaudio.muted      { color: alpha(@fg_dim, 0.5); }
+#network.disconnected  { color: alpha(@fg_dim, 0.5); }
 
 /* ━━━ Tray ━━━ */
 #tray {
     padding: 2px 8px;
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
+#tray > .passive         { -gtk-icon-effect: dim; }
+#tray > .needs-attention { -gtk-icon-effect: highlight; }
 
-/* ━━━ Tooltip ━━━ */
+/* ━━━ Tooltips ━━━ */
 tooltip {
     background: alpha(@bg1, {{ opacity.bar_tooltip }});
-    border: 1px solid @bg3;
+    border: 1px solid alpha(@bg3, 0.6);
     border-radius: {{ geometry.bar_tooltip_radius }}px;
     color: @fg;
     padding: 8px;
 }
+
+tooltip label { color: @fg; padding: 2px 4px; }

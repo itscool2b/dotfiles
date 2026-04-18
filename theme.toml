@@ -226,24 +226,78 @@ sddm_box_fade       = 900
 sddm_buttons_fade   = 1000
 
 [animations.beziers]
-wind   = [0.05, 0.9, 0.1, 1.05]
-winIn  = [0.1, 1.1, 0.1, 1.0]
-winOut = [0.3, -0.3, 0.0, 1.0]
-liner  = [1.0, 1.0, 1.0, 1.0]
-smooth = [0.25, 1.0, 0.5, 1.0]
+wind      = [0.05, 0.9, 0.1, 1.05]
+winIn     = [0.1, 1.1, 0.1, 1.0]
+winOut    = [0.3, -0.3, 0.0, 1.0]
+liner     = [1.0, 1.0, 1.0, 1.0]
+smooth    = [0.25, 1.0, 0.5, 1.0]
+# New beziers for finer-grained motion control
+overshoot = [0.34, 1.56, 0.64, 1.0]   # spring-like overshoot, windows opening
+snappy    = [0.22, 1.0, 0.36, 1.0]    # fast-then-ease, workspace switches
+soft      = [0.25, 0.46, 0.45, 0.94]  # gentle ease-out, layer fades
 
 [animations.hyprland]
-windows     = [1, 4, "wind", "slide"]
-windowsIn   = [1, 4, "winIn", "slide"]
+windows     = [1, 4, "overshoot", "slide"]
+windowsIn   = [1, 4, "overshoot", "slide"]
 windowsOut  = [1, 3, "winOut", "slide"]
 windowsMove = [1, 4, "smooth", ""]
 fade        = [1, 4, "liner", ""]
-workspaces  = [1, 4, "smooth", "slide"]
-layers      = [1, 3, "wind", "fade"]
-layersIn    = [1, 3, "winIn", "fade"]
-layersOut   = [1, 2, "winOut", "fade"]
+workspaces  = [1, 3, "snappy", "slidefade 15%"]
+layers      = [1, 3, "soft", "fade"]
+layersIn    = [1, 3, "soft", "fade"]
+layersOut   = [1, 2, "soft", "fade"]
 border      = [1, 10, "liner", ""]
-borderangle = [1, 60, "liner", "loop"]
+borderangle = [1, 120, "liner", "loop"]
+
+# ════════════════════════════════════════════
+#  WAYBAR — Pill groups, hover, shadow tunables
+# ════════════════════════════════════════════
+
+[waybar.pills]
+# Each "group" is a wrapper div around a cluster of modules.
+# Background alpha + radius for the group pill.
+group_bg_alpha   = 0.35      # background transparency for each pill
+group_radius     = 10        # corner radius of each pill
+group_padding_v  = 2         # vertical padding inside pill
+group_padding_h  = 6         # horizontal padding inside pill
+group_margin     = 4         # spacing between adjacent pills
+shadow_alpha     = 0.22      # soft drop-shadow under each pill
+shadow_offset_y  = 2         # shadow y-offset in px
+shadow_blur      = 8         # shadow blur radius in px
+
+[waybar.hover]
+# Hover feedback on individual modules inside a pill.
+duration         = "0.18s"
+bg_alpha         = 0.10      # subtle warm wash on hover
+radius           = 6
+
+# ════════════════════════════════════════════
+#  LAYER EFFECTS — Per-namespace animations & shadow (Hyprland layerrules)
+# ════════════════════════════════════════════
+
+[layer_effects]
+# Per-layer entrance animation style (options: slide, popin [N%], fade, noanim)
+# Namespaces must be matched via Hyprland's `match:namespace` selector (newer syntax).
+waybar_animation  = "slide"
+rofi_animation    = "popin 80%"
+swaync_cc_anim    = "slide"
+swaync_notif_anim = "slide"
+
+# ════════════════════════════════════════════
+#  SWAYOSD — Volume/brightness/capslock popup
+# ════════════════════════════════════════════
+
+[swayosd]
+# Popup geometry + glass styling (matches rofi aesthetic)
+radius           = 18
+padding_v        = 14
+padding_h        = 20
+icon_size        = 32
+progress_height  = 6
+progress_radius  = 3
+bg_alpha         = 0.85
+# Accent (use a color name from [colors])
+accent           = "bright_blue"
 
 # ════════════════════════════════════════════
 #  BORDER — Subtle muted gradient
@@ -313,6 +367,11 @@ url_color = "bright_blue"
 
 [accents.sddm]
 login_button = "bright_blue"
+
+[accents.swayosd]
+progress = "bright_blue"
+icon     = "fg"
+text     = "fg"
 
 # ════════════════════════════════════════════
 #  FASTFETCH LOGO — custom ASCII art

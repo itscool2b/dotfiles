@@ -106,7 +106,12 @@ MANIFEST = [
     ("fastfetch/config.jsonc.tmpl",                 "fastfetch/config.jsonc"),
     ("Trolltech.conf.tmpl",                         "Trolltech.conf"),
     ("btop/themes/generated.theme.tmpl",            "btop/themes/generated.theme"),
+    ("swayosd/style.css.tmpl",                      "swayosd/style.css"),
+    ("fontconfig/fonts.conf.tmpl",                  "fontconfig/fonts.conf"),
 ]
+
+# Paths to ensure executable after render
+EXECUTABLE_OUTPUTS = set()
 
 SDDM_TEMPLATE = "sddm/Main.qml.tmpl"
 SDDM_OUTPUT = Path("/usr/share/sddm/themes/gruvbox-dark/Main.qml")
@@ -155,6 +160,10 @@ def build_context(theme):
     ctx["animations"] = theme["animations"]
     ctx["border"] = theme["border"]
     ctx["meta"] = theme["meta"]
+    # Optional nested sections — pass through verbatim if present
+    for opt in ("waybar", "layer_effects", "swayosd"):
+        if opt in theme:
+            ctx[opt] = theme[opt]
 
     # Qt palette lines
     c = theme["colors"]
@@ -213,12 +222,13 @@ def render_templates(env, ctx, only=None, dry_run=False, show_diff=False):
         else:
             outputs = [BASE / out_rel]
 
+        make_exec = out_rel in EXECUTABLE_OUTPUTS
         for out_path in outputs:
-            results.append(_handle_output(out_path, rendered, dry_run, show_diff))
+            results.append(_handle_output(out_path, rendered, dry_run, show_diff, executable=make_exec))
 
     return results
 
-def _handle_output(out_path, rendered, dry_run, show_diff):
+def _handle_output(out_path, rendered, dry_run, show_diff, executable=False):
     out_path.parent.mkdir(parents=True, exist_ok=True)
     current = out_path.read_text() if out_path.exists() else ""
     changed = current != rendered
@@ -241,6 +251,9 @@ def _handle_output(out_path, rendered, dry_run, show_diff):
             print(f"  updated: {out_path}")
         else:
             print(f"  unchanged: {out_path}")
+        if executable and out_path.exists():
+            mode = out_path.stat().st_mode
+            out_path.chmod(mode | 0o111)
 
     return {"path": out_path, "changed": changed}
 

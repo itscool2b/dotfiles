@@ -57,3 +57,9 @@ animations {
 
 {%- endfor %}
 }
+
+# ━━━ Per-layer polish: custom entrance animations ━━━
+layerrule = animation {{ layer_effects.waybar_animation }}, match:namespace waybar
+layerrule = animation {{ layer_effects.rofi_animation }}, match:namespace rofi
+layerrule = animation {{ layer_effects.swaync_cc_anim }}, match:namespace swaync-control-center
+layerrule = animation {{ layer_effects.swaync_notif_anim }}, match:namespace swaync-notification-window

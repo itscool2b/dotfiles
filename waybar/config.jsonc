@@ -28,13 +28,10 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "I",
-            "2": "II",
-            "3": "III",
-            "4": "IV",
-            "5": "V",
-            "active": "",
-            "default": ""
+            "active": "●",
+            "default": "●",
+            "empty": "○",
+            "urgent": "●"
         },
         "persistent-workspaces": {
             "*": 5
@@ -83,16 +80,20 @@
     "custom/media": {
         "format": "{icon} {text}",
         "format-icons": {
-            "playing": "󰎆 ",
-            "paused": "󰏤 "
+            "playing": "󰎆",
+            "paused": "󰏤",
+            "stopped": "󰝛",
+            "none": ""
         },
-        "max-length": 30,
-        "exec": "playerctl metadata --format '{{artist}} - {{title}}' 2>/dev/null || echo ''",
-        "exec-if": "playerctl status 2>/dev/null",
-        "interval": 3,
+        "return-type": "json",
+        "max-length": 45,
+        "escape": true,
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/media.sh",
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+        "on-scroll-down": "playerctl previous",
+        "tooltip-format": "{alt}"
     },
     "custom/notification": {
         "tooltip": false,

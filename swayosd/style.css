@@ -1,0 +1,43 @@
+/* ━━━ Gruvbox Refined — SwayOSD theme ━━━ */
+/* Generated from theme.toml — do not edit directly */
+
+window#osd {
+    background-color: transparent;
+    color: #d4be98;
+    border-radius: 18px;
+}
+
+window#osd #container {
+    margin: 16px;
+    padding: 14px 20px;
+    border-radius: 18px;
+    background-color: alpha(#1d2021, 0.85);
+    border: 1px solid alpha(#3c3836, 0.55);
+    box-shadow: 0 6px 20px alpha(#1d2021, 0.45);
+}
+
+window#osd image,
+window#osd label {
+    color: #d4be98;
+    -gtk-icon-size: 32px;
+}
+
+window#osd progressbar {
+    min-height: 6px;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+window#osd progressbar trough {
+    min-height: 6px;
+    border-radius: 3px;
+    background-color: alpha(#3c3836, 0.55);
+    border: none;
+}
+
+window#osd progressbar progress {
+    min-height: 6px;
+    border-radius: 3px;
+    background-color: #8fbcbb;
+    border: none;
+}

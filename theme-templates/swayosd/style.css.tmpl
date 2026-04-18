@@ -1,0 +1,43 @@
+/* ━━━ {{ meta.name }} — SwayOSD theme ━━━ */
+/* Generated from theme.toml — do not edit directly */
+
+window#osd {
+    background-color: transparent;
+    color: {{ accents.swayosd.text }};
+    border-radius: {{ swayosd.radius }}px;
+}
+
+window#osd #container {
+    margin: 16px;
+    padding: {{ swayosd.padding_v }}px {{ swayosd.padding_h }}px;
+    border-radius: {{ swayosd.radius }}px;
+    background-color: alpha({{ colors.bg0 }}, {{ swayosd.bg_alpha }});
+    border: 1px solid alpha({{ colors.bg3 }}, 0.55);
+    box-shadow: 0 6px 20px alpha({{ colors.bg0 }}, 0.45);
+}
+
+window#osd image,
+window#osd label {
+    color: {{ accents.swayosd.icon }};
+    -gtk-icon-size: {{ swayosd.icon_size }}px;
+}
+
+window#osd progressbar {
+    min-height: {{ swayosd.progress_height }}px;
+    border-radius: {{ swayosd.progress_radius }}px;
+    background-color: transparent;
+}
+
+window#osd progressbar trough {
+    min-height: {{ swayosd.progress_height }}px;
+    border-radius: {{ swayosd.progress_radius }}px;
+    background-color: alpha({{ colors.bg3 }}, 0.55);
+    border: none;
+}
+
+window#osd progressbar progress {
+    min-height: {{ swayosd.progress_height }}px;
+    border-radius: {{ swayosd.progress_radius }}px;
+    background-color: {{ accents.swayosd.progress }};
+    border: none;
+}
