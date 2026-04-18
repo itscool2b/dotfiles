@@ -30,6 +30,7 @@ inputbar {
     border:           2px;
     border-color:     {{ colors.bg3 }};
     border-radius:    {{ geometry.rofi_inputbar_radius }}px;
+    transition-duration: {{ motion.focus_ms }};
 }
 
 prompt {
@@ -57,6 +58,7 @@ element {
     padding:       {{ geometry.rofi_element_pad_v }}px {{ geometry.rofi_element_pad_h }}px;
     border-radius: {{ geometry.rofi_element_radius }}px;
     spacing:       14px;
+    transition-duration: {{ motion.hover_ms }};
 }
 
 element normal.normal,
@@ -68,6 +70,7 @@ element alternate.normal {
 element selected.normal {
     background-color: white / {{ opacity.rofi_glass_sel }}%;
     text-color:       {{ colors.fg }};
+    transition-duration: {{ motion.spring_ms }};
 }
 
 element-icon {

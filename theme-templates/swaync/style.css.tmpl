@@ -4,6 +4,7 @@
 @define-color bg3     {{ colors.bg3 }};
 @define-color fg      {{ colors.fg }};
 @define-color fg_dim  {{ colors.fg_dim }};
+@define-color fg_light {{ colors.fg_light }};
 @define-color red     {{ colors.bright_red }};
 @define-color green   {{ colors.bright_green }};
 @define-color yellow  {{ colors.bright_yellow }};
@@ -11,6 +12,12 @@
 @define-color purple  {{ colors.bright_purple }};
 @define-color aqua    {{ colors.bright_cyan }};
 @define-color orange  {{ colors.bright_orange }};
+
+@define-color sn_title         {{ accents.swaync.title }};
+@define-color sn_summary       {{ accents.swaync.summary }};
+@define-color sn_dnd           {{ accents.swaync.dnd_switch }};
+@define-color sn_close_ambient {{ accents.swaync.close_ambient }};
+@define-color sn_close_hover   {{ accents.swaync.close_hover }};
 
 * {
     font-family: "{{ fonts.mono }}", sans-serif;
@@ -24,9 +31,15 @@
     padding: 12px;
 }
 
+@keyframes notif-enter {
+    from { opacity: 0; margin-top: -6px; }
+    to   { opacity: 1; margin-top: 4px; }
+}
+
 .notification-row {
     outline: none;
     margin: 4px 0;
+    animation: notif-enter {{ motion.lifecycle_ms }}ms {{ motion.spring_curve }};
 }
 
 .notification {
@@ -35,6 +48,13 @@
     border-radius: {{ geometry.swaync_notif_radius }}px;
     padding: 8px;
     margin: 4px;
+    transition: background {{ motion.hover_ms }}ms {{ motion.hover_curve }},
+                border-color {{ motion.hover_ms }}ms {{ motion.hover_curve }};
+}
+
+.notification:hover {
+    background: alpha(@bg2, 0.92);
+    border-color: alpha(@bg4, 0.7);
 }
 
 .notification-content {
@@ -42,7 +62,7 @@
 }
 
 .summary {
-    color: @yellow;
+    color: @sn_summary;
     font-weight: bold;
     font-size: 14px;
 }
@@ -57,15 +77,17 @@
 }
 
 .close-button {
-    background: alpha(@red, 0.2);
-    color: @red;
+    background: alpha(@sn_close_ambient, 0.18);
+    color: @sn_close_ambient;
     border-radius: 8px;
     padding: 2px 8px;
     border: none;
+    transition: background {{ motion.hover_ms }}ms {{ motion.hover_curve }},
+                color {{ motion.hover_ms }}ms {{ motion.hover_curve }};
 }
 
 .close-button:hover {
-    background: @red;
+    background: @sn_close_hover;
     color: @bg0;
 }
 
@@ -78,22 +100,24 @@
 }
 
 .widget-title {
-    color: @yellow;
+    color: @sn_title;
     font-size: 16px;
     font-weight: bold;
     padding: 8px;
 }
 
 .widget-title button {
-    background: alpha(@red, 0.15);
-    color: @red;
+    background: alpha(@sn_close_ambient, 0.15);
+    color: @sn_close_ambient;
     border-radius: 10px;
     padding: 4px 16px;
     border: none;
+    transition: background {{ motion.hover_ms }}ms {{ motion.hover_curve }},
+                color {{ motion.hover_ms }}ms {{ motion.hover_curve }};
 }
 
 .widget-title button:hover {
-    background: @red;
+    background: @sn_close_hover;
     color: @bg0;
 }
 
@@ -105,10 +129,11 @@
 .widget-dnd > switch {
     background: @bg2;
     border-radius: 10px;
+    transition: background {{ motion.focus_ms }}ms {{ motion.focus_curve }};
 }
 
 .widget-dnd > switch:checked {
-    background: @orange;
+    background: @sn_dnd;
 }
 
 .widget-dnd > switch slider {

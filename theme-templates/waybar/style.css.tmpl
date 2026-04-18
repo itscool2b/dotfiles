@@ -40,6 +40,18 @@ window#waybar {
     color: @fg;
 }
 
+/* ━━━ Pill groups — wrap the left/center/right module clusters ━━━ */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: alpha(@bg1, {{ waybar.pills.group_bg_alpha }});
+    border-radius: {{ waybar.pills.group_radius }}px;
+    padding: {{ waybar.pills.group_padding_v }}px {{ waybar.pills.group_padding_h }}px;
+    margin: 0 {{ waybar.pills.group_margin }}px;
+    box-shadow: 0 {{ waybar.pills.shadow_offset_y }}px {{ waybar.pills.shadow_blur }}px
+                alpha(@bg0, {{ waybar.pills.shadow_alpha }});
+}
+
 /* ━━━ Modules — transparent base ━━━ */
 #workspaces,
 #window,
@@ -56,8 +68,9 @@ window#waybar {
     border-radius: 0;
     padding: 2px 12px;
     margin: 0 1px;
-    transition: background-color {{ waybar.hover.duration }} ease,
-                color {{ waybar.hover.duration }} ease;
+    transition: background-color {{ motion.hover_ms }}ms {{ motion.hover_curve }},
+                color {{ motion.hover_ms }}ms {{ motion.hover_curve }},
+                padding {{ motion.press_ms }}ms {{ motion.press_curve }};
 }
 
 /* ━━━ Hover — subtle warm wash ━━━ */
@@ -72,13 +85,22 @@ window#waybar {
     border-radius: {{ waybar.hover.radius }}px;
 }
 
-/* ━━━ Group separators ━━━ */
-#workspaces,
-#custom-media,
-#memory {
-    border-right: 1px solid alpha(@bg3, 0.35);
-    padding-right: 14px;
-    margin-right: 6px;
+/* ━━━ Press feedback — GTK 3 can't do transform:scale, so shift padding for a
+   subtle "pressed-in" feel and deepen the background ━━━ */
+#clock:active,
+#cpu:active,
+#memory:active,
+#pulseaudio:active,
+#network:active,
+#custom-media:active,
+#custom-notification:active {
+    padding: 3px 13px 1px 11px;
+    background: alpha(@fg, {{ waybar.hover.bg_alpha }});
+    border-radius: {{ waybar.hover.radius }}px;
+}
+
+#workspaces button:active {
+    background: alpha(@accent_workspace, 0.22);
 }
 
 /* ━━━ Workspaces — dot indicators ━━━ */
@@ -94,7 +116,7 @@ window#waybar {
     padding: 0 7px;
     margin: 0 2px;
     min-width: 18px;
-    transition: all {{ waybar.hover.duration }} cubic-bezier(0.22, 1.0, 0.36, 1.0);
+    transition: all {{ motion.spring_ms }}ms {{ motion.spring_curve }};
 }
 
 #workspaces button.active {

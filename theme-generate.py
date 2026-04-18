@@ -161,7 +161,7 @@ def build_context(theme):
     ctx["border"] = theme["border"]
     ctx["meta"] = theme["meta"]
     # Optional nested sections — pass through verbatim if present
-    for opt in ("waybar", "layer_effects", "swayosd"):
+    for opt in ("waybar", "layer_effects", "swayosd", "motion"):
         if opt in theme:
             ctx[opt] = theme[opt]
 

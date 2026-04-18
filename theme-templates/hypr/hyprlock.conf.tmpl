@@ -46,16 +46,16 @@ input-field {
     dots_size = 0.25
     dots_spacing = 0.3
     dots_center = true
-    outer_color = {{ colors.yellow | rgba("ff") }}
+    outer_color = {{ accents.hyprlock.outer | rgba("ff") }}
     inner_color = {{ colors.bg1 | rgba("99") }}
     font_color = {{ colors.fg | rgba("ff") }}
     fade_on_empty = true
     placeholder_text = <span foreground="##{{ colors.fg_dim | bare }}">  Password...</span>
     hide_input = false
     rounding = {{ geometry.hyprlock_input_radius }}
-    check_color = {{ colors.bright_green | rgba("ff") }}
-    fail_color = {{ colors.bright_red | rgba("ff") }}
-    fail_text = <span foreground="##{{ colors.bright_red | bare }}">  $FAIL</span>
+    check_color = {{ accents.hyprlock.check | rgba("ff") }}
+    fail_color = {{ accents.hyprlock.fail | rgba("ff") }}
+    fail_text = <span foreground="##{{ accents.hyprlock.fail | bare }}">  $FAIL</span>
     position = 0, -40
     halign = center
     valign = center

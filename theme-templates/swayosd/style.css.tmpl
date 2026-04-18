@@ -7,6 +7,11 @@ window#osd {
     border-radius: {{ swayosd.radius }}px;
 }
 
+@keyframes osd-enter {
+    from { opacity: 0; margin-top: 24px; }
+    to   { opacity: 1; margin-top: 16px; }
+}
+
 window#osd #container {
     margin: 16px;
     padding: {{ swayosd.padding_v }}px {{ swayosd.padding_h }}px;
@@ -14,6 +19,7 @@ window#osd #container {
     background-color: alpha({{ colors.bg0 }}, {{ swayosd.bg_alpha }});
     border: 1px solid alpha({{ colors.bg3 }}, 0.55);
     box-shadow: 0 6px 20px alpha({{ colors.bg0 }}, 0.45);
+    animation: osd-enter {{ motion.lifecycle_ms }}ms {{ motion.spring_curve }};
 }
 
 window#osd image,
@@ -40,4 +46,5 @@ window#osd progressbar progress {
     border-radius: {{ swayosd.progress_radius }}px;
     background-color: {{ accents.swayosd.progress }};
     border: none;
+    transition: min-width {{ motion.focus_ms }}ms {{ motion.focus_curve }};
 }

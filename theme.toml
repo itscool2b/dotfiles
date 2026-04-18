@@ -250,6 +250,32 @@ border      = [1, 10, "liner", ""]
 borderangle = [1, 120, "liner", "loop"]
 
 # ════════════════════════════════════════════
+#  MOTION — Micro-spring primitives for CSS/rasi surfaces
+#  Restrained feel: hover/press/focus respond, but you have to
+#  look to see it. Scales ≤6%, durations ≤220ms.
+# ════════════════════════════════════════════
+
+[motion]
+# Durations (ms)
+press_ms      = 120
+hover_ms      = 140
+focus_ms      = 160
+spring_ms     = 180
+lifecycle_ms  = 220
+
+# Easing curves (CSS cubic-bezier format)
+press_curve     = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"    # snappy, matches hyprland
+hover_curve     = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"
+focus_curve     = "cubic-bezier(0.25, 0.46, 0.45, 0.94)"  # gentle ease-out
+spring_curve    = "cubic-bezier(0.34, 1.35, 0.64, 1.0)"   # softened overshoot
+lifecycle_curve = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"
+
+# Scale values (kept restrained)
+press_scale    = 0.97
+focus_scale    = 1.02
+selected_scale = 1.02
+
+# ════════════════════════════════════════════
 #  WAYBAR — Pill groups, hover, shadow tunables
 # ════════════════════════════════════════════
 
@@ -337,6 +363,7 @@ memory   = "bright_yellow"
 disk     = "bright_cyan"
 
 [accents.starship]
+os          = "yellow"
 directory   = "bright_blue"
 git_branch  = "bright_cyan"
 git_status  = "fg_dim"
@@ -348,8 +375,22 @@ rust        = "bright_cyan"
 selection = "bright_blue"
 
 [accents.wofi]
-focus     = "bright_blue"
-selection = "bright_blue"
+focus       = "bright_blue"
+selection   = "bright_blue"
+selected_bg = "bg2"
+selected_fg = "fg_light"
+
+[accents.swaync]
+title         = "bright_blue"   # was hardcoded @yellow
+summary       = "bright_blue"   # was hardcoded @yellow
+dnd_switch    = "bright_blue"   # was hardcoded @orange (no red/orange in chrome)
+close_ambient = "fg_dim"        # ambient close button; red only on hover
+close_hover   = "bright_red"
+
+[accents.hyprlock]
+outer = "bright_blue"    # was hardcoded colors.yellow
+check = "bright_green"   # semantic; stays green
+fail  = "bright_red"     # semantic; stays red
 
 [accents.btop]
 highlight   = "bright_blue"
@@ -363,7 +404,11 @@ download    = "bright_blue"
 upload      = "bright_purple"
 
 [accents.kitty]
-url_color = "bright_blue"
+url_color       = "bright_blue"
+active_tab_fg   = "bg0"
+active_tab_bg   = "bright_blue"
+inactive_tab_fg = "fg_dim"
+inactive_tab_bg = "bg1"
 
 [accents.sddm]
 login_button = "bright_blue"

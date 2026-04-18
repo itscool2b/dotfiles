@@ -4,6 +4,7 @@
 @define-color bg3     #3c3836;
 @define-color fg      #d4be98;
 @define-color fg_dim  #928374;
+@define-color fg_light #ddc7a1;
 @define-color red     #f2594b;
 @define-color green   #b0b846;
 @define-color yellow  #e5b975;
@@ -11,6 +12,12 @@
 @define-color purple  #e0a0b5;
 @define-color aqua    #9ac197;
 @define-color orange  #f49269;
+
+@define-color sn_title         #8fbcbb;
+@define-color sn_summary       #8fbcbb;
+@define-color sn_dnd           #8fbcbb;
+@define-color sn_close_ambient #928374;
+@define-color sn_close_hover   #f2594b;
 
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
@@ -24,9 +31,15 @@
     padding: 12px;
 }
 
+@keyframes notif-enter {
+    from { opacity: 0; margin-top: -6px; }
+    to   { opacity: 1; margin-top: 4px; }
+}
+
 .notification-row {
     outline: none;
     margin: 4px 0;
+    animation: notif-enter 220ms cubic-bezier(0.34, 1.35, 0.64, 1.0);
 }
 
 .notification {
@@ -35,6 +48,13 @@
     border-radius: 12px;
     padding: 8px;
     margin: 4px;
+    transition: background 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0),
+                border-color 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
+}
+
+.notification:hover {
+    background: alpha(@bg2, 0.92);
+    border-color: alpha(@bg4, 0.7);
 }
 
 .notification-content {
@@ -42,7 +62,7 @@
 }
 
 .summary {
-    color: @yellow;
+    color: @sn_summary;
     font-weight: bold;
     font-size: 14px;
 }
@@ -57,15 +77,17 @@
 }
 
 .close-button {
-    background: alpha(@red, 0.2);
-    color: @red;
+    background: alpha(@sn_close_ambient, 0.18);
+    color: @sn_close_ambient;
     border-radius: 8px;
     padding: 2px 8px;
     border: none;
+    transition: background 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0),
+                color 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
 }
 
 .close-button:hover {
-    background: @red;
+    background: @sn_close_hover;
     color: @bg0;
 }
 
@@ -78,22 +100,24 @@
 }
 
 .widget-title {
-    color: @yellow;
+    color: @sn_title;
     font-size: 16px;
     font-weight: bold;
     padding: 8px;
 }
 
 .widget-title button {
-    background: alpha(@red, 0.15);
-    color: @red;
+    background: alpha(@sn_close_ambient, 0.15);
+    color: @sn_close_ambient;
     border-radius: 10px;
     padding: 4px 16px;
     border: none;
+    transition: background 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0),
+                color 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
 }
 
 .widget-title button:hover {
-    background: @red;
+    background: @sn_close_hover;
     color: @bg0;
 }
 
@@ -105,10 +129,11 @@
 .widget-dnd > switch {
     background: @bg2;
     border-radius: 10px;
+    transition: background 160ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .widget-dnd > switch:checked {
-    background: @orange;
+    background: @sn_dnd;
 }
 
 .widget-dnd > switch slider {
