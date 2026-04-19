@@ -1,0 +1,59 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  Hyprland Plugins — generated from theme.toml
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+plugin {
+{% if plugins.hyprexpo.enabled %}
+    hyprexpo {
+        columns = {{ plugins.hyprexpo.columns }}
+        gap_size = {{ plugins.hyprexpo.gap_size }}
+        bg_col = rgb({{ colors[plugins.hyprexpo.bg_col] | bare }})
+        workspace_method = {{ plugins.hyprexpo.workspace_method }}
+        skip_empty = {{ "true" if plugins.hyprexpo.skip_empty else "false" }}
+        # Gestures disabled — trigger overview via the hyprexpo:expo dispatcher instead.
+        enable_gesture = false
+    }
+{% endif %}
+
+{% if plugins.hyprtrails.enabled %}
+    hyprtrails {
+        color = {{ colors[plugins.hyprtrails.color] | rgba(plugins.hyprtrails.color_alpha) }}
+        bezier_step = {{ plugins.hyprtrails.bezier }}
+        points_per_step = {{ plugins.hyprtrails.points }}
+        history_points = {{ plugins.hyprtrails.history_points }}
+    }
+{% endif %}
+
+{% if plugins.hyprfocus.enabled %}
+    hyprfocus {
+        enabled = yes
+        animate_floating = {{ "yes" if plugins.hyprfocus.animate_floating else "no" }}
+        animate_workspacechange = {{ "yes" if plugins.hyprfocus.animate_workspacechange else "no" }}
+        focus_animation = {{ plugins.hyprfocus.focus_animation }}
+
+        bezier {
+            name = focus-in
+            x0 = 0.22
+            y0 = 1.0
+            x1 = 0.36
+            y1 = 1.0
+        }
+
+        flash {
+            flash_opacity = 0.95
+            in_bezier = focus-in
+            in_speed = {{ plugins.hyprfocus.flash_in_speed }}
+            out_bezier = focus-in
+            out_speed = {{ plugins.hyprfocus.flash_out_speed }}
+        }
+
+        shrink {
+            shrink_percentage = {{ plugins.hyprfocus.flash_pop_in }}
+            in_bezier = focus-in
+            in_speed = {{ plugins.hyprfocus.flash_in_speed }}
+            out_bezier = focus-in
+            out_speed = {{ plugins.hyprfocus.flash_out_speed }}
+        }
+    }
+{% endif %}
+}

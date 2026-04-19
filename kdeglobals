@@ -1,0 +1,19 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  kdeglobals — generated from theme.toml
+#  Unifies icon + cursor between GTK and KDE apps (Dolphin, etc.)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[General]
+ColorScheme=BreezeDark
+Name=Current
+
+[Icons]
+Theme=Papirus-Dark
+
+[KDE]
+AnimationDurationFactor=0.25
+widgetStyle=Breeze
+
+[Mouse]
+cursorTheme=Bibata-Modern-Classic
+cursorSize=24

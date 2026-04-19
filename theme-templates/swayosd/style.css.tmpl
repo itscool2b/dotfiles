@@ -18,8 +18,10 @@ window#osd #container {
     border-radius: {{ swayosd.radius }}px;
     background-color: alpha({{ colors.bg0 }}, {{ swayosd.bg_alpha }});
     border: 1px solid alpha({{ colors.bg3 }}, 0.55);
-    box-shadow: 0 6px 20px alpha({{ colors.bg0 }}, 0.45);
+    box-shadow: 0 6px 20px alpha({{ colors.bg0 }}, 0.45),
+                inset 0 1px 0 alpha({{ colors.fg_light }}, {{ glass.inner_highlight_alpha }});
     animation: osd-enter {{ motion.lifecycle_ms }}ms {{ motion.spring_curve }};
+    font-family: "{{ fonts.mono_display }}", "{{ fonts.mono }}", monospace;
 }
 
 window#osd image,

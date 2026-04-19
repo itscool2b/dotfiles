@@ -45,8 +45,9 @@ bright_orange  = "#f49269"
 # ════════════════════════════════════════════
 
 [fonts]
-mono = "JetBrainsMono Nerd Font"
-sans = "Noto Sans"
+mono         = "JetBrainsMono Nerd Font"
+mono_display = "Maple Mono NF"
+sans         = "Noto Sans"
 
 [fonts.size]
 terminal       = 12
@@ -213,6 +214,15 @@ hypr_render_power = 3
 hypr_offset       = "0 6"
 hypr_scale        = 0.96
 hypr_alpha        = "dd"
+
+# ════════════════════════════════════════════
+#  GLASS — 1px inner highlight across transparent surfaces
+# ════════════════════════════════════════════
+
+[glass]
+# Top inner highlight — catches virtual light, separates layers from the blur behind.
+inner_highlight_alpha = 0.08
+inner_highlight_color = "fg_light"   # resolved to hex in CSS via alpha()
 
 # ════════════════════════════════════════════
 #  ANIMATIONS
@@ -419,6 +429,93 @@ login_button = "bright_blue"
 progress = "bright_blue"
 icon     = "fg"
 text     = "fg"
+
+[accents.firefox]
+tab_accent   = "bright_blue"   # bottom border on active tab (replaces old bright_yellow)
+close_hover  = "fg_dim"        # tab close button on hover (was red — no red in chrome)
+menu_hover   = "bright_blue"   # menuitem:hover text color (was yellow)
+urlbar_focus = "bright_blue"   # focused urlbar border (was bright_yellow)
+
+[accents.cava]
+# 3-stop gradient top→bottom on the waybar cava strip.
+gradient = ["bright_blue", "bright_cyan", "bright_green"]
+
+[accents.kde]
+color_scheme = "BreezeDark"    # will be replaced with custom scheme once midnight-glass.colors ships
+cursor       = "Bibata-Modern-Classic"
+icons        = "Papirus-Dark"
+
+# ════════════════════════════════════════════
+#  HYPRLAND PLUGINS — hyprpm-managed eye-candy
+# ════════════════════════════════════════════
+
+[plugins.hyprexpo]
+# Workspace overview grid. Trigger via `hyprctl dispatch hyprexpo:expo toggle`
+# or bind a key if you want one-touch access.
+enabled          = true
+columns          = 3
+gap_size         = 5
+bg_col           = "bg0"          # color name from [colors]
+workspace_method = "center current"
+skip_empty       = false
+
+[plugins.hyprtrails]
+# Comet-tail behind moving windows. Pairs with spring motion.
+# Disabled — upstream currently fails to build against current Hyprland release.
+# Re-enable after hyprwm/hyprland-plugins ships a fix.
+enabled    = false
+color      = "bright_blue"
+color_alpha = "aa"
+bezier     = "snappy"
+points     = 3
+history_points = 20
+
+[plugins.hyprfocus]
+# Quick pulse on the newly focused window.
+enabled             = true
+animate_floating    = true
+animate_workspacechange = true
+focus_animation     = "shrink"
+bezier_in           = "snappy"    # must be a name from animations.beziers
+bezier_out          = "soft"
+flash_in_speed      = 0.4
+flash_out_speed     = 4
+flash_pop_in        = 0.94        # scale-in target
+flash_pop_out       = 1.0
+
+# ════════════════════════════════════════════
+#  CAVA — audio visualizer (waybar strip)
+# ════════════════════════════════════════════
+
+[cava]
+bars            = 7
+framerate       = 60
+sensitivity     = 100
+sleep_timer     = 5
+bar_width       = 2
+bar_spacing     = 1
+noise_reduction = 0.77
+
+# ════════════════════════════════════════════
+#  PLYMOUTH — boot splash (sudo-deployed)
+# ════════════════════════════════════════════
+
+[plymouth]
+theme_name  = "gruvbox-refined"
+pulse_color = "bright_blue"
+logo_text   = "CACHYOS"
+title       = "Gruvbox Refined"
+
+# ════════════════════════════════════════════
+#  SWAPPY — screenshot editor (themed config; not bound — opt-in)
+# ════════════════════════════════════════════
+
+[swappy]
+save_dir  = "~/Pictures/Screenshots"
+line_size = 5
+text_size = 30
+text_font = "JetBrainsMono Nerd Font"
+line_color  = "bright_blue"     # color name → resolved hex in template
 
 # ════════════════════════════════════════════
 #  FASTFETCH LOGO — custom ASCII art

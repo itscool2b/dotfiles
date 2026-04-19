@@ -15,6 +15,7 @@
         "clock"
     ],
     "modules-right": [
+        "custom/cava",
         "custom/media",
         "pulseaudio",
         "network",
@@ -113,5 +114,11 @@
     "tray": {
         "icon-size": 16,
         "spacing": 8
+    },
+    "custom/cava": {
+        "exec": "~/.config/waybar/scripts/cava-waybar.sh",
+        "format": "{}",
+        "tooltip": false,
+        "return-type": ""
     }
 }

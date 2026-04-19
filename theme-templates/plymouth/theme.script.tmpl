@@ -1,0 +1,81 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  Midnight Glass Plymouth script — generated from theme.toml
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Window.SetBackgroundTopColor({{ colors.bg0 | rgb_float }});
+Window.SetBackgroundBottomColor({{ colors.bg1 | rgb_float }});
+
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+# ── Title text ──────────────────────────────────
+title_image = Image.Text("{{ plymouth.logo_text }}", {{ colors.fg | rgb_float }}, 1, "Sans Bold 36");
+title_sprite = Sprite(title_image);
+title_sprite.SetX(screen_width / 2 - title_image.GetWidth() / 2);
+title_sprite.SetY(screen_height / 2 - title_image.GetHeight() / 2 - 40);
+
+subtitle_image = Image.Text("{{ plymouth.title }}", {{ colors[plymouth.pulse_color] | rgb_float }}, 0.85, "Sans 14");
+subtitle_sprite = Sprite(subtitle_image);
+subtitle_sprite.SetX(screen_width / 2 - subtitle_image.GetWidth() / 2);
+subtitle_sprite.SetY(screen_height / 2 - subtitle_image.GetHeight() / 2 + 20);
+
+# ── Pulsing indicator ──────────────────────────
+progress = 0;
+
+fun refresh_callback() {
+    progress = progress + 0.04;
+    # Soft sin-based pulse: opacity 0.3 ↔ 1.0
+    phase = Math.Sin(progress);
+    alpha = (phase + 1) / 2 * 0.7 + 0.3;
+    subtitle_sprite.SetOpacity(alpha);
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
+
+# ── Progress bar (boot progress) ──────────────
+bar_width = 200;
+bar_height = 2;
+
+fun boot_progress_callback(duration, progress) {
+    # Draw a thin progress line under the subtitle
+    return 0;
+}
+
+Plymouth.SetBootProgressFunction(boot_progress_callback);
+
+# ── Password prompt (for encrypted disks) ─────
+fun dialog_setup() {
+    local.box = Image("box.png");
+    local.lock = Image("lock.png");
+    local.entry = Image("entry.png");
+    return 0;
+}
+
+fun display_password_callback(prompt, bullets) {
+    # Minimal password dialog — just show the prompt text
+    dialog.prompt_image = Image.Text(prompt, {{ colors.fg | rgb_float }}, 1, "Sans 14");
+    dialog.prompt_sprite = Sprite(dialog.prompt_image);
+    dialog.prompt_sprite.SetX(screen_width / 2 - dialog.prompt_image.GetWidth() / 2);
+    dialog.prompt_sprite.SetY(screen_height / 2 + 80);
+
+    dots = "";
+    for (i = 0; i < bullets; i++) {
+        dots = dots + "●";
+    }
+    dialog.dots_image = Image.Text(dots, {{ colors[plymouth.pulse_color] | rgb_float }}, 1, "Sans 18");
+    dialog.dots_sprite = Sprite(dialog.dots_image);
+    dialog.dots_sprite.SetX(screen_width / 2 - dialog.dots_image.GetWidth() / 2);
+    dialog.dots_sprite.SetY(screen_height / 2 + 110);
+}
+
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+
+fun display_normal_callback() {
+    if (global.dialog) {
+        dialog.prompt_sprite = NULL;
+        dialog.dots_sprite = NULL;
+        global.dialog = NULL;
+    }
+}
+
+Plymouth.SetDisplayNormalFunction(display_normal_callback);

@@ -9,7 +9,8 @@
 window {
     width:            {{ geometry.rofi_width }}px;
     background-color: {{ colors.bg0 }}{{ opacity.rofi_bg_alpha }};
-    border:           0px;
+    border:           1px;
+    border-color:     {{ colors.fg_light }}{% if glass.inner_highlight_alpha %}{{ "%02x" | format((glass.inner_highlight_alpha * 255) | int) }}{% else %}00{% endif %};
     border-radius:    {{ geometry.rofi_radius }}px;
     location:         center;
     anchor:           center;
@@ -35,7 +36,7 @@ inputbar {
 
 prompt {
     text-color:     {{ accents.rofi.selection }};
-    font:           "{{ fonts.mono }} {{ fonts.size.rofi_prompt }}";
+    font:           "{{ fonts.mono_display }} {{ fonts.size.rofi_prompt }}";
     vertical-align: 0.5;
 }
 

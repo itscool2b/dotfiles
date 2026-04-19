@@ -1,0 +1,35 @@
+# Midnight Glass preset — gray-blue base, muted steel blue accent.
+# Apply with: ./theme-generate.py --preset midnight-glass
+# Recovered from commit 4313978 — cool blue-gray tones, blue hero accent.
+
+[meta]
+name = "Midnight Glass"
+
+[colors]
+bg0      = "#22272e"
+bg1      = "#2c323b"
+bg2      = "#363d48"
+bg3      = "#424a56"
+bg4      = "#525c6b"
+gray     = "#768390"
+fg       = "#c9d1d9"
+fg_dim   = "#8b949e"
+fg_light = "#f0f6fc"
+red      = "#c0526a"
+green    = "#56b66a"
+yellow   = "#c49a3a"
+blue     = "#4a8fd1"
+purple   = "#8258d8"
+cyan     = "#2eadb6"
+orange   = "#d06a2e"
+bright_red     = "#ff7b72"
+bright_green   = "#7ee787"
+bright_yellow  = "#d29922"
+bright_blue    = "#6b8fb8"
+bright_purple  = "#a371f7"
+bright_cyan    = "#8aa8c8"
+bright_orange  = "#f0883e"
+
+[plymouth]
+theme_name = "midnight-glass"
+title      = "Midnight Glass"

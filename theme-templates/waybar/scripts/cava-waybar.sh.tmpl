@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# cava → waybar glue — generated from theme.toml
+# Reads cava's ascii raw output (0-7 per bar) and translates to unicode blocks.
+{% raw %}
+bar="▁▂▃▄▅▆▇█"
+dict="s/;//g"
+for ((i = 0; i < ${#bar}; i++)); do
+    dict+=";s/$i/${bar:$i:1}/g"
+done
+
+config=~/.config/cava/config
+exec cava -p "$config" | sed -u "$dict"
+{% endraw %}

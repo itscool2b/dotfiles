@@ -50,6 +50,11 @@ def f_rgb_vals(h):
     r, g, b = hex_to_rgb(h)
     return f"{r}, {g}, {b}"
 
+def f_rgb_float(h):
+    """#1d2021 -> 0.114, 0.125, 0.129  (Plymouth script format)"""
+    r, g, b = hex_to_rgb(h)
+    return f"{r/255:.3f}, {g/255:.3f}, {b/255:.3f}"
+
 # ════════════════════════════════════════════
 #  Qt palette generation
 # ════════════════════════════════════════════
@@ -103,26 +108,131 @@ MANIFEST = [
     ("rofi/theme.rasi.tmpl",                        "rofi/gruvbox-dark.rasi"),
     ("hypr/theme.conf.tmpl",                        "hypr/theme.conf"),
     ("hypr/hyprlock.conf.tmpl",                     "hypr/hyprlock.conf"),
+    ("hypr/plugins.conf.tmpl",                      "hypr/plugins.conf"),
     ("fastfetch/config.jsonc.tmpl",                 "fastfetch/config.jsonc"),
     ("Trolltech.conf.tmpl",                         "Trolltech.conf"),
     ("btop/themes/generated.theme.tmpl",            "btop/themes/generated.theme"),
     ("swayosd/style.css.tmpl",                      "swayosd/style.css"),
     ("fontconfig/fonts.conf.tmpl",                  "fontconfig/fonts.conf"),
+    ("kdeglobals.tmpl",                             "kdeglobals"),
+    ("cava/config.tmpl",                            "cava/config"),
+    ("swappy/config.tmpl",                          "swappy/config"),
+    ("waybar/scripts/cava-waybar.sh.tmpl",          "waybar/scripts/cava-waybar.sh"),
 ]
 
 # Paths to ensure executable after render
-EXECUTABLE_OUTPUTS = set()
+EXECUTABLE_OUTPUTS = {"waybar/scripts/cava-waybar.sh"}
 
 SDDM_TEMPLATE = "sddm/Main.qml.tmpl"
 SDDM_OUTPUT = Path("/usr/share/sddm/themes/gruvbox-dark/Main.qml")
+
+# Plymouth: multi-file theme deployed to /usr/share/plymouth/themes/<name>/
+# Template → output-suffix pairs (output filename = <theme_name><suffix>).
+PLYMOUTH_FILES = [
+    ("plymouth/theme.plymouth.tmpl", ".plymouth"),
+    ("plymouth/theme.script.tmpl",   ".script"),
+]
+PLYMOUTH_BASE_OUTPUT_DIR = Path("/usr/share/plymouth/themes")
+
+PRESETS_DIR = BASE / "theme-presets"
 
 # ════════════════════════════════════════════
 #  Core logic
 # ════════════════════════════════════════════
 
-def load_theme():
+def deep_merge(base, overlay):
+    """Recursively merge overlay dict into base dict (overlay wins on conflicts)."""
+    result = dict(base)
+    for k, v in overlay.items():
+        if k in result and isinstance(result[k], dict) and isinstance(v, dict):
+            result[k] = deep_merge(result[k], v)
+        else:
+            result[k] = v
+    return result
+
+def load_theme(preset=None):
     with open(THEME_FILE, "rb") as f:
-        return tomllib.load(f)
+        theme = tomllib.load(f)
+    if preset:
+        preset_path = PRESETS_DIR / f"{preset}.toml"
+        if not preset_path.exists():
+            print(f"  ERROR: preset not found: {preset_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(preset_path, "rb") as f:
+            overlay = tomllib.load(f)
+        theme = deep_merge(theme, overlay)
+        print(f"  applied preset: {preset}")
+    return theme
+
+def write_preset(name, preset_dict):
+    """Write a preset dict to disk as a TOML file (hand-rolled for simplicity)."""
+    PRESETS_DIR.mkdir(parents=True, exist_ok=True)
+    out = PRESETS_DIR / f"{name}.toml"
+    lines = ["# Auto-generated preset\n"]
+    for section, values in preset_dict.items():
+        lines.append(f"\n[{section}]\n")
+        for k, v in values.items():
+            if isinstance(v, str):
+                lines.append(f'{k} = "{v}"\n')
+            elif isinstance(v, bool):
+                lines.append(f'{k} = {str(v).lower()}\n')
+            elif isinstance(v, list):
+                items = ", ".join(f'"{x}"' if isinstance(x, str) else str(x) for x in v)
+                lines.append(f'{k} = [{items}]\n')
+            else:
+                lines.append(f'{k} = {v}\n')
+    out.write_text("".join(lines))
+    print(f"  wrote preset: {out}")
+    return out
+
+def derive_preset_from_wallpaper(wallpaper_path, preset_name="wallpaper-derived"):
+    """Run matugen on a wallpaper, map its Material You roles to theme.toml keys."""
+    wp = Path(wallpaper_path).expanduser()
+    if not wp.exists():
+        print(f"  ERROR: wallpaper not found: {wp}", file=sys.stderr)
+        sys.exit(1)
+    try:
+        result = subprocess.run(
+            ["matugen", "image", str(wp), "--json", "hex"],
+            capture_output=True, text=True, check=True,
+        )
+    except FileNotFoundError:
+        print("  ERROR: matugen not installed. Run: paru -S matugen-bin", file=sys.stderr)
+        sys.exit(1)
+    except subprocess.CalledProcessError as e:
+        print(f"  ERROR: matugen failed: {e.stderr}", file=sys.stderr)
+        sys.exit(1)
+
+    # matugen v2 JSON shape: {"colors": {"dark": {...}, "light": {...}}, ...}
+    # We always derive from dark scheme — rice is dark.
+    data = json.loads(result.stdout)
+    dark = data.get("colors", {}).get("dark", {})
+    if not dark:
+        print("  ERROR: matugen output missing colors.dark", file=sys.stderr)
+        sys.exit(1)
+
+    # Material You role → theme.toml colors key.
+    # Kept conservative: map core palette, let the user hand-tune from the written preset.
+    mapping = {
+        "primary":                   "bright_blue",
+        "secondary":                 "bright_cyan",
+        "tertiary":                  "bright_purple",
+        "surface":                   "bg0",
+        "surface_container_low":     "bg1",
+        "surface_container":         "bg2",
+        "surface_container_high":    "bg3",
+        "surface_container_highest": "bg4",
+        "on_surface":                "fg",
+        "on_surface_variant":        "fg_dim",
+        "inverse_on_surface":        "fg_light",
+    }
+    colors = {}
+    for matugen_key, theme_key in mapping.items():
+        if matugen_key in dark:
+            colors[theme_key] = dark[matugen_key]
+
+    write_preset(preset_name, {"colors": colors})
+    return preset_name
 
 def build_context(theme):
     """Flatten theme into a single dict for Jinja2 rendering."""
@@ -161,7 +271,8 @@ def build_context(theme):
     ctx["border"] = theme["border"]
     ctx["meta"] = theme["meta"]
     # Optional nested sections — pass through verbatim if present
-    for opt in ("waybar", "layer_effects", "swayosd", "motion"):
+    for opt in ("waybar", "layer_effects", "swayosd", "motion",
+                "glass", "plugins", "cava", "plymouth", "swappy"):
         if opt in theme:
             ctx[opt] = theme[opt]
 
@@ -177,14 +288,23 @@ def build_context(theme):
         border_colors.append(c[name])
     ctx["border_gradient_colors"] = border_colors
 
-    # Resolve accent references to hex values
+    # Resolve accent references to hex values.
+    # Supports both scalar (single color name) and list (gradient) values.
     if "accents" in theme:
         resolved = {}
         for group, mappings in theme["accents"].items():
             resolved[group] = {}
-            for key, color_name in mappings.items():
-                resolved[group][key] = c.get(color_name, color_name)
+            for key, val in mappings.items():
+                if isinstance(val, list):
+                    resolved[group][key] = [c.get(x, x) for x in val]
+                else:
+                    resolved[group][key] = c.get(val, val)
         ctx["accents"] = resolved
+
+    # Font display fallback — templates can use fonts.mono_display safely even
+    # if the user hasn't set it yet; fall back to fonts.mono.
+    if "fonts" in ctx and "mono_display" not in ctx["fonts"]:
+        ctx["fonts"]["mono_display"] = ctx["fonts"]["mono"]
 
     return ctx
 
@@ -199,6 +319,7 @@ def create_jinja_env():
     env.filters["ansi"] = f_ansi
     env.filters["qt_rgb"] = f_qt_rgb
     env.filters["rgb_vals"] = f_rgb_vals
+    env.filters["rgb_float"] = f_rgb_float
     return env
 
 def resolve_firefox_output():
@@ -319,6 +440,26 @@ def patch_json_files(ctx, dry_run=False, show_diff=False):
         wb["margin-top"] = geom["bar_margin_top"]
         wb["margin-left"] = geom["bar_margin_side"]
         wb["margin-right"] = geom["bar_margin_side"]
+
+        # Cava module injection (only if [cava] section is configured)
+        if "cava" in ctx:
+            modules_right = wb.get("modules-right", [])
+            if "custom/cava" not in modules_right:
+                # Insert before custom/media if present, else at start
+                try:
+                    idx = modules_right.index("custom/media")
+                except ValueError:
+                    idx = 0
+                modules_right.insert(idx, "custom/cava")
+                wb["modules-right"] = modules_right
+
+            wb["custom/cava"] = {
+                "exec": "~/.config/waybar/scripts/cava-waybar.sh",
+                "format": "{}",
+                "tooltip": False,
+                "return-type": "",
+            }
+
         _write_json(wb_path, wb, dry_run, show_diff)
 
     # Swaync config
@@ -394,12 +535,56 @@ def handle_sddm(env, ctx, dry_run=False, show_diff=False):
 
     try:
         subprocess.run(
+            ["sudo", "mkdir", "-p", str(SDDM_OUTPUT.parent)],
+            check=True,
+        )
+        subprocess.run(
             ["sudo", "cp", str(tmp), str(SDDM_OUTPUT)],
             check=True,
         )
         print(f"  installed (sudo): {SDDM_OUTPUT}")
     except subprocess.CalledProcessError:
         print(f"  ERROR: failed to copy to {SDDM_OUTPUT}", file=sys.stderr)
+
+# ════════════════════════════════════════════
+#  Plymouth handling
+# ════════════════════════════════════════════
+
+def handle_plymouth(env, ctx, dry_run=False, show_diff=False):
+    """Render Plymouth theme files and sudo-install to /usr/share/plymouth/themes/<name>/.
+    Does NOT run plymouth-set-default-theme or mkinitcpio — user runs those once manually."""
+    theme_name = ctx["plymouth"]["theme_name"]
+    output_dir = PLYMOUTH_BASE_OUTPUT_DIR / theme_name
+
+    tmp_dir = TEMPLATE_DIR / "plymouth" / ".generated"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+
+    rendered_files = []
+    for tmpl_path, suffix in PLYMOUTH_FILES:
+        tmpl = env.get_template(tmpl_path)
+        rendered = tmpl.render(**ctx)
+        out_name = f"{theme_name}{suffix}"
+        tmp_file = tmp_dir / out_name
+        dst = output_dir / out_name
+        if dry_run:
+            print(f"  WOULD CHANGE (sudo): {dst}")
+        else:
+            tmp_file.write_text(rendered)
+            rendered_files.append((tmp_file, dst))
+            print(f"  generated: {tmp_file}")
+
+    if dry_run or not rendered_files:
+        return
+
+    try:
+        subprocess.run(["sudo", "mkdir", "-p", str(output_dir)], check=True)
+        for src, dst in rendered_files:
+            subprocess.run(["sudo", "cp", str(src), str(dst)], check=True)
+            print(f"  installed (sudo): {dst}")
+        print(f"\n  Plymouth installed. To activate:")
+        print(f"    sudo plymouth-set-default-theme -R {theme_name}")
+    except subprocess.CalledProcessError:
+        print(f"  ERROR: failed to install Plymouth theme", file=sys.stderr)
 
 # ════════════════════════════════════════════
 #  Verification
@@ -445,11 +630,20 @@ def main():
     parser.add_argument("--diff", action="store_true", help="Show diffs")
     parser.add_argument("--only", type=str, help="Generate only one target (e.g., kitty)")
     parser.add_argument("--sddm", action="store_true", help="Also generate SDDM (needs sudo)")
+    parser.add_argument("--plymouth", action="store_true", help="Also generate Plymouth (needs sudo)")
     parser.add_argument("--verify", action="store_true", help="Run verification checks")
+    parser.add_argument("--preset", type=str, help="Overlay a preset from theme-presets/<name>.toml")
+    parser.add_argument("--from-wallpaper", type=str, metavar="PATH",
+                        help="Derive a preset from a wallpaper via matugen, then apply it")
     args = parser.parse_args()
 
+    # Wallpaper → preset derivation. Writes the preset and re-routes to --preset.
+    preset = args.preset
+    if args.from_wallpaper:
+        preset = derive_preset_from_wallpaper(args.from_wallpaper)
+
     print(f"Loading {THEME_FILE}...")
-    theme = load_theme()
+    theme = load_theme(preset=preset)
     ctx = build_context(theme)
     env = create_jinja_env()
 
@@ -466,6 +660,10 @@ def main():
     if args.sddm:
         print(f"\nGenerating SDDM theme...")
         handle_sddm(env, ctx, dry_run=args.dry_run, show_diff=args.diff)
+
+    if args.plymouth:
+        print(f"\nGenerating Plymouth theme...")
+        handle_plymouth(env, ctx, dry_run=args.dry_run, show_diff=args.diff)
 
     if args.verify:
         print(f"\nVerifying...")

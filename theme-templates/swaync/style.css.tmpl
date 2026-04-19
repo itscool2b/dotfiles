@@ -20,7 +20,7 @@
 @define-color sn_close_hover   {{ accents.swaync.close_hover }};
 
 * {
-    font-family: "{{ fonts.mono }}", sans-serif;
+    font-family: "{{ fonts.mono_display }}", "{{ fonts.mono }}", sans-serif;
     font-size: {{ fonts.size.notification }}px;
 }
 
@@ -29,6 +29,7 @@
     border: 2px solid alpha(@bg3, 0.5);
     border-radius: {{ geometry.swaync_cc_radius }}px;
     padding: 12px;
+    box-shadow: inset 0 1px 0 alpha(@fg_light, {{ glass.inner_highlight_alpha }});
 }
 
 @keyframes notif-enter {
@@ -48,6 +49,7 @@
     border-radius: {{ geometry.swaync_notif_radius }}px;
     padding: 8px;
     margin: 4px;
+    box-shadow: inset 0 1px 0 alpha(@fg_light, {{ glass.inner_highlight_alpha }});
     transition: background {{ motion.hover_ms }}ms {{ motion.hover_curve }},
                 border-color {{ motion.hover_ms }}ms {{ motion.hover_curve }};
 }

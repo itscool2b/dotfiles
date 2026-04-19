@@ -7,7 +7,7 @@
     frame_color = "#3c3836"
     frame_width = 2
     corner_radius = 10
-    font = JetBrainsMono Nerd Font 11
+    font = Maple Mono NF 11
     padding = 12
     horizontal_padding = 16
     icon_position = left

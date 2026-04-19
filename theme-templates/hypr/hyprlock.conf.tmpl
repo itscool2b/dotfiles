@@ -19,7 +19,7 @@ label {
     text = $TIME
     color = {{ colors.fg | rgba("ff") }}
     font_size = {{ fonts.size.hyprlock_time }}
-    font_family = {{ fonts.mono }}
+    font_family = {{ fonts.mono_display }}
     position = 0, 160
     halign = center
     valign = center
@@ -33,7 +33,7 @@ label {
     text = cmd[update:3600000] date +"%A, %B %d"
     color = {{ colors.fg_dim | rgba("ff") }}
     font_size = {{ fonts.size.hyprlock_date }}
-    font_family = {{ fonts.mono }}
+    font_family = {{ fonts.mono_display }}
     position = 0, 70
     halign = center
     valign = center

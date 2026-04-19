@@ -1,0 +1,33 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  cava — generated from theme.toml
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[general]
+bars = {{ cava.bars }}
+framerate = {{ cava.framerate }}
+sensitivity = {{ cava.sensitivity }}
+sleep_timer = {{ cava.sleep_timer }}
+
+[input]
+method = pipewire
+source = auto
+
+[output]
+method = raw
+raw_target = /dev/stdout
+bit_format = 8bit
+data_format = ascii
+ascii_max_range = 7
+channels = mono
+mono_option = average
+
+[smoothing]
+noise_reduction = {{ cava.noise_reduction }}
+
+[color]
+# Not used in raw mode, but kept for reference / future terminal use.
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '{{ accents.cava.gradient[0] }}'
+gradient_color_2 = '{{ accents.cava.gradient[1] }}'
+gradient_color_3 = '{{ accents.cava.gradient[2] }}'

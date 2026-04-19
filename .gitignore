@@ -52,7 +52,22 @@
 !theme-generate.py
 !theme-templates/
 !theme-templates/**
+# Intermediate artifacts from theme-generate.py (pre-sudo-cp staging)
+theme-templates/sddm/.generated-*
+theme-templates/plymouth/.generated/
+!theme-presets/
+!theme-presets/**
 !swayosd/
 !swayosd/**
 !fontconfig/
 !fontconfig/**
+!cava/
+!cava/config
+# Skip cava's default example shaders/themes (installed by the package, not rice)
+cava/shaders/
+cava/themes/
+!swappy/
+!swappy/**
+!scripts/
+!scripts/**
+!kdeglobals

@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name={{ plymouth.title }}
+Description={{ plymouth.title }} — generated from theme.toml
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/{{ plymouth.theme_name }}
+ScriptFile=/usr/share/plymouth/themes/{{ plymouth.theme_name }}/{{ plymouth.theme_name }}.script

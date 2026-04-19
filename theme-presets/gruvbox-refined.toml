@@ -1,0 +1,35 @@
+# Gruvbox Refined preset — current active palette.
+# Apply with: ./theme-generate.py --preset gruvbox-refined
+# Gruvbox Material soft: warm cream fg, hero yellow, bright_blue accent.
+
+[meta]
+name = "Gruvbox Refined"
+
+[colors]
+bg0      = "#1d2021"
+bg1      = "#282828"
+bg2      = "#32302f"
+bg3      = "#3c3836"
+bg4      = "#504945"
+gray     = "#7c6f64"
+fg       = "#d4be98"
+fg_dim   = "#928374"
+fg_light = "#ddc7a1"
+red      = "#ea6962"
+green    = "#a9b665"
+yellow   = "#d8a657"
+blue     = "#7daea3"
+purple   = "#d3869b"
+cyan     = "#89b482"
+orange   = "#e78a4e"
+bright_red     = "#f2594b"
+bright_green   = "#b0b846"
+bright_yellow  = "#e5b975"
+bright_blue    = "#8fbcbb"
+bright_purple  = "#e0a0b5"
+bright_cyan    = "#9ac197"
+bright_orange  = "#f49269"
+
+[plymouth]
+theme_name = "gruvbox-refined"
+title      = "Gruvbox Refined"

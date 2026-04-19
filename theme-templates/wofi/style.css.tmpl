@@ -5,7 +5,8 @@ window {
     background-color: {{ colors.bg0 }};
     border: 2px solid {{ colors.bg3 }};
     border-radius: {{ geometry.wofi_radius }}px;
-    font-family: "{{ fonts.mono }}", monospace;
+    box-shadow: inset 0 1px 0 alpha({{ colors.fg_light }}, {{ glass.inner_highlight_alpha }});
+    font-family: "{{ fonts.mono_display }}", "{{ fonts.mono }}", monospace;
     font-size: {{ fonts.size.wofi }}px;
 }
 

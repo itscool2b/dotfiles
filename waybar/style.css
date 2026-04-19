@@ -23,9 +23,11 @@
 @define-color accent_network   #8fbcbb;
 @define-color accent_media     #b0b846;
 @define-color accent_notif     #9ac197;
+@define-color fg_light         #ddc7a1;
+@define-color accent_cava_top  #8fbcbb;
 
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
     font-size: 13px;
     min-height: 0;
     padding: 0;
@@ -41,6 +43,8 @@ window#waybar {
 }
 
 /* ━━━ Pill groups — wrap the left/center/right module clusters ━━━ */
+/* Combined drop-shadow + inset highlight: outer soft shadow below + 1px light
+   line across the top-inside edge. Separates glass layer from the blur behind. */
 .modules-left,
 .modules-center,
 .modules-right {
@@ -49,7 +53,8 @@ window#waybar {
     padding: 2px 6px;
     margin: 0 4px;
     box-shadow: 0 2px 8px
-                alpha(@bg0, 0.22);
+                alpha(@bg0, 0.22),
+                inset 0 1px 0 alpha(@fg_light, 0.08);
 }
 
 /* ━━━ Modules — transparent base ━━━ */
@@ -62,6 +67,7 @@ window#waybar {
 #network,
 #custom-media,
 #custom-notification,
+#custom-cava,
 #tray {
     background: transparent;
     border: none;
@@ -159,6 +165,15 @@ window#waybar {
 #network               { color: @accent_network; }
 #custom-media          { color: @accent_media; font-style: italic; }
 #custom-notification   { color: @accent_notif; }
+
+/* Cava — audio bars strip, tight padding so it reads as a visualizer not text */
+#custom-cava {
+    color: @accent_cava_top;
+    font-family: "monospace";
+    font-size: 13px;
+    padding: 0 6px;
+    letter-spacing: -1px;
+}
 
 #pulseaudio.muted      { color: alpha(@fg_dim, 0.5); }
 #network.disconnected  { color: alpha(@fg_dim, 0.5); }
