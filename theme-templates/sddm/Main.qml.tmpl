@@ -13,8 +13,8 @@ Rectangle {
     property color bg3:     "{{ colors.bg3 }}"
     property color fg:      "{{ colors.fg }}"
     property color fgDim:   "{{ colors.fg_dim }}"
-    property color yellow:       "{{ colors.bright_yellow }}"
-    property color yellowBright: "{{ accents.sddm.login_button }}"
+    property color yellow:       "{{ accents.sddm.chrome }}"
+    property color yellowBright: "{{ accents.sddm.chrome_hover }}"
     property color green:   "{{ colors.bright_green }}"
     property color red:     "{{ colors.bright_red }}"
 
@@ -136,7 +136,7 @@ Rectangle {
                     layer.effect: Glow {
                         radius: 8
                         samples: 17
-                        color: Qt.rgba({{ colors.bright_yellow | qt_rgb }}, 0.25)
+                        color: Qt.rgba({{ accents.sddm.chrome | qt_rgb }}, 0.18)
                         spread: 0.1
                     }
                 }
@@ -181,12 +181,12 @@ Rectangle {
                 border.width: 1
                 opacity: 0
 
-                // Subtle yellow glow around login box
+                // Subtle accent glow around login box
                 layer.enabled: true
                 layer.effect: Glow {
                     radius: 12
                     samples: 25
-                    color: Qt.rgba({{ colors.bright_yellow | qt_rgb }}, 0.15)
+                    color: Qt.rgba({{ accents.sddm.chrome | qt_rgb }}, 0.10)
                     spread: 0.0
                 }
 

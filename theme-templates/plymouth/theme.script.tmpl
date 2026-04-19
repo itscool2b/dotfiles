@@ -8,6 +8,9 @@ Window.SetBackgroundBottomColor({{ colors.bg1 | rgb_float }});
 screen_width = Window.GetWidth();
 screen_height = Window.GetHeight();
 
+# 0 = boot splash mode, 1 = password dialog active (hides splash so prompt is readable)
+global.dialog_active = 0;
+
 # ── Title text ──────────────────────────────────
 title_image = Image.Text("{{ plymouth.logo_text }}", {{ colors.fg | rgb_float }}, 1, "Sans Bold 36");
 title_sprite = Sprite(title_image);
@@ -23,8 +26,12 @@ subtitle_sprite.SetY(screen_height / 2 - subtitle_image.GetHeight() / 2 + 20);
 progress = 0;
 
 fun refresh_callback() {
+    # Freeze the pulse when a password dialog is up, so it doesn't look
+    # like the system is still booting while waiting for input.
+    if (global.dialog_active) {
+        return;
+    }
     progress = progress + 0.04;
-    # Soft sin-based pulse: opacity 0.3 ↔ 1.0
     phase = Math.Sin(progress);
     alpha = (phase + 1) / 2 * 0.7 + 0.3;
     subtitle_sprite.SetOpacity(alpha);
@@ -52,11 +59,20 @@ fun dialog_setup() {
 }
 
 fun display_password_callback(prompt, bullets) {
-    # Minimal password dialog — just show the prompt text
-    dialog.prompt_image = Image.Text(prompt, {{ colors.fg | rgb_float }}, 1, "Sans 14");
+    # Dialog mode on: hide the boot splash so the prompt is the only thing
+    # on screen and it's obvious the system is waiting for input.
+    global.dialog_active = 1;
+    title_sprite.SetOpacity(0);
+    subtitle_sprite.SetOpacity(0);
+
+    # Force a clear prompt label if systemd didn't supply one.
+    if (!prompt) {
+        prompt = "Enter passphrase:";
+    }
+    dialog.prompt_image = Image.Text(prompt, {{ colors.fg | rgb_float }}, 1, "Sans 16");
     dialog.prompt_sprite = Sprite(dialog.prompt_image);
     dialog.prompt_sprite.SetX(screen_width / 2 - dialog.prompt_image.GetWidth() / 2);
-    dialog.prompt_sprite.SetY(screen_height / 2 + 80);
+    dialog.prompt_sprite.SetY(screen_height / 2 - 20);
 
     dots = "";
     for (i = 0; i < bullets; i++) {
@@ -65,7 +81,8 @@ fun display_password_callback(prompt, bullets) {
     dialog.dots_image = Image.Text(dots, {{ colors[plymouth.pulse_color] | rgb_float }}, 1, "Sans 18");
     dialog.dots_sprite = Sprite(dialog.dots_image);
     dialog.dots_sprite.SetX(screen_width / 2 - dialog.dots_image.GetWidth() / 2);
-    dialog.dots_sprite.SetY(screen_height / 2 + 110);
+    dialog.dots_sprite.SetY(screen_height / 2 + 16);
+    global.dialog = 1;
 }
 
 Plymouth.SetDisplayPasswordFunction(display_password_callback);
@@ -76,6 +93,9 @@ fun display_normal_callback() {
         dialog.dots_sprite = NULL;
         global.dialog = NULL;
     }
+    global.dialog_active = 0;
+    title_sprite.SetOpacity(1);
+    subtitle_sprite.SetOpacity(0.85);
 }
 
 Plymouth.SetDisplayNormalFunction(display_normal_callback);

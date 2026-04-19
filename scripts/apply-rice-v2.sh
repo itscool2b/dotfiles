@@ -48,6 +48,15 @@ echo "━━━ 5/6 — Hot reload Hyprland + Waybar ━━━"
 hyprctl reload
 pkill -SIGUSR2 waybar || true
 
+# gsettings — what XDG portal apps (Chrome on Wayland, GNOME apps) actually read.
+# fontconfig + xsettingsd alone do NOT cover this path.
+font_main=$(python -c "import tomllib; t=tomllib.load(open('$HOME/.config/theme.toml','rb')); print(f\"{t['fonts']['sans']} {t['fonts']['size']['gtk']}\")")
+font_mono=$(python -c "import tomllib; t=tomllib.load(open('$HOME/.config/theme.toml','rb')); print(f\"{t['fonts']['mono']} {t['fonts']['size']['gtk']}\")")
+gsettings set org.gnome.desktop.interface font-name           "$font_main"
+gsettings set org.gnome.desktop.interface monospace-font-name "$font_mono"
+gsettings set org.gnome.desktop.interface document-font-name  "$font_main"
+echo "  gsettings fonts: $font_main / mono: $font_mono"
+
 echo ""
 echo "━━━ 6/6 — Verification ━━━"
 echo "Loaded Hyprland plugins:"

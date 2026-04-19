@@ -1,0 +1,127 @@
+# Yazi theme — generated from theme.toml — do not edit directly
+
+[manager]
+cwd = { fg = "{{ accents.kde.chrome }}" }
+
+# Hovered (cursor row)
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+# Find (search)
+find_keyword  = { fg = "{{ colors.bright_yellow }}", italic = true }
+find_position = { fg = "{{ colors.bright_purple }}", bg = "reset", italic = true }
+
+# Marker
+marker_copied   = { fg = "{{ colors.bright_green }}", bg = "{{ colors.bright_green }}" }
+marker_cut      = { fg = "{{ colors.bright_red }}",   bg = "{{ colors.bright_red }}" }
+marker_marked   = { fg = "{{ accents.kde.chrome }}",  bg = "{{ accents.kde.chrome }}" }
+marker_selected = { fg = "{{ colors.bright_yellow }}",bg = "{{ colors.bright_yellow }}" }
+
+# Tab
+tab_active   = { fg = "{{ colors.bg0 }}", bg = "{{ accents.kde.chrome }}" }
+tab_inactive = { fg = "{{ colors.fg_dim }}", bg = "{{ colors.bg2 }}" }
+tab_width    = 1
+
+# Count
+count_copied   = { fg = "{{ colors.bg0 }}", bg = "{{ colors.bright_green }}" }
+count_cut      = { fg = "{{ colors.bg0 }}", bg = "{{ colors.bright_red }}" }
+count_selected = { fg = "{{ colors.bg0 }}", bg = "{{ colors.bright_yellow }}" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "{{ colors.bg3 }}" }
+
+# Highlighting
+syntect_theme = ""
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "{{ colors.bg2 }}", bg = "{{ colors.bg2 }}" }
+
+# Mode
+mode_normal = { fg = "{{ colors.bg0 }}", bg = "{{ accents.kde.chrome }}", bold = true }
+mode_select = { fg = "{{ colors.bg0 }}", bg = "{{ colors.bright_yellow }}", bold = true }
+mode_unset  = { fg = "{{ colors.bg0 }}", bg = "{{ colors.bright_purple }}", bold = true }
+
+# Progress
+progress_label  = { fg = "{{ colors.fg_light }}", bold = true }
+progress_normal = { fg = "{{ accents.kde.chrome }}", bg = "{{ colors.bg2 }}" }
+progress_error  = { fg = "{{ colors.bright_red }}", bg = "{{ colors.bg2 }}" }
+
+# Permissions
+permissions_t = { fg = "{{ accents.kde.chrome }}" }
+permissions_r = { fg = "{{ colors.bright_yellow }}" }
+permissions_w = { fg = "{{ colors.bright_red }}" }
+permissions_x = { fg = "{{ colors.bright_green }}" }
+permissions_s = { fg = "{{ colors.fg_dim }}" }
+
+[input]
+border   = { fg = "{{ accents.kde.chrome }}" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border   = { fg = "{{ accents.kde.chrome }}" }
+active   = { bg = "{{ colors.bg2 }}" }
+inactive = {}
+
+[tasks]
+border  = { fg = "{{ accents.kde.chrome }}" }
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "{{ colors.bg1 }}" }
+cand            = { fg = "{{ colors.bright_cyan }}" }
+rest            = { fg = "{{ colors.fg_dim }}" }
+desc            = { fg = "{{ colors.bright_purple }}" }
+separator       = "  "
+separator_style = { fg = "{{ colors.bg3 }}" }
+
+[help]
+on      = { fg = "{{ colors.bright_cyan }}" }
+exec    = { fg = "{{ colors.bright_yellow }}" }
+desc    = { fg = "{{ colors.fg_dim }}" }
+hovered = { bg = "{{ colors.bg2 }}", bold = true }
+footer  = { fg = "{{ colors.bg0 }}", bg = "{{ colors.fg }}" }
+
+[notify]
+title_info  = { fg = "{{ colors.bright_green }}" }
+title_warn  = { fg = "{{ colors.bright_yellow }}" }
+title_error = { fg = "{{ colors.bright_red }}" }
+
+# Filetype-specific colors (icons + names)
+[[filetype.rules]]
+mime = "image/*"
+fg   = "{{ colors.bright_yellow }}"
+
+[[filetype.rules]]
+mime = "{audio,video}/*"
+fg   = "{{ colors.bright_purple }}"
+
+[[filetype.rules]]
+mime = "application/{,g}zip"
+fg   = "{{ colors.bright_red }}"
+
+[[filetype.rules]]
+mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}"
+fg   = "{{ colors.bright_red }}"
+
+[[filetype.rules]]
+mime = "application/{xml,wasm,x-{script,executable,sharedlib}}"
+fg   = "{{ colors.bright_cyan }}"
+
+[[filetype.rules]]
+mime = "text/*"
+fg   = "{{ colors.fg }}"
+
+[[filetype.rules]]
+name = "*"
+is   = "orphan"
+bg   = "{{ colors.bright_red }}"
+
+[[filetype.rules]]
+name = "*/"
+fg   = "{{ accents.kde.chrome }}"

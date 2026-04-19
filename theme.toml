@@ -157,7 +157,7 @@ rofi_element_radius  = 4
 rofi_element_pad_v   = 8
 rofi_element_pad_h   = 16
 rofi_element_spacing = 4
-rofi_icon_size       = 0
+rofi_icon_size       = 22
 rofi_lines           = 6
 
 # Wofi
@@ -317,7 +317,7 @@ selected_scale = 1.02
 # Per-layer entrance animation style (options: slide, popin [N%], fade, noanim)
 # Namespaces must be matched via Hyprland's `match:namespace` selector (newer syntax).
 waybar_animation  = "slide"
-rofi_animation    = "popin 80%"
+rofi_animation    = "slidefade 15%"
 swaync_cc_anim    = "slide"
 swaync_notif_anim = "slide"
 
@@ -434,7 +434,9 @@ inactive_tab_fg = "fg_dim"
 inactive_tab_bg = "bg1"
 
 [accents.sddm]
-login_button = "bright_blue"
+login_button = "bright_blue"   # retained for back-compat (yellowBright in QML)
+chrome       = "bright_blue"   # primary SDDM accent — clock, greeting, focus, button bg
+chrome_hover = "fg_light"      # subtle hover lift — cream, not a hue swap
 
 [accents.swayosd]
 progress = "bright_blue"
@@ -453,7 +455,8 @@ urlbar_url   = "bright_blue"
 gradient = ["bright_blue", "blue", "fg_dim"]
 
 [accents.kde]
-color_scheme = "BreezeDark"    # will be replaced with custom scheme once midnight-glass.colors ships
+color_scheme = "Gruvbox"       # generated to ~/.local/share/color-schemes/Gruvbox.colors
+chrome       = "bright_blue"   # KDE accent — selection, focus, decoration in Dolphin etc.
 cursor       = "Bibata-Modern-Classic"
 icons        = "Papirus-Dark"
 
@@ -517,7 +520,7 @@ noise_reduction = 0.77
 theme_name  = "gruvbox-refined"
 pulse_color = "bright_blue"
 logo_text   = "CACHYOS"
-title       = "Gruvbox Refined"
+title       = "itscool2b"
 
 # ════════════════════════════════════════════
 #  SWAPPY — screenshot editor (themed config; not bound — opt-in)

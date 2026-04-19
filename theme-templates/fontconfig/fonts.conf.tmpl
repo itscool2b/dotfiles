@@ -50,4 +50,26 @@
     </prefer>
   </alias>
 
+  <!-- Force common UI font families to the rice font (Chrome chrome, GTK apps, generic sites) -->
+  <match target="pattern">
+    <test name="family" qual="any"><string>Helvetica</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.sans }}</string></edit>
+  </match>
+  <match target="pattern">
+    <test name="family" qual="any"><string>Arial</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.sans }}</string></edit>
+  </match>
+  <match target="pattern">
+    <test name="family" qual="any"><string>Segoe UI</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.sans }}</string></edit>
+  </match>
+  <match target="pattern">
+    <test name="family" qual="any"><string>Roboto</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.sans }}</string></edit>
+  </match>
+  <match target="pattern">
+    <test name="family" qual="any"><string>Cantarell</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.sans }}</string></edit>
+  </match>
+
 </fontconfig>
