@@ -67,8 +67,8 @@ def f_rgb_float(h):
 QT_PALETTE = {
     "active": [
         "fg", "bg1", "bg3", "bg2", "bg0", "bg2", "fg", "fg_light",
-        "fg", "bg0", "bg1", "bg0", "amber", "bg0", "amber",
-        "amber_dim", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "amber"
+        "fg", "bg0", "bg1", "bg0", "bright_yellow", "bg0", "bright_yellow",
+        "bright_orange", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "bright_yellow"
     ],
     "disabled": [
         "fg_dim", "bg1", "bg3", "bg2", "bg0", "bg2", "bg4", "fg_light",
@@ -77,8 +77,8 @@ QT_PALETTE = {
     ],
     "inactive": [
         "fg", "bg1", "bg3", "bg2", "bg0", "bg2", "fg", "fg_light",
-        "fg", "bg0", "bg1", "bg0", "bg3", "fg", "amber",
-        "amber_dim", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "bg3"
+        "fg", "bg0", "bg1", "bg0", "bg3", "fg", "bright_yellow",
+        "bright_orange", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "bg3"
     ],
 }
 

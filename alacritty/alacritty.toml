@@ -16,54 +16,54 @@ history = 10000
 multiplier = 3
 
 [colors.primary]
-background = "#1d2021"
-foreground = "#d4be98"
+background = "#282828"
+foreground = "#ebdbb2"
 
 [colors.normal]
-black = "#282828"
-red = "#ea6962"
-green = "#a9b665"
-yellow = "#d8a657"
-blue = "#7daea3"
-magenta = "#d3869b"
-cyan = "#89b482"
-white = "#928374"
+black = "#32302f"
+red = "#cc241d"
+green = "#98971a"
+yellow = "#d79921"
+blue = "#458588"
+magenta = "#b16286"
+cyan = "#689d6a"
+white = "#a89984"
 
 [colors.bright]
-black = "#7c6f64"
-red = "#f2594b"
-green = "#b0b846"
-yellow = "#e5b975"
-blue = "#8fbcbb"
-magenta = "#e0a0b5"
-cyan = "#9ac197"
-white = "#d4be98"
+black = "#928374"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+magenta = "#d3869b"
+cyan = "#8ec07c"
+white = "#ebdbb2"
 
 [colors.selection]
-background = "#d4be98"
-text = "#1d2021"
+background = "#ebdbb2"
+text = "#282828"
 
 [colors.cursor]
-cursor = "#d8a657"
-text   = "#1d2021"
+cursor = "#fabd2f"
+text   = "#282828"
 
 [colors.vi_mode_cursor]
-cursor = "#d8a657"
-text   = "#1d2021"
+cursor = "#fabd2f"
+text   = "#282828"
 
 [font]
 size = 12.0
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Maple Mono NF"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Maple Mono NF"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Maple Mono NF"
 style = "Italic"
 
 [cursor]

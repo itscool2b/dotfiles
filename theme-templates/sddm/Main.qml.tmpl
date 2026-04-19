@@ -13,8 +13,8 @@ Rectangle {
     property color bg3:     "{{ colors.bg3 }}"
     property color fg:      "{{ colors.fg }}"
     property color fgDim:   "{{ colors.fg_dim }}"
-    property color amber:       "{{ colors.amber }}"
-    property color amberBright: "{{ accents.sddm.login_button }}"
+    property color yellow:       "{{ colors.bright_yellow }}"
+    property color yellowBright: "{{ accents.sddm.login_button }}"
     property color green:   "{{ colors.bright_green }}"
     property color red:     "{{ colors.bright_red }}"
 
@@ -129,14 +129,14 @@ Rectangle {
                     font.family: "{{ fonts.mono }}"
                     font.pixelSize: {{ fonts.size.sddm_time }}
                     font.bold: true
-                    color: amber
+                    color: yellow
                     renderType: Text.NativeRendering
 
                     layer.enabled: true
                     layer.effect: Glow {
                         radius: 8
                         samples: 17
-                        color: Qt.rgba({{ colors.amber | qt_rgb }}, 0.25)
+                        color: Qt.rgba({{ colors.bright_yellow | qt_rgb }}, 0.25)
                         spread: 0.1
                     }
                 }
@@ -181,12 +181,12 @@ Rectangle {
                 border.width: 1
                 opacity: 0
 
-                // Subtle amber glow around login box
+                // Subtle yellow glow around login box
                 layer.enabled: true
                 layer.effect: Glow {
                     radius: 12
                     samples: 25
-                    color: Qt.rgba({{ colors.amber | qt_rgb }}, 0.15)
+                    color: Qt.rgba({{ colors.bright_yellow | qt_rgb }}, 0.15)
                     spread: 0.0
                 }
 
@@ -209,7 +209,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                         font.family: "{{ fonts.mono }}"
                         font.pixelSize: {{ fonts.size.sddm_greeting }}
-                        color: amber
+                        color: yellow
                         renderType: Text.NativeRendering
 
                         function updateGreeting() {
@@ -269,7 +269,7 @@ Rectangle {
                             height: 42
                             color: bg1
                             radius: {{ geometry.sddm_input_radius }}
-                            border.color: userField.activeFocus ? amber :bg3
+                            border.color: userField.activeFocus ? yellow :bg3
                             border.width: userField.activeFocus ? 2 : 1
 
                             Behavior on border.color {
@@ -285,7 +285,7 @@ Rectangle {
                                 font.family: "{{ fonts.mono }}"
                                 font.pixelSize: {{ fonts.size.sddm_input }}
                                 color: fg
-                                selectionColor: amber
+                                selectionColor: yellow
                                 selectedTextColor: bg0
                                 clip: true
                                 text: userModel.lastUser
@@ -315,7 +315,7 @@ Rectangle {
                             height: 42
                             color: bg1
                             radius: {{ geometry.sddm_input_radius }}
-                            border.color: passwordField.activeFocus ? amber :bg3
+                            border.color: passwordField.activeFocus ? yellow :bg3
                             border.width: passwordField.activeFocus ? 2 : 1
 
                             Behavior on border.color {
@@ -331,7 +331,7 @@ Rectangle {
                                 font.family: "{{ fonts.mono }}"
                                 font.pixelSize: {{ fonts.size.sddm_input }}
                                 color: fg
-                                selectionColor: amber
+                                selectionColor: yellow
                                 selectedTextColor: bg0
                                 echoMode: TextInput.Password
                                 clip: true
@@ -346,7 +346,7 @@ Rectangle {
                             id: capsWarning
                             anchors.horizontalCenter: parent.horizontalCenter
                             text: "Caps Lock is on"
-                            color: amber
+                            color: yellow
                             font.family: "{{ fonts.mono }}"
                             font.pixelSize: {{ fonts.size.sddm_label }}
                             visible: keyboard.capsLock
@@ -360,7 +360,7 @@ Rectangle {
                         width: parent.width
                         height: 42
                         radius: {{ geometry.sddm_input_radius }}
-                        color: loginBtnMouse.containsMouse ? amberBright : amber
+                        color: loginBtnMouse.containsMouse ? yellowBright : yellow
 
                         Behavior on color {
                             ColorAnimation { duration: 150 }
@@ -470,7 +470,7 @@ Rectangle {
 
                             Text {
                                 text: "\u27F3"
-                                color: rebootMouse.containsMouse ? amber :fgDim
+                                color: rebootMouse.containsMouse ? yellow :fgDim
                                 font.family: "{{ fonts.mono }}"
                                 font.pixelSize: {{ fonts.size.sddm_input }}
                                 renderType: Text.NativeRendering

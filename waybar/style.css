@@ -1,44 +1,42 @@
-/* ━━━ Quiet Editorial Waybar — Flat Editorial Strip ━━━ */
+/* ━━━ Gruvbox Blue Waybar — v5 Ghost — dissolves into wallpaper ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
-@define-color bg0      #1d2021;
-@define-color bg1      #282828;
-@define-color bg2      #32302f;
-@define-color bg3      #3c3836;
-@define-color fg       #d4be98;
-@define-color fg_dim   #928374;
-@define-color fg_light #ddc7a1;
-@define-color amber    #d8a657;
+@define-color bg0       #282828;
+@define-color bg1       #32302f;
+@define-color fg        #ebdbb2;
+@define-color fg_mid    #d5c4a1;
+@define-color fg_dim    #a89984;
+@define-color fg_light  #fbf1c7;
+@define-color orange    #fe8019;
 
 * {
-    font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
-    font-size: 13px;
+    font-family: "Maple Mono NF", "Maple Mono NF", monospace;
+    font-size: 12px;
     min-height: 0;
     padding: 0;
     margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 }
 
-/* ━━━ Bar: edge-aligned flat strip, thin hairline underneath ━━━ */
+/* ━━━ Bar: fully transparent — blends into wallpaper ━━━ */
 window#waybar {
-    background: alpha(@bg0, 0.72);
+    background: alpha(@bg0, 0.0);
     border: none;
-    border-bottom: 1px solid alpha(@fg_dim, 0.15);
     border-radius: 0px;
     color: @fg_dim;
 }
 
-/* ━━━ Pill groups: BLANK. Just padded columns. ━━━ */
 .modules-left,
 .modules-center,
 .modules-right {
     background: transparent;
-    padding: 0 12px;
+    padding: 0 10px;
     margin: 0;
     box-shadow: none;
     border-radius: 0;
 }
 
-/* ━━━ Modules — plain text on the bar, muted until hover ━━━ */
+/* ━━━ All modules: one muted tone, weight/alpha contrast only ━━━ */
 #workspaces,
 #clock,
 #cpu,
@@ -49,97 +47,92 @@ window#waybar {
 #custom-notification,
 #tray {
     background: transparent;
-    color: @fg_dim;
-    padding: 0 10px;
+    color: alpha(@fg_dim, 0.75);
+    padding: 0 8px;
     margin: 0;
     border: none;
     border-radius: 0;
-    letter-spacing: 0.04em;
-    transition: color 140ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
 }
 
-/* ━━━ Clock — the steady amber anchor at center ━━━ */
+/* ━━━ Clock: quietly central, mid-tone, no hero ━━━ */
 #clock {
-    color: @amber;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.08em;
-    padding: 0 20px;
+    color: @fg_mid;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 0 16px;
 }
 
-/* ━━━ Workspaces — numeric, hierarchy through opacity + weight ━━━ */
+/* ━━━ Media: plain text, same mute ━━━ */
+#custom-media {
+    color: alpha(@fg_dim, 0.75);
+    font-style: normal;
+}
+
+/* ━━━ Notification: slight brighten when present ━━━ */
+#custom-notification.notification,
+#custom-notification.dnd-notification {
+    color: @fg_mid;
+}
+
+/* ━━━ Workspaces: weight-only active, no color pop ━━━ */
 #workspaces {
     padding: 0 4px;
 }
 
 #workspaces button {
-    color: alpha(@fg_dim, 0.45);
+    color: alpha(@fg_dim, 0.35);
     background: transparent;
     border: none;
     border-radius: 0;
     padding: 0 6px;
     margin: 0;
     min-width: 0;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    transition: color 180ms cubic-bezier(0.22, 1.0, 0.36, 1.0);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: color 300ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
 }
 
 #workspaces button.active {
-    color: @amber;
-    font-weight: 700;
+    color: @fg_light;
+    font-weight: 600;
 }
 
 #workspaces button.urgent {
-    color: @amber;
-    font-style: italic;
+    color: @orange;
 }
 
 #workspaces button:hover {
-    color: @fg;
+    color: alpha(@fg_light, 0.85);
 }
 
-/* ━━━ Hover on modules — color shift only, no background ━━━ */
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#network:hover,
-#custom-media:hover,
-#custom-notification:hover,
-#clock:hover {
-    color: @fg;
+/* ━━━ Hover: faint brighten, no bg fill ━━━ */
+#clock:hover, #cpu:hover, #memory:hover, #pulseaudio:hover,
+#network:hover, #custom-media:hover, #custom-notification:hover {
+    color: @fg_mid;
 }
 
-/* ━━━ Media — italic quiet ━━━ */
-#custom-media {
-    font-style: italic;
-}
-
-/* ━━━ Notification — amber when any notification present ━━━ */
-#custom-notification.notification,
-#custom-notification.dnd-notification {
-    color: @amber;
-}
-
-/* ━━━ Muted / disconnected states ━━━ */
+/* Muted / disconnected — further fade */
 #pulseaudio.muted,
 #network.disconnected {
-    color: alpha(@fg_dim, 0.4);
+    color: alpha(@fg_dim, 0.3);
 }
 
 /* ━━━ Tray ━━━ */
 #tray {
-    padding: 0 8px;
+    padding: 0 6px;
 }
 
 #tray > .passive         { -gtk-icon-effect: dim; }
 #tray > .needs-attention { -gtk-icon-effect: highlight; }
 
-/* ━━━ Tooltips — flat hard-edge, tight ━━━ */
+/* ━━━ Tooltips — soft surface, not chrome ━━━ */
 tooltip {
-    background: @bg0;
+    background: @bg1;
     border: 1px solid alpha(@fg_dim, 0.2);
-    border-radius: 4px;
+    border-radius: 6px;
     color: @fg;
     padding: 6px 10px;
 }
@@ -147,4 +140,5 @@ tooltip {
 tooltip label {
     color: @fg;
     padding: 2px 4px;
+    text-shadow: none;
 }

@@ -6,7 +6,7 @@ configuration {
     display-run: " ";
     display-filebrowser: " ";
     drun-display-format: "{name}";
-    font: "JetBrainsMono Nerd Font 12";
+    font: "Maple Mono NF 12";
 }
 
 @theme "~/.config/rofi/gruvbox-dark.rasi"

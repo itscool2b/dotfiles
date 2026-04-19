@@ -2,63 +2,70 @@
 # Change values here, then run: ./theme-generate.py
 
 [meta]
-name = "Quiet Editorial"
+name = "Gruvbox Blue"
 
 # ════════════════════════════════════════════
 #  COLORS — Gruvbox Material palette (softer, smoother than canonical)
 # ════════════════════════════════════════════
 
 [colors]
-# Backgrounds (warm dark, hard-contrast bg0 retained)
-bg0      = "#1d2021"
-bg1      = "#282828"
-bg2      = "#32302f"
-bg3      = "#3c3836"
-bg4      = "#504945"
-gray     = "#7c6f64"
+# ═══ Canonical Gruvbox palette (medium contrast — the ICONIC warm dark) ═══
+# Medium mode is what people picture when they say "Gruvbox": warm parchment
+# dark, not the hard-gray #1d2021. This is the soul of the theme.
+bg0      = "#282828"   # dark0 (medium contrast bg — iconic)
+bg1      = "#32302f"   # dark0_soft (surfaces one step up)
+bg2      = "#3c3836"   # dark1 (deeper surfaces)
+bg3      = "#504945"   # dark2
+bg4      = "#665c54"   # dark3
+gray     = "#928374"   # gray
 
-# Foregrounds (Gruvbox Material soft cream — less yellow than canonical)
-fg       = "#d4be98"
-fg_dim   = "#928374"
-fg_light = "#ddc7a1"
+# Foregrounds (canonical Gruvbox cream — full three-tier hierarchy)
+fg       = "#ebdbb2"   # light1 — canonical fg
+fg_mid   = "#d5c4a1"   # light2 — middle tier
+fg_dim   = "#a89984"   # light4 — muted cream
+fg_light = "#fbf1c7"   # light0 — brightest
 
-# Normal ANSI (Gruvbox Material — softer, modern)
-red      = "#ea6962"
-green    = "#a9b665"
-yellow   = "#d8a657"
-blue     = "#7daea3"
-purple   = "#d3869b"
-cyan     = "#89b482"
-orange   = "#e78a4e"
+# Normal ANSI (canonical Gruvbox dark mode)
+red      = "#cc241d"
+green    = "#98971a"
+yellow   = "#d79921"
+blue     = "#458588"
+purple   = "#b16286"
+cyan     = "#689d6a"
+orange   = "#d65d0e"
 
-# Bright ANSI (slightly warmer pops — yellow = hero, orange = secondary)
-bright_red     = "#f2594b"
-bright_green   = "#b0b846"
-bright_yellow  = "#e5b975"
-bright_blue    = "#8fbcbb"
-bright_purple  = "#e0a0b5"
-bright_cyan    = "#9ac197"
-bright_orange  = "#f49269"
+# Bright ANSI (canonical Gruvbox neon — yellow + orange = the hero pair)
+bright_red     = "#fb4934"
+bright_green   = "#b8bb26"
+bright_yellow  = "#fabd2f"   # hero — canonical Gruvbox neon yellow
+bright_blue    = "#83a598"
+bright_purple  = "#d3869b"
+bright_cyan    = "#8ec07c"   # aqua (Gruvbox calls this "aqua")
+bright_orange  = "#fe8019"   # warm secondary
 
-# Single signature accent — v3 editorial. All chrome references point here.
-# Everything that was bright_blue / bright_cyan / bright_purple in accents
-# has been collapsed to amber. Terminals keep the full ANSI range above.
-amber     = "#d8a657"
-amber_dim = "#a8833f"
+# Faded (canonical — darker saturated variants for selections + highlights)
+faded_red      = "#9d0006"
+faded_green    = "#79740e"
+faded_yellow   = "#b57614"
+faded_blue     = "#076678"
+faded_purple   = "#8f3f71"
+faded_cyan     = "#427b58"
+faded_orange   = "#af3a03"
 
 # ════════════════════════════════════════════
 #  FONTS
 # ════════════════════════════════════════════
 
 [fonts]
-mono         = "JetBrainsMono Nerd Font"
+mono         = "Maple Mono NF"
 mono_display = "Maple Mono NF"
-sans         = "Noto Sans"
+mono_fallback = "JetBrainsMono Nerd Font"
+sans         = "Maple Mono NF"
 
 [fonts.size]
 terminal       = 12
-bar            = 13
-bar_clock      = 14
+bar            = 12
+bar_clock      = 12
 bar_title      = 12
 notification   = 13
 dunst          = 11
@@ -112,28 +119,28 @@ path = "~/.config/wallpapers/wallpaper.png"
 # ════════════════════════════════════════════
 
 [geometry]
-# Hyprland
+# Hyprland — warm retro curves, not editorial-sharp
 gaps_in            = 6
 gaps_out           = 16
 border_size        = 1
-rounding           = 6
+rounding           = 8
 
 # Terminal padding
 terminal_pad_x     = 18
 terminal_pad_y     = 14
 
-# Waybar — flat edge-aligned strip, no pill shell
-bar_height         = 26
+# Waybar — ghost strip, blends into wallpaper
+bar_height         = 22
 bar_margin_top     = 0
 bar_margin_side    = 0
 bar_radius         = 0
-bar_tooltip_radius = 4
+bar_tooltip_radius = 6
 
 # Dunst
 dunst_width        = 350
 dunst_height       = 100
 dunst_offset       = "12x12"
-dunst_radius       = 6
+dunst_radius       = 8
 dunst_frame_width  = 0
 dunst_padding      = 12
 dunst_h_padding    = 16
@@ -160,8 +167,8 @@ wofi_input_radius  = 8
 wofi_entry_radius  = 8
 
 # Swaync — flat panel, sharp cards
-swaync_cc_radius    = 8
-swaync_notif_radius = 6
+swaync_cc_radius    = 10
+swaync_notif_radius = 8
 swaync_cc_width     = 400
 swaync_notif_width  = 360
 
@@ -184,7 +191,7 @@ sddm_button_radius = 6
 terminal         = 0.82
 inactive_window  = 0.92
 kitty_dim        = 0.75
-bar_module_bg    = 0.72        # bar background (near-opaque, no pill shell on top)
+bar_module_bg    = 0.0         # bar background — transparent, blends into wallpaper
 bar_module_hover = 0.12
 bar_tooltip      = 1.0
 rofi_bg_alpha    = "f2"        # near-opaque — editorial, no glass
@@ -235,30 +242,37 @@ inner_highlight_color = "fg_light"   # resolved to hex in CSS via alpha()
 # ════════════════════════════════════════════
 
 [animations]
-bar_transition      = "0.2s"
-swaync_transition   = 200
+# v6 Silk — Material Design 3 emphasized curves everywhere.
+# Cohesive motion language: asymmetric in/out, gentle overshoot on
+# entrance, decisive acceleration on exit.
+bar_transition      = "0.28s"
+swaync_transition   = 320
 sddm_clock_fade     = 800
 sddm_box_fade       = 900
 sddm_buttons_fade   = 1000
 
 [animations.beziers]
-liner     = [1.0, 1.0, 1.0, 1.0]
-smooth    = [0.25, 1.0, 0.5, 1.0]
-snappy    = [0.22, 1.0, 0.36, 1.0]    # fast-then-ease, workspace switches + window entrance
-soft      = [0.25, 0.46, 0.45, 0.94]  # gentle ease-out, layer fades + window dismissal
+# Material Design 3 "emphasized" — the premium motion feel.
+# NO overshoot / bob anywhere — everything lands exactly on target.
+emphasized       = [0.2, 0.0, 0.0, 1.0]      # signature smooth standard
+emphasized_decel = [0.05, 0.7, 0.1, 1.0]     # things arriving — soft landing
+emphasized_accel = [0.3, 0.0, 0.8, 0.15]     # things leaving — decisive exit
+liner            = [1.0, 1.0, 1.0, 1.0]      # kept for border rotation
 
 [animations.hyprland]
-windows     = [1, 3, "snappy", "slide"]
-windowsIn   = [1, 3, "snappy", "slide"]
-windowsOut  = [1, 2, "soft", "slide"]
-windowsMove = [1, 4, "smooth", ""]
-fade        = [1, 4, "liner", ""]
-workspaces  = [1, 3, "snappy", "slidefade 15%"]
-layers      = [1, 3, "soft", "fade"]
-layersIn    = [1, 3, "soft", "fade"]
-layersOut   = [1, 2, "soft", "fade"]
-border      = [1, 10, "liner", ""]
-borderangle = [1, 120, "liner", "loop"]
+# Durations in deciseconds (1 = 100ms). 4–5 = ~400–500ms is the
+# sweet spot for silky without feeling laggy.
+windows     = [1, 5, "emphasized_decel", "popin 80%"]
+windowsIn   = [1, 5, "emphasized_decel", "popin 85%"]
+windowsOut  = [1, 4, "emphasized_accel", "popin 90%"]
+windowsMove = [1, 5, "emphasized",       ""]
+fade        = [1, 4, "emphasized",       ""]
+workspaces  = [1, 6, "emphasized",       "slidefade 20%"]
+layers      = [1, 4, "emphasized_decel", "slide"]
+layersIn    = [1, 4, "emphasized_decel", "slide"]
+layersOut   = [1, 3, "emphasized_accel", "fade"]
+border      = [1, 12, "emphasized",      ""]
+borderangle = [1, 120, "liner",          "loop"]
 
 # ════════════════════════════════════════════
 #  MOTION — Micro-spring primitives for CSS/rasi surfaces
@@ -267,19 +281,21 @@ borderangle = [1, 120, "liner", "loop"]
 # ════════════════════════════════════════════
 
 [motion]
-# Durations (ms)
-press_ms      = 120
-hover_ms      = 140
-focus_ms      = 160
-spring_ms     = 180
-lifecycle_ms  = 220
+# v6 Silk — CSS surfaces breathe with the same MD3 emphasized curves
+# as Hyprland. Slightly longer durations so the motion is felt, not
+# just glimpsed.
+press_ms      = 160
+hover_ms      = 220
+focus_ms      = 260
+spring_ms     = 300
+lifecycle_ms  = 340
 
-# Easing curves (CSS cubic-bezier format)
-press_curve     = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"    # snappy, matches hyprland
-hover_curve     = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"
-focus_curve     = "cubic-bezier(0.25, 0.46, 0.45, 0.94)"  # gentle ease-out
-spring_curve    = "cubic-bezier(0.34, 1.35, 0.64, 1.0)"   # softened overshoot
-lifecycle_curve = "cubic-bezier(0.22, 1.0, 0.36, 1.0)"
+# Easing curves (CSS cubic-bezier format) — mirror the bezier set
+press_curve     = "cubic-bezier(0.2, 0.0, 0.0, 1.0)"      # emphasized
+hover_curve     = "cubic-bezier(0.2, 0.0, 0.0, 1.0)"      # emphasized
+focus_curve     = "cubic-bezier(0.05, 0.7, 0.1, 1.0)"     # emphasized_decel
+spring_curve    = "cubic-bezier(0.05, 0.7, 0.1, 1.0)"     # emphasized_decel — no bob
+lifecycle_curve = "cubic-bezier(0.2, 0.0, 0.0, 1.0)"      # emphasized
 
 # Scale values (kept restrained)
 press_scale    = 0.97
@@ -319,14 +335,14 @@ progress_height  = 6
 progress_radius  = 3
 bg_alpha         = 0.95
 # Accent (use a color name from [colors])
-accent           = "amber"
+accent           = "bright_blue"
 
 # ════════════════════════════════════════════
 #  BORDER — Subtle muted gradient
 # ════════════════════════════════════════════
 
 [border]
-active_colors  = ["amber"]
+active_colors  = ["bright_blue"]
 active_angle   = ""
 inactive_alpha = "00"
 
@@ -336,100 +352,105 @@ inactive_alpha = "00"
 # ════════════════════════════════════════════
 
 [accents.bar]
-# v3: amber everywhere chrome used to be bright_blue. Modules in the new
-# template use @fg_dim base + @amber for clock and ACTIVE state. These
-# values are kept for any downstream consumer that reads them.
-workspace_active = "amber"
-clock            = "amber"
-cpu              = "amber"
-memory           = "amber"
-audio            = "amber"
-network          = "amber"
-media            = "amber"
-notification     = "amber"
+# v5 Ghost — bar dissolves into wallpaper. Single muted tone, weight-only
+# contrast. No chrome accent. Semantic orange reserved for urgent only.
+workspace_active = "fg_light"
+workspace_urgent = "bright_orange"    # semantic: urgency
+clock            = "fg_mid"
+cpu              = "fg_dim"
+memory           = "fg_dim"
+audio            = "fg_dim"
+network          = "fg_dim"
+media            = "fg_dim"
+notification     = "fg_mid"
 
 [accents.fetch]
-# v3: amber for labels + accents, fg for values. Collapsed 11-way palette.
-os       = "amber"
-kernel   = "amber"
-packages = "amber"
-shell    = "amber"
-uptime   = "amber"
-wm       = "amber"
-terminal = "amber"
-cpu      = "amber"
-gpu      = "amber"
-memory   = "amber"
-disk     = "amber"
+# v5 Rainbow — each module takes a different gruvbox bright so the
+# palette is on equal display. OS stays blue (CachyOS signature).
+os       = "bright_blue"
+kernel   = "bright_purple"
+packages = "bright_yellow"
+shell    = "bright_green"
+uptime   = "bright_cyan"
+wm       = "bright_blue"
+terminal = "bright_orange"
+cpu      = "bright_red"
+gpu      = "bright_purple"
+memory   = "bright_yellow"
+disk     = "bright_cyan"
 
 [accents.starship]
-os          = "amber"
-directory   = "amber"
-git_branch  = "amber"
-git_status  = "fg_dim"
-python      = "amber"
-nodejs      = "amber"
-rust        = "amber"
+# v5 Rainbow — every segment a different gruvbox bright, each
+# language mapped to its brand color. Directory is aqua — the classic
+# gruvbox "navigational calm" tone, readable and prominent.
+os          = "bright_blue"
+directory   = "bright_cyan"
+git_branch  = "bright_purple"
+git_status  = "bright_orange"
+python      = "bright_yellow"
+nodejs      = "bright_green"
+rust        = "bright_red"
 
 [accents.rofi]
-selection = "amber"
+selection = "bright_blue"
 
 [accents.wofi]
-focus       = "amber"
-selection   = "amber"
+focus       = "bright_blue"
+selection   = "bright_blue"
 selected_bg = "bg2"
 selected_fg = "fg_light"
 
 [accents.swaync]
-title         = "fg"            # bold fg, no hue — amber reserved for timestamps
+title         = "fg"              # bold fg, no hue
 summary       = "fg"
-dnd_switch    = "amber"
+dnd_switch    = "bright_blue"
 close_ambient = "fg_dim"
-close_hover   = "fg"            # no red in chrome — just brighten on hover
-timestamp     = "amber"         # the only hue on a notification
+close_hover   = "fg"              # no red in chrome
+timestamp     = "bright_blue"     # single hero
 
 [accents.hyprlock]
-outer = "amber"          # chrome
-check = "bright_green"   # semantic; stays green
-fail  = "bright_red"     # semantic; stays red
+outer = "bright_blue"  # chrome hero
+check = "bright_green"   # semantic
+fail  = "bright_red"     # semantic
 
 [accents.btop]
-highlight   = "amber"
-selected    = "amber"
-proc_misc   = "amber"
-cpu_box     = "amber"
-mem_box     = "amber"
-net_box     = "amber"
-proc_box    = "amber"
-download    = "amber"
-upload      = "fg_dim"          # direction through opacity, not hue
+# Chrome single-hero; data gradients (cpu/temp/mem) keep canonical multi-color
+# via hardcoded template refs — those are semantic data viz.
+highlight   = "bright_blue"
+selected    = "bright_blue"
+proc_misc   = "bright_blue"
+cpu_box     = "bright_blue"
+mem_box     = "bright_blue"
+net_box     = "bright_blue"
+proc_box    = "bright_blue"
+download    = "bright_blue"
+upload      = "fg_dim"              # direction via opacity, not hue
 
 [accents.kitty]
-url_color       = "amber"
+url_color       = "bright_blue"
 active_tab_fg   = "bg0"
-active_tab_bg   = "amber"
+active_tab_bg   = "bright_blue"
 inactive_tab_fg = "fg_dim"
 inactive_tab_bg = "bg1"
 
 [accents.sddm]
-login_button = "amber"
+login_button = "bright_blue"
 
 [accents.swayosd]
-progress = "amber"
+progress = "bright_blue"
 icon     = "fg"
 text     = "fg"
 
 [accents.firefox]
-tab_accent   = "amber"          # bottom border on active tab
-close_hover  = "fg_dim"         # hover bg on tab close — muted, no red
-menu_hover   = "amber"          # menuitem:hover text color
-urlbar_focus = "amber"          # focused urlbar border
-urlbar_url   = "amber"          # URL text color in autocomplete dropdown
+tab_accent   = "bright_blue"
+close_hover  = "fg_dim"
+menu_hover   = "bright_blue"
+urlbar_focus = "bright_blue"
+urlbar_url   = "bright_blue"
 
 [accents.cava]
-# Cava is no longer in the waybar (v3 editorial). Kept here so the standalone
-# CLI cava still themes cohesively when the user runs it in a terminal.
-gradient = ["amber", "amber_dim", "fg_dim"]
+# Standalone CLI only (cava not in bar). Monochromatic blue fade.
+gradient = ["bright_blue", "blue", "fg_dim"]
 
 [accents.kde]
 color_scheme = "BreezeDark"    # will be replaced with custom scheme once midnight-glass.colors ships
@@ -462,7 +483,7 @@ points     = 3
 history_points = 20
 
 [plugins.hyprfocus]
-# Editorial = no pulse on focus. The amber border already marks focus.
+# Editorial = no pulse on focus. The yellow border already marks focus.
 enabled             = false
 animate_floating    = true
 animate_workspacechange = true
@@ -494,7 +515,7 @@ noise_reduction = 0.77
 
 [plymouth]
 theme_name  = "gruvbox-refined"
-pulse_color = "amber"
+pulse_color = "bright_blue"
 logo_text   = "CACHYOS"
 title       = "Gruvbox Refined"
 
@@ -507,15 +528,18 @@ save_dir  = "~/Pictures/Screenshots"
 line_size = 5
 text_size = 30
 text_font = "JetBrainsMono Nerd Font"
-line_color  = "amber"           # color name → resolved hex in template
+line_color  = "bright_blue"           # color name → resolved hex in template
 
 # ════════════════════════════════════════════
 #  FASTFETCH LOGO — custom ASCII art
 # ════════════════════════════════════════════
 
 [fastfetch]
-logo_source  = "~/.config/fastfetch/cachyos-logo.txt"
-logo_type    = "file"
+# ANSI Shadow CACHYOS block-letter logo. Solid gruvbox bright_blue
+# (all color slots overridden to one hue).
+logo_source        = "~/.config/fastfetch/cachyos-logo.txt"
+logo_type          = "file"
+logo_color_solid   = "bright_blue"
 logo_padding_top   = 6
 logo_padding_left  = 2
 logo_padding_right = 3

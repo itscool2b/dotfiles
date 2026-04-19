@@ -1,28 +1,27 @@
-/* Firefox userChrome — Quiet Editorial */
+/* Firefox userChrome — Gruvbox Blue */
 
 :root {
-    --gruvbox-bg0: #1d2021;
-    --gruvbox-bg1: #282828;
-    --gruvbox-bg2: #32302f;
-    --gruvbox-bg3: #3c3836;
-    --gruvbox-fg: #d4be98;
-    --gruvbox-fg-dim: #928374;
-    --gruvbox-red: #f2594b;
-    --gruvbox-green: #b0b846;
-    --gruvbox-yellow: #e5b975;
-    --gruvbox-blue: #8fbcbb;
-    --gruvbox-purple: #e0a0b5;
-    --gruvbox-aqua: #9ac197;
-    --gruvbox-orange: #f49269;
-    --gruvbox-dark-yellow: #d8a657;
-    --gruvbox-amber: #d8a657;
+    --gruvbox-bg0: #282828;
+    --gruvbox-bg1: #32302f;
+    --gruvbox-bg2: #3c3836;
+    --gruvbox-bg3: #504945;
+    --gruvbox-fg: #ebdbb2;
+    --gruvbox-fg-dim: #a89984;
+    --gruvbox-red: #fb4934;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-blue: #83a598;
+    --gruvbox-purple: #d3869b;
+    --gruvbox-aqua: #8ec07c;
+    --gruvbox-orange: #fe8019;
+    --gruvbox-dark-yellow: #d79921;
 
-    /* Quiet Editorial v3 — single amber accent */
-    --ff-tab-accent:   #d8a657;
-    --ff-close-hover:  #928374;
-    --ff-menu-hover:   #d8a657;
-    --ff-urlbar-focus: #d8a657;
-    --ff-urlbar-url:   #d8a657;
+    /* Gruvbox chrome accents */
+    --ff-tab-accent:   #83a598;
+    --ff-close-hover:  #a89984;
+    --ff-menu-hover:   #83a598;
+    --ff-urlbar-focus: #83a598;
+    --ff-urlbar-url:   #83a598;
 }
 
 /* --- Main toolbar / navigation bar --- */

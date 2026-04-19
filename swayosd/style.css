@@ -1,9 +1,9 @@
-/* ━━━ Quiet Editorial — SwayOSD ━━━ */
+/* ━━━ Gruvbox Blue — SwayOSD ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
 window#osd {
     background-color: transparent;
-    color: #d4be98;
+    color: #ebdbb2;
     border-radius: 8px;
 }
 
@@ -16,16 +16,16 @@ window#osd #container {
     margin: 16px;
     padding: 14px 20px;
     border-radius: 8px;
-    background-color: alpha(#1d2021, 0.95);
-    border: 1px solid alpha(#928374, 0.2);
+    background-color: alpha(#282828, 0.95);
+    border: 1px solid alpha(#a89984, 0.2);
     box-shadow: none;
-    animation: osd-enter 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
+    animation: osd-enter 340ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+    font-family: "Maple Mono NF", "Maple Mono NF", monospace;
 }
 
 window#osd image,
 window#osd label {
-    color: #d4be98;
+    color: #ebdbb2;
     -gtk-icon-size: 32px;
 }
 
@@ -38,14 +38,14 @@ window#osd progressbar {
 window#osd progressbar trough {
     min-height: 6px;
     border-radius: 3px;
-    background-color: alpha(#928374, 0.2);
+    background-color: alpha(#a89984, 0.2);
     border: none;
 }
 
 window#osd progressbar progress {
     min-height: 6px;
     border-radius: 3px;
-    background-color: #d8a657;
+    background-color: #83a598;
     border: none;
-    transition: min-width 160ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: min-width 260ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
 }
