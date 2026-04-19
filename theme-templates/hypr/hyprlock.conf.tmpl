@@ -14,20 +14,22 @@ background {
     vibrancy = 0.15
 }
 
+# Time — the editorial statement. Amber, centered, confident.
 label {
     monitor =
     text = $TIME
-    color = {{ colors.fg | rgba("ff") }}
+    color = {{ colors.amber | rgba("ff") }}
     font_size = {{ fonts.size.hyprlock_time }}
     font_family = {{ fonts.mono_display }}
     position = 0, 160
     halign = center
     valign = center
-    shadow_passes = 2
-    shadow_size = 4
-    shadow_color = {{ colors.bg0 | rgba("99") }}
+    shadow_passes = 1
+    shadow_size = 3
+    shadow_color = {{ colors.bg0 | rgba("77") }}
 }
 
+# Date — muted, tracked
 label {
     monitor =
     text = cmd[update:3600000] date +"%A, %B %d"
@@ -43,21 +45,21 @@ input-field {
     monitor =
     size = {{ geometry.hyprlock_input_width }}, {{ geometry.hyprlock_input_height }}
     outline_thickness = {{ geometry.hyprlock_input_border }}
-    dots_size = 0.25
-    dots_spacing = 0.3
+    dots_size = 0.22
+    dots_spacing = 0.35
     dots_center = true
     outer_color = {{ accents.hyprlock.outer | rgba("ff") }}
-    inner_color = {{ colors.bg1 | rgba("99") }}
+    inner_color = {{ colors.bg1 | rgba("cc") }}
     font_color = {{ colors.fg | rgba("ff") }}
     fade_on_empty = true
-    placeholder_text = <span foreground="##{{ colors.fg_dim | bare }}">  Password...</span>
+    placeholder_text = <span foreground="##{{ colors.fg_dim | bare }}">password</span>
     hide_input = false
     rounding = {{ geometry.hyprlock_input_radius }}
     check_color = {{ accents.hyprlock.check | rgba("ff") }}
     fail_color = {{ accents.hyprlock.fail | rgba("ff") }}
-    fail_text = <span foreground="##{{ accents.hyprlock.fail | bare }}">  $FAIL</span>
+    fail_text = <span foreground="##{{ accents.hyprlock.fail | bare }}">$FAIL</span>
     position = 0, -40
     halign = center
     valign = center
-    shadow_passes = 2
+    shadow_passes = 0
 }

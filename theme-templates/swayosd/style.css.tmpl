@@ -1,4 +1,4 @@
-/* ━━━ {{ meta.name }} — SwayOSD theme ━━━ */
+/* ━━━ {{ meta.name }} — SwayOSD ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
 window#osd {
@@ -8,7 +8,7 @@ window#osd {
 }
 
 @keyframes osd-enter {
-    from { opacity: 0; margin-top: 24px; }
+    from { opacity: 0; margin-top: 20px; }
     to   { opacity: 1; margin-top: 16px; }
 }
 
@@ -17,10 +17,9 @@ window#osd #container {
     padding: {{ swayosd.padding_v }}px {{ swayosd.padding_h }}px;
     border-radius: {{ swayosd.radius }}px;
     background-color: alpha({{ colors.bg0 }}, {{ swayosd.bg_alpha }});
-    border: 1px solid alpha({{ colors.bg3 }}, 0.55);
-    box-shadow: 0 6px 20px alpha({{ colors.bg0 }}, 0.45),
-                inset 0 1px 0 alpha({{ colors.fg_light }}, {{ glass.inner_highlight_alpha }});
-    animation: osd-enter {{ motion.lifecycle_ms }}ms {{ motion.spring_curve }};
+    border: 1px solid alpha({{ colors.fg_dim }}, 0.2);
+    box-shadow: none;
+    animation: osd-enter {{ motion.lifecycle_ms }}ms {{ motion.focus_curve }};
     font-family: "{{ fonts.mono_display }}", "{{ fonts.mono }}", monospace;
 }
 
@@ -39,7 +38,7 @@ window#osd progressbar {
 window#osd progressbar trough {
     min-height: {{ swayosd.progress_height }}px;
     border-radius: {{ swayosd.progress_radius }}px;
-    background-color: alpha({{ colors.bg3 }}, 0.55);
+    background-color: alpha({{ colors.fg_dim }}, 0.2);
     border: none;
 }
 

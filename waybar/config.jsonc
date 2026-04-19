@@ -1,21 +1,19 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
-    "spacing": 2,
-    "margin-top": 5,
-    "margin-left": 10,
-    "margin-right": 10,
+    "height": 26,
+    "spacing": 0,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
     "reload_style_on_change": true,
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "custom/cava",
         "custom/media",
         "pulseaudio",
         "network",
@@ -29,65 +27,50 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "active": "●",
-            "default": "●",
-            "empty": "○",
-            "urgent": "●"
+            "1": "01",
+            "2": "02",
+            "3": "03",
+            "4": "04",
+            "5": "05",
+            "urgent": "●",
+            "default": ""
         },
         "persistent-workspaces": {
             "*": 5
         }
     },
-    "hyprland/window": {
-        "format": "{}",
-        "max-length": 40,
-        "separate-outputs": true
-    },
     "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "  {:%A, %B %d, %Y}",
-        "tooltip-format": "<tt><big>{:%B %Y}</big>\n{calendar}</tt>"
+        "format": "{:%a %d·%b  %H:%M}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
     "cpu": {
-        "format": "  {usage}%",
+        "format": "cpu {usage}",
         "interval": 2,
         "on-click": "kitty -e btop"
     },
     "memory": {
-        "format": "  {used:0.1f}G",
+        "format": "mem {used:0.1f}G",
         "interval": 2,
         "on-click": "kitty -e btop"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "  muted",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
+        "format": "vol {volume}",
+        "format-muted": "muted",
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol"
     },
     "network": {
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "󰈀  {bandwidthTotalBytes}",
-        "format-disconnected": "󰖪  offline",
-        "tooltip-format": "{ifname}: {ipaddr}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-wifi": "wifi {signalStrength}",
+        "format-ethernet": "eth",
+        "format-disconnected": "offline",
+        "tooltip-format": "{ifname}: {ipaddr}\n{bandwidthUpBytes}  {bandwidthDownBytes}",
         "interval": 2
     },
     "custom/media": {
-        "format": "{icon} {text}",
-        "format-icons": {
-            "playing": "󰎆",
-            "paused": "󰏤",
-            "stopped": "󰝛",
-            "none": ""
-        },
+        "format": "{text}",
         "return-type": "json",
-        "max-length": 45,
+        "max-length": 36,
         "escape": true,
         "interval": 2,
         "exec": "~/.config/waybar/scripts/media.sh",
@@ -100,10 +83,10 @@
         "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-            "notification": "󰂚 ",
-            "none": "󰂜 ",
-            "dnd-notification": "󰂛 ",
-            "dnd-none": "󰪑 "
+            "notification": "•",
+            "none": "·",
+            "dnd-notification": "•",
+            "dnd-none": "·"
         },
         "return-type": "json",
         "exec": "swaync-client -swb",
@@ -112,13 +95,7 @@
         "escape": true
     },
     "tray": {
-        "icon-size": 16,
-        "spacing": 8
-    },
-    "custom/cava": {
-        "exec": "~/.config/waybar/scripts/cava-waybar.sh",
-        "format": "{}",
-        "tooltip": false,
-        "return-type": ""
+        "icon-size": 14,
+        "spacing": 6
     }
 }

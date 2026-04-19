@@ -1,30 +1,14 @@
-/* ━━━ {{ meta.name }} Waybar — Unified Slim Bar ━━━ */
+/* ━━━ {{ meta.name }} Waybar — Flat Editorial Strip ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
-@define-color bg0     {{ colors.bg0 }};
-@define-color bg1     {{ colors.bg1 }};
-@define-color bg2     {{ colors.bg2 }};
-@define-color bg3     {{ colors.bg3 }};
-@define-color fg      {{ colors.fg }};
-@define-color fg_dim  {{ colors.fg_dim }};
-@define-color red     {{ colors.bright_red }};
-@define-color green   {{ colors.bright_green }};
-@define-color yellow  {{ colors.bright_yellow }};
-@define-color blue    {{ colors.bright_blue }};
-@define-color purple  {{ colors.bright_purple }};
-@define-color aqua    {{ colors.bright_cyan }};
-@define-color orange  {{ colors.bright_orange }};
-
-@define-color accent_workspace {{ accents.bar.workspace_active }};
-@define-color accent_clock     {{ accents.bar.clock }};
-@define-color accent_cpu       {{ accents.bar.cpu }};
-@define-color accent_memory    {{ accents.bar.memory }};
-@define-color accent_audio     {{ accents.bar.audio }};
-@define-color accent_network   {{ accents.bar.network }};
-@define-color accent_media     {{ accents.bar.media }};
-@define-color accent_notif     {{ accents.bar.notification }};
-@define-color fg_light         {{ colors.fg_light }};
-@define-color accent_cava_top  {{ accents.cava.gradient[0] }};
+@define-color bg0      {{ colors.bg0 }};
+@define-color bg1      {{ colors.bg1 }};
+@define-color bg2      {{ colors.bg2 }};
+@define-color bg3      {{ colors.bg3 }};
+@define-color fg       {{ colors.fg }};
+@define-color fg_dim   {{ colors.fg_dim }};
+@define-color fg_light {{ colors.fg_light }};
+@define-color amber    {{ colors.amber }};
 
 * {
     font-family: "{{ fonts.mono_display }}", "{{ fonts.mono }}", monospace;
@@ -34,32 +18,28 @@
     margin: 0;
 }
 
-/* ━━━ Unified bar background ━━━ */
+/* ━━━ Bar: edge-aligned flat strip, thin hairline underneath ━━━ */
 window#waybar {
     background: alpha(@bg0, {{ opacity.bar_module_bg }});
     border: none;
+    border-bottom: 1px solid alpha(@fg_dim, 0.15);
     border-radius: {{ geometry.bar_radius }}px;
-    color: @fg;
+    color: @fg_dim;
 }
 
-/* ━━━ Pill groups — wrap the left/center/right module clusters ━━━ */
-/* Combined drop-shadow + inset highlight: outer soft shadow below + 1px light
-   line across the top-inside edge. Separates glass layer from the blur behind. */
+/* ━━━ Pill groups: BLANK. Just padded columns. ━━━ */
 .modules-left,
 .modules-center,
 .modules-right {
-    background: alpha(@bg1, {{ waybar.pills.group_bg_alpha }});
-    border-radius: {{ waybar.pills.group_radius }}px;
-    padding: {{ waybar.pills.group_padding_v }}px {{ waybar.pills.group_padding_h }}px;
-    margin: 0 {{ waybar.pills.group_margin }}px;
-    box-shadow: 0 {{ waybar.pills.shadow_offset_y }}px {{ waybar.pills.shadow_blur }}px
-                alpha(@bg0, {{ waybar.pills.shadow_alpha }}),
-                inset 0 1px 0 alpha(@fg_light, {{ glass.inner_highlight_alpha }});
+    background: transparent;
+    padding: 0 12px;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
 }
 
-/* ━━━ Modules — transparent base ━━━ */
+/* ━━━ Modules — plain text on the bar, muted until hover ━━━ */
 #workspaces,
-#window,
 #clock,
 #cpu,
 #memory,
@@ -67,132 +47,104 @@ window#waybar {
 #network,
 #custom-media,
 #custom-notification,
-#custom-cava,
 #tray {
     background: transparent;
+    color: @fg_dim;
+    padding: 0 10px;
+    margin: 0;
     border: none;
     border-radius: 0;
-    padding: 2px 12px;
-    margin: 0 1px;
-    transition: background-color {{ motion.hover_ms }}ms {{ motion.hover_curve }},
-                color {{ motion.hover_ms }}ms {{ motion.hover_curve }},
-                padding {{ motion.press_ms }}ms {{ motion.press_curve }};
+    letter-spacing: 0.04em;
+    transition: color {{ motion.hover_ms }}ms {{ motion.hover_curve }};
 }
 
-/* ━━━ Hover — subtle warm wash ━━━ */
-#clock:hover,
-#cpu:hover,
-#memory:hover,
-#pulseaudio:hover,
-#network:hover,
-#custom-media:hover,
-#custom-notification:hover {
-    background: alpha(@fg, {{ waybar.hover.bg_alpha }});
-    border-radius: {{ waybar.hover.radius }}px;
+/* ━━━ Clock — the steady amber anchor at center ━━━ */
+#clock {
+    color: @amber;
+    font-weight: 600;
+    font-size: {{ fonts.size.bar_clock }}px;
+    letter-spacing: 0.08em;
+    padding: 0 20px;
 }
 
-/* ━━━ Press feedback — GTK 3 can't do transform:scale, so shift padding for a
-   subtle "pressed-in" feel and deepen the background ━━━ */
-#clock:active,
-#cpu:active,
-#memory:active,
-#pulseaudio:active,
-#network:active,
-#custom-media:active,
-#custom-notification:active {
-    padding: 3px 13px 1px 11px;
-    background: alpha(@fg, {{ waybar.hover.bg_alpha }});
-    border-radius: {{ waybar.hover.radius }}px;
-}
-
-#workspaces button:active {
-    background: alpha(@accent_workspace, 0.22);
-}
-
-/* ━━━ Workspaces — dot indicators ━━━ */
+/* ━━━ Workspaces — numeric, hierarchy through opacity + weight ━━━ */
 #workspaces {
-    padding: 2px 8px;
+    padding: 0 4px;
 }
 
 #workspaces button {
     color: alpha(@fg_dim, 0.45);
     background: transparent;
     border: none;
-    border-radius: {{ waybar.hover.radius }}px;
-    padding: 0 7px;
-    margin: 0 2px;
-    min-width: 18px;
-    transition: all {{ motion.spring_ms }}ms {{ motion.spring_curve }};
+    border-radius: 0;
+    padding: 0 6px;
+    margin: 0;
+    min-width: 0;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: color {{ motion.spring_ms }}ms {{ motion.press_curve }};
 }
 
 #workspaces button.active {
-    color: @accent_workspace;
-    background: alpha(@accent_workspace, 0.14);
-    font-weight: bold;
-    padding: 0 10px;
+    color: @amber;
+    font-weight: 700;
 }
 
 #workspaces button.urgent {
-    color: @yellow;
-    background: alpha(@yellow, 0.18);
+    color: @amber;
+    font-style: italic;
 }
 
 #workspaces button:hover {
-    color: @accent_workspace;
-    background: alpha(@accent_workspace, 0.08);
+    color: @fg;
 }
 
-/* ━━━ Window title ━━━ */
-#window {
-    color: alpha(@fg_dim, 0.6);
+/* ━━━ Hover on modules — color shift only, no background ━━━ */
+#cpu:hover,
+#memory:hover,
+#pulseaudio:hover,
+#network:hover,
+#custom-media:hover,
+#custom-notification:hover,
+#clock:hover {
+    color: @fg;
+}
+
+/* ━━━ Media — italic quiet ━━━ */
+#custom-media {
     font-style: italic;
-    font-size: {{ fonts.size.bar_title }}px;
-    padding: 2px 10px;
 }
 
-/* ━━━ Clock ━━━ */
-#clock {
-    color: @accent_clock;
-    font-weight: bold;
-    font-size: {{ fonts.size.bar_clock }}px;
-    padding: 2px 16px;
+/* ━━━ Notification — amber when any notification present ━━━ */
+#custom-notification.notification,
+#custom-notification.dnd-notification {
+    color: @amber;
 }
 
-/* ━━━ Module colors ━━━ */
-#cpu                   { color: @accent_cpu; }
-#memory                { color: @accent_memory; }
-#pulseaudio            { color: @accent_audio; }
-#network               { color: @accent_network; }
-#custom-media          { color: @accent_media; font-style: italic; }
-#custom-notification   { color: @accent_notif; }
-
-/* Cava — audio bars strip, tight padding so it reads as a visualizer not text */
-#custom-cava {
-    color: @accent_cava_top;
-    font-family: "monospace";
-    font-size: {{ fonts.size.bar }}px;
-    padding: 0 6px;
-    letter-spacing: -1px;
+/* ━━━ Muted / disconnected states ━━━ */
+#pulseaudio.muted,
+#network.disconnected {
+    color: alpha(@fg_dim, 0.4);
 }
-
-#pulseaudio.muted      { color: alpha(@fg_dim, 0.5); }
-#network.disconnected  { color: alpha(@fg_dim, 0.5); }
 
 /* ━━━ Tray ━━━ */
 #tray {
-    padding: 2px 8px;
+    padding: 0 8px;
 }
 
 #tray > .passive         { -gtk-icon-effect: dim; }
 #tray > .needs-attention { -gtk-icon-effect: highlight; }
 
-/* ━━━ Tooltips ━━━ */
+/* ━━━ Tooltips — flat hard-edge, tight ━━━ */
 tooltip {
-    background: alpha(@bg1, {{ opacity.bar_tooltip }});
-    border: 1px solid alpha(@bg3, 0.6);
+    background: @bg0;
+    border: 1px solid alpha(@fg_dim, 0.2);
     border-radius: {{ geometry.bar_tooltip_radius }}px;
     color: @fg;
-    padding: 8px;
+    padding: 6px 10px;
 }
 
-tooltip label { color: @fg; padding: 2px 4px; }
+tooltip label {
+    color: @fg;
+    padding: 2px 4px;
+}

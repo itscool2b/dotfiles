@@ -3,16 +3,17 @@
     height = 100
     offset = 12x12
     origin = top-right
-    transparency = 10
+    transparency = 0
     frame_color = "#3c3836"
-    frame_width = 2
-    corner_radius = 10
+    frame_width = 0
+    corner_radius = 6
     font = Maple Mono NF 11
     padding = 12
     horizontal_padding = 16
-    icon_position = left
-    max_icon_size = 48
-    separator_color = frame
+    icon_position = off
+    max_icon_size = 0
+    separator_color = auto
+    separator_height = 1
     gap_size = 6
 
 [urgency_low]
@@ -27,7 +28,7 @@
     timeout = 6
 
 [urgency_critical]
-    background = "#ea6962"
+    background = "#282828"
     foreground = "#d4be98"
-    frame_color = "#f2594b"
+    highlight = "#f2594b"
     timeout = 0

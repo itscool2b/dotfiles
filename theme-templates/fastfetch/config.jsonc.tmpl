@@ -5,8 +5,8 @@
         "type": "{{ fastfetch.logo_type }}",
         "source": "{{ fastfetch.logo_source }}",
         "color": {
-            "1": "{{ colors.bright_blue | ansi }}",
-            "2": "{{ colors.bright_cyan | ansi }}"
+            "1": "{{ colors.amber | ansi }}",
+            "2": "{{ colors.amber_dim | ansi }}"
         },
         "padding": {
             "top": {{ fastfetch.logo_padding_top }},
@@ -28,7 +28,7 @@
     "modules": [
         {
             "type": "title",
-            "format": "\u001b[1m\u001b[{{ colors.bright_yellow | ansi }}m{user-name}\u001b[0m\u001b[{{ colors.gray | ansi }}m@\u001b[1m\u001b[{{ colors.bright_green | ansi }}m{host-name}\u001b[0m",
+            "format": "\u001b[1m\u001b[{{ colors.amber | ansi }}m{user-name}\u001b[0m\u001b[{{ colors.fg_dim | ansi }}m@\u001b[1m\u001b[{{ colors.fg | ansi }}m{host-name}\u001b[0m",
             "key": " ",
             "keyColor": "{{ colors.bg3 | ansi }}"
         },

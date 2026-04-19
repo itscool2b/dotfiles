@@ -1,4 +1,4 @@
-/* ━━━ Wofi — Gruvbox Refined ━━━ */
+/* ━━━ Wofi — Quiet Editorial ━━━ */
 
 window {
     margin: 0;
@@ -14,7 +14,7 @@ window {
     margin: 8px;
     padding: 10px 16px;
     border: none;
-    border-bottom: 2px solid #8fbcbb;
+    border-bottom: 2px solid #d8a657;
     border-radius: 8px;
     background-color: #282828;
     color: #d4be98;
@@ -23,7 +23,7 @@ window {
 }
 
 #input:focus {
-    border-bottom-color: #8fbcbb;
+    border-bottom-color: #d8a657;
 }
 
 #inner-box {
@@ -57,7 +57,7 @@ window {
 #entry:selected {
     background-color: #32302f;
     color: #ddc7a1;
-    border-left: 3px solid #8fbcbb;
+    border-left: 3px solid #d8a657;
     transition: background-color 180ms cubic-bezier(0.34, 1.35, 0.64, 1.0),
                 border-left 180ms cubic-bezier(0.34, 1.35, 0.64, 1.0);
 }

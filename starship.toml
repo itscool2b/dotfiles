@@ -1,4 +1,4 @@
-# ━━━ Gruvbox Refined Starship Prompt ━━━
+# ━━━ Quiet Editorial Starship Prompt ━━━
 
 format = """
 $os\
@@ -40,13 +40,13 @@ Arch = "󰣇"
 
 [directory]
 format = "[$path]($style) "
-style = "bold fg:#8fbcbb"
+style = "bold fg:#d8a657"
 truncation_length = 3
 truncate_to_repo = true
 
 [git_branch]
 format = "[$symbol$branch]($style) "
-style = "fg:#9ac197"
+style = "fg:#d8a657"
 symbol = " "
 
 [git_status]
@@ -55,16 +55,16 @@ style = "fg:#928374"
 
 [python]
 format = "[ $version( $virtualenv)]($style) "
-style = "fg:#8fbcbb"
+style = "fg:#d8a657"
 symbol = " "
 
 [nodejs]
 format = "[󰎙 $version]($style) "
-style = "fg:#b0b846"
+style = "fg:#d8a657"
 
 [rust]
 format = "[󱘗 $version]($style) "
-style = "fg:#9ac197"
+style = "fg:#d8a657"
 
 [cmd_duration]
 format = "[ $duration]($style) "

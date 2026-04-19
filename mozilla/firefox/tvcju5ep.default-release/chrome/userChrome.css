@@ -1,4 +1,4 @@
-/* Firefox userChrome — Gruvbox Refined */
+/* Firefox userChrome — Quiet Editorial */
 
 :root {
     --gruvbox-bg0: #1d2021;
@@ -15,12 +15,14 @@
     --gruvbox-aqua: #9ac197;
     --gruvbox-orange: #f49269;
     --gruvbox-dark-yellow: #d8a657;
+    --gruvbox-amber: #d8a657;
 
-    /* Midnight Glass accents — replaces yellow tab accent + red close hover */
-    --ff-tab-accent:   #8fbcbb;
+    /* Quiet Editorial v3 — single amber accent */
+    --ff-tab-accent:   #d8a657;
     --ff-close-hover:  #928374;
-    --ff-menu-hover:   #8fbcbb;
-    --ff-urlbar-focus: #8fbcbb;
+    --ff-menu-hover:   #d8a657;
+    --ff-urlbar-focus: #d8a657;
+    --ff-urlbar-url:   #d8a657;
 }
 
 /* --- Main toolbar / navigation bar --- */
@@ -121,7 +123,7 @@
 }
 
 .urlbarView-url {
-    color: var(--gruvbox-blue) !important;
+    color: var(--ff-urlbar-url) !important;
 }
 
 .urlbarView-title {

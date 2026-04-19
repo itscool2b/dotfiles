@@ -15,12 +15,14 @@
     --gruvbox-aqua: {{ colors.bright_cyan }};
     --gruvbox-orange: {{ colors.bright_orange }};
     --gruvbox-dark-yellow: {{ colors.yellow }};
+    --gruvbox-amber: {{ colors.amber }};
 
-    /* Midnight Glass accents — replaces yellow tab accent + red close hover */
+    /* Quiet Editorial v3 — single amber accent */
     --ff-tab-accent:   {{ accents.firefox.tab_accent }};
     --ff-close-hover:  {{ accents.firefox.close_hover }};
     --ff-menu-hover:   {{ accents.firefox.menu_hover }};
     --ff-urlbar-focus: {{ accents.firefox.urlbar_focus }};
+    --ff-urlbar-url:   {{ accents.firefox.urlbar_url }};
 }
 
 /* --- Main toolbar / navigation bar --- */
@@ -121,7 +123,7 @@
 }
 
 .urlbarView-url {
-    color: var(--gruvbox-blue) !important;
+    color: var(--ff-urlbar-url) !important;
 }
 
 .urlbarView-title {

@@ -67,18 +67,18 @@ def f_rgb_float(h):
 QT_PALETTE = {
     "active": [
         "fg", "bg1", "bg3", "bg2", "bg0", "bg2", "fg", "fg_light",
-        "fg", "bg0", "bg1", "bg0", "yellow", "bg0", "bright_blue",
-        "bright_purple", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "yellow"
+        "fg", "bg0", "bg1", "bg0", "amber", "bg0", "amber",
+        "amber_dim", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "amber"
     ],
     "disabled": [
         "fg_dim", "bg1", "bg3", "bg2", "bg0", "bg2", "bg4", "fg_light",
-        "bg4", "bg0", "bg1", "bg0", "bg2", "fg_dim", "blue",
-        "purple", "bg2", "bg0", "bg1", "fg_dim", "bg3", "bg2"
+        "bg4", "bg0", "bg1", "bg0", "bg2", "fg_dim", "fg_dim",
+        "fg_dim", "bg2", "bg0", "bg1", "fg_dim", "bg3", "bg2"
     ],
     "inactive": [
         "fg", "bg1", "bg3", "bg2", "bg0", "bg2", "fg", "fg_light",
-        "fg", "bg0", "bg1", "bg0", "bg3", "fg", "bright_blue",
-        "bright_purple", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "bg3"
+        "fg", "bg0", "bg1", "bg0", "bg3", "fg", "amber",
+        "amber_dim", "bg2", "bg0", "bg1", "fg_dim", "fg_dim", "bg3"
     ],
 }
 
@@ -441,24 +441,8 @@ def patch_json_files(ctx, dry_run=False, show_diff=False):
         wb["margin-left"] = geom["bar_margin_side"]
         wb["margin-right"] = geom["bar_margin_side"]
 
-        # Cava module injection (only if [cava] section is configured)
-        if "cava" in ctx:
-            modules_right = wb.get("modules-right", [])
-            if "custom/cava" not in modules_right:
-                # Insert before custom/media if present, else at start
-                try:
-                    idx = modules_right.index("custom/media")
-                except ValueError:
-                    idx = 0
-                modules_right.insert(idx, "custom/cava")
-                wb["modules-right"] = modules_right
-
-            wb["custom/cava"] = {
-                "exec": "~/.config/waybar/scripts/cava-waybar.sh",
-                "format": "{}",
-                "tooltip": False,
-                "return-type": "",
-            }
+        # v3 editorial: cava is no longer auto-injected into the bar.
+        # The [cava] section still themes the standalone CLI tool.
 
         _write_json(wb_path, wb, dry_run, show_diff)
 

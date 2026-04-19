@@ -2,7 +2,7 @@
 # Change values here, then run: ./theme-generate.py
 
 [meta]
-name = "Gruvbox Refined"
+name = "Quiet Editorial"
 
 # ════════════════════════════════════════════
 #  COLORS — Gruvbox Material palette (softer, smoother than canonical)
@@ -39,6 +39,12 @@ bright_blue    = "#8fbcbb"
 bright_purple  = "#e0a0b5"
 bright_cyan    = "#9ac197"
 bright_orange  = "#f49269"
+
+# Single signature accent — v3 editorial. All chrome references point here.
+# Everything that was bright_blue / bright_cyan / bright_purple in accents
+# has been collapsed to amber. Terminals keep the full ANSI range above.
+amber     = "#d8a657"
+amber_dim = "#a8833f"
 
 # ════════════════════════════════════════════
 #  FONTS
@@ -109,43 +115,43 @@ path = "~/.config/wallpapers/wallpaper.png"
 # Hyprland
 gaps_in            = 6
 gaps_out           = 16
-border_size        = 2
-rounding           = 12
+border_size        = 1
+rounding           = 6
 
 # Terminal padding
 terminal_pad_x     = 18
 terminal_pad_y     = 14
 
-# Waybar
-bar_height         = 32
-bar_margin_top     = 5
-bar_margin_side    = 10
-bar_radius         = 10
-bar_tooltip_radius = 12
+# Waybar — flat edge-aligned strip, no pill shell
+bar_height         = 26
+bar_margin_top     = 0
+bar_margin_side    = 0
+bar_radius         = 0
+bar_tooltip_radius = 4
 
 # Dunst
 dunst_width        = 350
 dunst_height       = 100
 dunst_offset       = "12x12"
-dunst_radius       = 10
-dunst_frame_width  = 1
+dunst_radius       = 6
+dunst_frame_width  = 0
 dunst_padding      = 12
 dunst_h_padding    = 16
 dunst_gap          = 6
 
-# Rofi
+# Rofi — sharpen
 rofi_width           = 550
 rofi_padding         = 14
-rofi_radius          = 24
-rofi_inputbar_radius = 16
+rofi_radius          = 10
+rofi_inputbar_radius = 6
 rofi_inputbar_pad_v  = 10
 rofi_inputbar_pad_h  = 16
-rofi_element_radius  = 16
+rofi_element_radius  = 4
 rofi_element_pad_v   = 8
 rofi_element_pad_h   = 16
 rofi_element_spacing = 4
-rofi_icon_size       = 24
-rofi_lines           = 8
+rofi_icon_size       = 0
+rofi_lines           = 6
 
 # Wofi
 wofi_border        = 1
@@ -153,22 +159,22 @@ wofi_radius        = 12
 wofi_input_radius  = 8
 wofi_entry_radius  = 8
 
-# Swaync
-swaync_cc_radius    = 16
-swaync_notif_radius = 12
+# Swaync — flat panel, sharp cards
+swaync_cc_radius    = 8
+swaync_notif_radius = 6
 swaync_cc_width     = 400
 swaync_notif_width  = 360
 
 # Hyprlock
 hyprlock_input_width  = 320
 hyprlock_input_height = 50
-hyprlock_input_border = 2
-hyprlock_input_radius = 14
+hyprlock_input_border = 1
+hyprlock_input_radius = 6
 
 # SDDM
-sddm_login_radius  = 16
-sddm_input_radius  = 10
-sddm_button_radius = 15
+sddm_login_radius  = 8
+sddm_input_radius  = 6
+sddm_button_radius = 6
 
 # ════════════════════════════════════════════
 #  OPACITY & BLUR — Glass effect
@@ -176,28 +182,28 @@ sddm_button_radius = 15
 
 [opacity]
 terminal         = 0.82
-inactive_window  = 0.85
+inactive_window  = 0.92
 kitty_dim        = 0.75
-bar_module_bg    = 0.25
+bar_module_bg    = 0.72        # bar background (near-opaque, no pill shell on top)
 bar_module_hover = 0.12
-bar_tooltip      = 0.90
-rofi_bg_alpha    = "99"
-rofi_glass_input = 5
-rofi_glass_sel   = 8
-swaync_cc        = 0.60
-swaync_notif     = 0.72
+bar_tooltip      = 1.0
+rofi_bg_alpha    = "f2"        # near-opaque — editorial, no glass
+rofi_glass_input = 0           # no glass wash on input
+rofi_glass_sel   = 0           # no glass wash on selection
+swaync_cc        = 0.92
+swaync_notif     = 0.95
 sddm_login_box   = 0.72
 sddm_overlay     = 0.55
 
 [blur]
 hypr_size              = 14
-hypr_passes            = 5
+hypr_passes            = 3
 hypr_noise             = 0.01
 hypr_contrast          = 1.0
 hypr_brightness        = 0.88
 hypr_vibrancy          = 0.25
 hypr_vibrancy_darkness = 0.5
-lock_passes            = 5
+lock_passes            = 3
 lock_size              = 12
 lock_noise             = 0.01
 lock_contrast          = 0.7
@@ -209,11 +215,11 @@ sddm_radius            = 56
 # ════════════════════════════════════════════
 
 [shadow]
-hypr_range        = 35
+hypr_range        = 22
 hypr_render_power = 3
-hypr_offset       = "0 6"
+hypr_offset       = "0 4"
 hypr_scale        = 0.96
-hypr_alpha        = "dd"
+hypr_alpha        = "99"
 
 # ════════════════════════════════════════════
 #  GLASS — 1px inner highlight across transparent surfaces
@@ -236,22 +242,15 @@ sddm_box_fade       = 900
 sddm_buttons_fade   = 1000
 
 [animations.beziers]
-wind      = [0.05, 0.9, 0.1, 1.05]
-winIn     = [0.1, 1.1, 0.1, 1.0]
-winOut    = [0.3, -0.3, 0.0, 1.0]
 liner     = [1.0, 1.0, 1.0, 1.0]
 smooth    = [0.25, 1.0, 0.5, 1.0]
-# New beziers for finer-grained motion control
-overshoot = [0.34, 1.56, 0.64, 1.0]   # spring-like overshoot (unused by windows — caused a bob)
-snappy    = [0.22, 1.0, 0.36, 1.0]    # fast-then-ease, workspace switches
-soft      = [0.25, 0.46, 0.45, 0.94]  # gentle ease-out, layer fades
-emphasize = [0.2, 0.9, 0.1, 1.0]      # ease-out-emphasized, decisive arrival, no bounce
-popOut    = [0.4, 0.0, 0.7, 0.3]      # ease-in accel, clean dismissal
+snappy    = [0.22, 1.0, 0.36, 1.0]    # fast-then-ease, workspace switches + window entrance
+soft      = [0.25, 0.46, 0.45, 0.94]  # gentle ease-out, layer fades + window dismissal
 
 [animations.hyprland]
-windows     = [1, 5, "emphasize", "popin 82%"]
-windowsIn   = [1, 5, "emphasize", "popin 82%"]
-windowsOut  = [1, 4, "popOut", "popin 88%"]
+windows     = [1, 3, "snappy", "slide"]
+windowsIn   = [1, 3, "snappy", "slide"]
+windowsOut  = [1, 2, "soft", "slide"]
 windowsMove = [1, 4, "smooth", ""]
 fade        = [1, 4, "liner", ""]
 workspaces  = [1, 3, "snappy", "slidefade 15%"]
@@ -288,26 +287,11 @@ focus_scale    = 1.02
 selected_scale = 1.02
 
 # ════════════════════════════════════════════
-#  WAYBAR — Pill groups, hover, shadow tunables
+#  WAYBAR — v3 editorial: flat strip, no pill shell.
+#  [waybar.pills] and [waybar.hover] sections removed —
+#  modules are plain text on the bar. Hover is color-only
+#  (no background wash, no padding shift, no box-shadow).
 # ════════════════════════════════════════════
-
-[waybar.pills]
-# Each "group" is a wrapper div around a cluster of modules.
-# Background alpha + radius for the group pill.
-group_bg_alpha   = 0.35      # background transparency for each pill
-group_radius     = 10        # corner radius of each pill
-group_padding_v  = 2         # vertical padding inside pill
-group_padding_h  = 6         # horizontal padding inside pill
-group_margin     = 4         # spacing between adjacent pills
-shadow_alpha     = 0.22      # soft drop-shadow under each pill
-shadow_offset_y  = 2         # shadow y-offset in px
-shadow_blur      = 8         # shadow blur radius in px
-
-[waybar.hover]
-# Hover feedback on individual modules inside a pill.
-duration         = "0.18s"
-bg_alpha         = 0.10      # subtle warm wash on hover
-radius           = 6
 
 # ════════════════════════════════════════════
 #  LAYER EFFECTS — Per-namespace animations & shadow (Hyprland layerrules)
@@ -327,23 +311,23 @@ swaync_notif_anim = "slide"
 
 [swayosd]
 # Popup geometry + glass styling (matches rofi aesthetic)
-radius           = 18
+radius           = 8
 padding_v        = 14
 padding_h        = 20
 icon_size        = 32
 progress_height  = 6
 progress_radius  = 3
-bg_alpha         = 0.85
+bg_alpha         = 0.95
 # Accent (use a color name from [colors])
-accent           = "bright_blue"
+accent           = "amber"
 
 # ════════════════════════════════════════════
 #  BORDER — Subtle muted gradient
 # ════════════════════════════════════════════
 
 [border]
-active_colors  = ["bright_blue", "bright_cyan"]
-active_angle   = "45deg"
+active_colors  = ["amber"]
+active_angle   = ""
 inactive_alpha = "00"
 
 # ════════════════════════════════════════════
@@ -352,93 +336,100 @@ inactive_alpha = "00"
 # ════════════════════════════════════════════
 
 [accents.bar]
-workspace_active = "bright_blue"
-clock            = "fg"
-cpu              = "bright_blue"
-memory           = "bright_purple"
-audio            = "bright_cyan"
-network          = "bright_blue"
-media            = "bright_green"
-notification     = "bright_cyan"
+# v3: amber everywhere chrome used to be bright_blue. Modules in the new
+# template use @fg_dim base + @amber for clock and ACTIVE state. These
+# values are kept for any downstream consumer that reads them.
+workspace_active = "amber"
+clock            = "amber"
+cpu              = "amber"
+memory           = "amber"
+audio            = "amber"
+network          = "amber"
+media            = "amber"
+notification     = "amber"
 
 [accents.fetch]
-os       = "bright_blue"
-kernel   = "bright_cyan"
-packages = "bright_blue"
-shell    = "bright_green"
-uptime   = "bright_yellow"
-wm       = "bright_purple"
-terminal = "bright_blue"
-cpu      = "bright_green"
-gpu      = "bright_orange"
-memory   = "bright_yellow"
-disk     = "bright_cyan"
+# v3: amber for labels + accents, fg for values. Collapsed 11-way palette.
+os       = "amber"
+kernel   = "amber"
+packages = "amber"
+shell    = "amber"
+uptime   = "amber"
+wm       = "amber"
+terminal = "amber"
+cpu      = "amber"
+gpu      = "amber"
+memory   = "amber"
+disk     = "amber"
 
 [accents.starship]
-os          = "yellow"
-directory   = "bright_blue"
-git_branch  = "bright_cyan"
+os          = "amber"
+directory   = "amber"
+git_branch  = "amber"
 git_status  = "fg_dim"
-python      = "bright_blue"
-nodejs      = "bright_green"
-rust        = "bright_cyan"
+python      = "amber"
+nodejs      = "amber"
+rust        = "amber"
 
 [accents.rofi]
-selection = "bright_blue"
+selection = "amber"
 
 [accents.wofi]
-focus       = "bright_blue"
-selection   = "bright_blue"
+focus       = "amber"
+selection   = "amber"
 selected_bg = "bg2"
 selected_fg = "fg_light"
 
 [accents.swaync]
-title         = "bright_blue"   # was hardcoded @yellow
-summary       = "bright_blue"   # was hardcoded @yellow
-dnd_switch    = "bright_blue"   # was hardcoded @orange (no red/orange in chrome)
-close_ambient = "fg_dim"        # ambient close button; red only on hover
-close_hover   = "bright_red"
+title         = "fg"            # bold fg, no hue — amber reserved for timestamps
+summary       = "fg"
+dnd_switch    = "amber"
+close_ambient = "fg_dim"
+close_hover   = "fg"            # no red in chrome — just brighten on hover
+timestamp     = "amber"         # the only hue on a notification
 
 [accents.hyprlock]
-outer = "bright_blue"    # was hardcoded colors.yellow
+outer = "amber"          # chrome
 check = "bright_green"   # semantic; stays green
 fail  = "bright_red"     # semantic; stays red
 
 [accents.btop]
-highlight   = "bright_blue"
-selected    = "bright_blue"
-proc_misc   = "bright_blue"
-cpu_box     = "bright_cyan"
-mem_box     = "bright_blue"
-net_box     = "bright_purple"
-proc_box    = "bright_blue"
-download    = "bright_blue"
-upload      = "bright_purple"
+highlight   = "amber"
+selected    = "amber"
+proc_misc   = "amber"
+cpu_box     = "amber"
+mem_box     = "amber"
+net_box     = "amber"
+proc_box    = "amber"
+download    = "amber"
+upload      = "fg_dim"          # direction through opacity, not hue
 
 [accents.kitty]
-url_color       = "bright_blue"
+url_color       = "amber"
 active_tab_fg   = "bg0"
-active_tab_bg   = "bright_blue"
+active_tab_bg   = "amber"
 inactive_tab_fg = "fg_dim"
 inactive_tab_bg = "bg1"
 
 [accents.sddm]
-login_button = "bright_blue"
+login_button = "amber"
 
 [accents.swayosd]
-progress = "bright_blue"
+progress = "amber"
 icon     = "fg"
 text     = "fg"
 
 [accents.firefox]
-tab_accent   = "bright_blue"   # bottom border on active tab (replaces old bright_yellow)
-close_hover  = "fg_dim"        # tab close button on hover (was red — no red in chrome)
-menu_hover   = "bright_blue"   # menuitem:hover text color (was yellow)
-urlbar_focus = "bright_blue"   # focused urlbar border (was bright_yellow)
+tab_accent   = "amber"          # bottom border on active tab
+close_hover  = "fg_dim"         # hover bg on tab close — muted, no red
+menu_hover   = "amber"          # menuitem:hover text color
+urlbar_focus = "amber"          # focused urlbar border
+urlbar_url   = "amber"          # URL text color in autocomplete dropdown
 
 [accents.cava]
-# 3-stop gradient top→bottom on the waybar cava strip.
-gradient = ["bright_blue", "bright_cyan", "bright_green"]
+# Cava is no longer in the waybar (v3 editorial). Kept here so the standalone
+# CLI cava still themes cohesively when the user runs it in a terminal.
+gradient = ["amber", "amber_dim", "fg_dim"]
 
 [accents.kde]
 color_scheme = "BreezeDark"    # will be replaced with custom scheme once midnight-glass.colors ships
@@ -471,8 +462,8 @@ points     = 3
 history_points = 20
 
 [plugins.hyprfocus]
-# Quick pulse on the newly focused window.
-enabled             = true
+# Editorial = no pulse on focus. The amber border already marks focus.
+enabled             = false
 animate_floating    = true
 animate_workspacechange = true
 focus_animation     = "shrink"
@@ -488,6 +479,7 @@ flash_pop_out       = 1.0
 # ════════════════════════════════════════════
 
 [cava]
+# v3: cava is no longer in the waybar. Kept as a standalone CLI tool.
 bars            = 7
 framerate       = 60
 sensitivity     = 100
@@ -502,7 +494,7 @@ noise_reduction = 0.77
 
 [plymouth]
 theme_name  = "gruvbox-refined"
-pulse_color = "bright_blue"
+pulse_color = "amber"
 logo_text   = "CACHYOS"
 title       = "Gruvbox Refined"
 
@@ -515,7 +507,7 @@ save_dir  = "~/Pictures/Screenshots"
 line_size = 5
 text_size = 30
 text_font = "JetBrainsMono Nerd Font"
-line_color  = "bright_blue"     # color name → resolved hex in template
+line_color  = "amber"           # color name → resolved hex in template
 
 # ════════════════════════════════════════════
 #  FASTFETCH LOGO — custom ASCII art

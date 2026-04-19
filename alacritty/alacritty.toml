@@ -43,6 +43,14 @@ white = "#d4be98"
 background = "#d4be98"
 text = "#1d2021"
 
+[colors.cursor]
+cursor = "#d8a657"
+text   = "#1d2021"
+
+[colors.vi_mode_cursor]
+cursor = "#d8a657"
+text   = "#1d2021"
+
 [font]
 size = 12.0
 

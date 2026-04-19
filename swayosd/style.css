@@ -1,26 +1,25 @@
-/* ━━━ Gruvbox Refined — SwayOSD theme ━━━ */
+/* ━━━ Quiet Editorial — SwayOSD ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
 window#osd {
     background-color: transparent;
     color: #d4be98;
-    border-radius: 18px;
+    border-radius: 8px;
 }
 
 @keyframes osd-enter {
-    from { opacity: 0; margin-top: 24px; }
+    from { opacity: 0; margin-top: 20px; }
     to   { opacity: 1; margin-top: 16px; }
 }
 
 window#osd #container {
     margin: 16px;
     padding: 14px 20px;
-    border-radius: 18px;
-    background-color: alpha(#1d2021, 0.85);
-    border: 1px solid alpha(#3c3836, 0.55);
-    box-shadow: 0 6px 20px alpha(#1d2021, 0.45),
-                inset 0 1px 0 alpha(#ddc7a1, 0.08);
-    animation: osd-enter 220ms cubic-bezier(0.34, 1.35, 0.64, 1.0);
+    border-radius: 8px;
+    background-color: alpha(#1d2021, 0.95);
+    border: 1px solid alpha(#928374, 0.2);
+    box-shadow: none;
+    animation: osd-enter 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
 }
 
@@ -39,14 +38,14 @@ window#osd progressbar {
 window#osd progressbar trough {
     min-height: 6px;
     border-radius: 3px;
-    background-color: alpha(#3c3836, 0.55);
+    background-color: alpha(#928374, 0.2);
     border: none;
 }
 
 window#osd progressbar progress {
     min-height: 6px;
     border-radius: 3px;
-    background-color: #8fbcbb;
+    background-color: #d8a657;
     border: none;
     transition: min-width 160ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

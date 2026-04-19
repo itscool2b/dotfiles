@@ -1,3 +1,6 @@
+/* ━━━ {{ meta.name }} Rofi — Flat editorial ━━━ */
+/* Generated from theme.toml — do not edit directly */
+
 * {
     background-color: transparent;
     text-color:       {{ colors.fg }};
@@ -10,7 +13,7 @@ window {
     width:            {{ geometry.rofi_width }}px;
     background-color: {{ colors.bg0 }}{{ opacity.rofi_bg_alpha }};
     border:           1px;
-    border-color:     {{ colors.fg_light }}{% if glass.inner_highlight_alpha %}{{ "%02x" | format((glass.inner_highlight_alpha * 255) | int) }}{% else %}00{% endif %};
+    border-color:     {{ colors.bg3 }};
     border-radius:    {{ geometry.rofi_radius }}px;
     location:         center;
     anchor:           center;
@@ -19,16 +22,16 @@ window {
 
 mainbox {
     padding:  {{ geometry.rofi_padding }}px;
-    spacing:  10px;
+    spacing:  12px;
     children: [inputbar, listview];
 }
 
 inputbar {
     children:         [prompt, entry];
-    spacing:          10px;
+    spacing:          12px;
     padding:          {{ geometry.rofi_inputbar_pad_v }}px {{ geometry.rofi_inputbar_pad_h }}px;
-    background-color: white / {{ opacity.rofi_glass_input }}%;
-    border:           2px;
+    background-color: {{ colors.bg1 }};
+    border:           0 0 1px 0;
     border-color:     {{ colors.bg3 }};
     border-radius:    {{ geometry.rofi_inputbar_radius }}px;
     transition-duration: {{ motion.focus_ms }};
@@ -38,13 +41,15 @@ prompt {
     text-color:     {{ accents.rofi.selection }};
     font:           "{{ fonts.mono_display }} {{ fonts.size.rofi_prompt }}";
     vertical-align: 0.5;
+    content:        "›";
 }
 
 entry {
-    placeholder:       "Search...";
-    placeholder-color: {{ colors.bg4 }};
+    placeholder:       "search";
+    placeholder-color: {{ colors.fg_dim }};
     text-color:        {{ colors.fg }};
     vertical-align:    0.5;
+    font:              "{{ fonts.mono_display }} {{ fonts.size.rofi }}";
 }
 
 listview {
@@ -57,6 +62,8 @@ listview {
 
 element {
     padding:       {{ geometry.rofi_element_pad_v }}px {{ geometry.rofi_element_pad_h }}px;
+    border:        0 0 0 2px;
+    border-color:  transparent;
     border-radius: {{ geometry.rofi_element_radius }}px;
     spacing:       14px;
     transition-duration: {{ motion.hover_ms }};
@@ -69,18 +76,20 @@ element alternate.normal {
 }
 
 element selected.normal {
-    background-color: white / {{ opacity.rofi_glass_sel }}%;
+    background-color: {{ colors.bg2 }};
     text-color:       {{ colors.fg }};
+    border-color:     {{ accents.rofi.selection }};
     transition-duration: {{ motion.spring_ms }};
 }
 
 element-icon {
-    size:           {{ geometry.rofi_icon_size }}px;
+    size:           0px;
     vertical-align: 0.5;
+    enabled:        false;
 }
 
 element-text {
     vertical-align: 0.5;
     text-color:     inherit;
-    font:           "{{ fonts.sans }} {{ fonts.size.rofi }}";
+    font:           "{{ fonts.mono_display }} {{ fonts.size.rofi }}";
 }
