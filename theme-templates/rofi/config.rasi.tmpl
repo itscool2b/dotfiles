@@ -7,6 +7,14 @@ configuration {
     display-filebrowser: " ";
     drun-display-format: "{name}";
     font: "{{ fonts.mono }} {{ fonts.size.rofi }}";
+
+    /* Filtering — fuzzy substring match, rank best first, match app names only */
+    matching:          "fuzzy";
+    sort:              true;
+    sorting-method:    "fzf";
+    case-smart:        true;
+    tokenize:          true;
+    drun-match-fields: "name,exec";
 }
 
 @theme "~/.config/rofi/gruvbox-dark.rasi"
