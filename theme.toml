@@ -546,3 +546,71 @@ logo_color_solid   = "bright_blue"
 logo_padding_top   = 6
 logo_padding_left  = 2
 logo_padding_right = 3
+
+# ════════════════════════════════════════════
+#  JSON PATCHES — non-templated app configs
+#  Each entry: target file → fields to set/merge.
+#  Values prefixed with `@` resolve against theme context (e.g. @colors.fg,
+#  @geometry.bar_height, @fonts.size.terminal). All other values pass through.
+#  Paths starting with `~` are absolute; others are relative to ~/.config.
+#  Setting a nested table replaces the whole sub-object (matches prior behavior).
+# ════════════════════════════════════════════
+
+[json_patches.vscodium]
+file = "VSCodium/User/settings.json"
+
+[json_patches.vscodium.fields]
+"terminal.integrated.fontFamily" = "@fonts.mono"
+"terminal.integrated.fontSize"   = "@fonts.size.terminal"
+"terminal.integrated.cursorWidth" = 2
+
+[json_patches.vscodium.fields."workbench.colorCustomizations"]
+"terminal.foreground"          = "@colors.fg"
+"terminal.background"          = "@colors.bg0"
+"terminal.ansiBlack"           = "@colors.bg1"
+"terminal.ansiBrightBlack"     = "@colors.gray"
+"terminal.ansiRed"             = "@colors.red"
+"terminal.ansiBrightRed"       = "@colors.bright_red"
+"terminal.ansiGreen"           = "@colors.green"
+"terminal.ansiBrightGreen"     = "@colors.bright_green"
+"terminal.ansiYellow"          = "@colors.yellow"
+"terminal.ansiBrightYellow"    = "@colors.bright_yellow"
+"terminal.ansiBlue"            = "@colors.blue"
+"terminal.ansiBrightBlue"      = "@colors.bright_blue"
+"terminal.ansiMagenta"         = "@colors.purple"
+"terminal.ansiBrightMagenta"   = "@colors.bright_purple"
+"terminal.ansiCyan"            = "@colors.cyan"
+"terminal.ansiBrightCyan"      = "@colors.bright_cyan"
+"terminal.ansiWhite"           = "@colors.fg_dim"
+"terminal.ansiBrightWhite"     = "@colors.fg"
+"terminal.selectionBackground" = "@colors.fg"
+"terminal.selectionForeground" = "@colors.bg0"
+"terminalCursor.foreground"    = "@colors.fg"
+
+# waybar/config.jsonc has // comments; strip before parsing.
+[json_patches.waybar]
+file = "waybar/config.jsonc"
+strip_jsonc = true
+
+[json_patches.waybar.fields]
+"height"       = "@geometry.bar_height"
+"margin-top"   = "@geometry.bar_margin_top"
+"margin-left"  = "@geometry.bar_margin_side"
+"margin-right" = "@geometry.bar_margin_side"
+
+# Obsidian vault lives outside ~/.config — absolute path.
+[json_patches.obsidian]
+file = "~/main/.obsidian/appearance.json"
+
+[json_patches.obsidian.fields]
+interfaceFontFamily = "@fonts.mono"
+textFontFamily      = "@fonts.mono"
+monospaceFontFamily = "@fonts.mono"
+
+[json_patches.swaync]
+file = "swaync/config.json"
+
+[json_patches.swaync.fields]
+"control-center-width"      = "@geometry.swaync_cc_width"
+"notification-window-width" = "@geometry.swaync_notif_width"
+"transition-time"           = "@animations.swaync_transition"

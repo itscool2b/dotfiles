@@ -275,7 +275,8 @@ def build_context(theme):
     ctx["meta"] = theme["meta"]
     # Optional nested sections — pass through verbatim if present
     for opt in ("waybar", "layer_effects", "swayosd", "motion",
-                "glass", "plugins", "cava", "plymouth", "swappy"):
+                "glass", "plugins", "cava", "plymouth", "swappy",
+                "json_patches"):
         if opt in theme:
             ctx[opt] = theme[opt]
 
@@ -394,69 +395,40 @@ def strip_jsonc_comments(text):
         lines.append(stripped)
     return "\n".join(lines)
 
+def _resolve_ref(val, ctx):
+    """Resolve `@a.b.c` against ctx; pass other values through."""
+    if isinstance(val, str) and val.startswith("@"):
+        node = ctx
+        for part in val[1:].split("."):
+            node = node[part]
+        return node
+    return val
+
+def _resolve_fields(fields, ctx):
+    """Recursively resolve @refs in a fields dict."""
+    return {
+        k: _resolve_fields(v, ctx) if isinstance(v, dict) else _resolve_ref(v, ctx)
+        for k, v in fields.items()
+    }
+
+def _resolve_patch_path(file_str):
+    """`~/...` → absolute; otherwise relative to BASE."""
+    if file_str.startswith("~"):
+        return Path(os.path.expanduser(file_str))
+    return BASE / file_str
+
 def patch_json_files(ctx, dry_run=False, show_diff=False):
-    c = ctx["colors"]
-    fonts = ctx["fonts"]
-    geom = ctx["geometry"]
-    opacity = ctx["opacity"]
-    anim = ctx["animations"]
-
-    # VSCodium
-    vsc_path = BASE / "VSCodium/User/settings.json"
-    if vsc_path.exists():
-        vsc = json.loads(vsc_path.read_text())
-        vsc["terminal.integrated.fontFamily"] = fonts["mono"]
-        vsc["terminal.integrated.fontSize"] = fonts["size"]["terminal"]
-        vsc["terminal.integrated.cursorWidth"] = 2
-        vsc["workbench.colorCustomizations"] = {
-            "terminal.foreground": c["fg"],
-            "terminal.background": c["bg0"],
-            "terminal.ansiBlack": c["bg1"],
-            "terminal.ansiBrightBlack": c["gray"],
-            "terminal.ansiRed": c["red"],
-            "terminal.ansiBrightRed": c["bright_red"],
-            "terminal.ansiGreen": c["green"],
-            "terminal.ansiBrightGreen": c["bright_green"],
-            "terminal.ansiYellow": c["yellow"],
-            "terminal.ansiBrightYellow": c["bright_yellow"],
-            "terminal.ansiBlue": c["blue"],
-            "terminal.ansiBrightBlue": c["bright_blue"],
-            "terminal.ansiMagenta": c["purple"],
-            "terminal.ansiBrightMagenta": c["bright_purple"],
-            "terminal.ansiCyan": c["cyan"],
-            "terminal.ansiBrightCyan": c["bright_cyan"],
-            "terminal.ansiWhite": c["fg_dim"],
-            "terminal.ansiBrightWhite": c["fg"],
-            "terminal.selectionBackground": c["fg"],
-            "terminal.selectionForeground": c["bg0"],
-            "terminalCursor.foreground": c["fg"],
-        }
-        _write_json(vsc_path, vsc, dry_run, show_diff)
-
-    # Waybar config
-    wb_path = BASE / "waybar/config.jsonc"
-    if wb_path.exists():
-        raw = wb_path.read_text()
-        cleaned = strip_jsonc_comments(raw)
-        wb = json.loads(cleaned)
-        wb["height"] = geom["bar_height"]
-        wb["margin-top"] = geom["bar_margin_top"]
-        wb["margin-left"] = geom["bar_margin_side"]
-        wb["margin-right"] = geom["bar_margin_side"]
-
-        # v3 editorial: cava is no longer auto-injected into the bar.
-        # The [cava] section still themes the standalone CLI tool.
-
-        _write_json(wb_path, wb, dry_run, show_diff)
-
-    # Swaync config
-    sn_path = BASE / "swaync/config.json"
-    if sn_path.exists():
-        sn = json.loads(sn_path.read_text())
-        sn["control-center-width"] = geom["swaync_cc_width"]
-        sn["notification-window-width"] = geom["swaync_notif_width"]
-        sn["transition-time"] = anim["swaync_transition"]
-        _write_json(sn_path, sn, dry_run, show_diff)
+    """Apply [json_patches] entries from theme.toml to their target files."""
+    for name, spec in ctx.get("json_patches", {}).items():
+        path = _resolve_patch_path(spec["file"])
+        if not path.exists():
+            continue
+        raw = path.read_text()
+        cleaned = strip_jsonc_comments(raw) if spec.get("strip_jsonc") else raw
+        data = json.loads(cleaned)
+        for k, v in _resolve_fields(spec["fields"], ctx).items():
+            data[k] = v
+        _write_json(path, data, dry_run, show_diff)
 
 def _write_json(path, data, dry_run, show_diff):
     rendered = json.dumps(data, indent=4, ensure_ascii=False) + "\n"
