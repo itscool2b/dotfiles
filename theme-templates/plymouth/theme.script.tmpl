@@ -51,16 +51,11 @@ fun boot_progress_callback(duration, progress) {
 Plymouth.SetBootProgressFunction(boot_progress_callback);
 
 # ── Password prompt (for encrypted disks) ─────
-fun dialog_setup() {
-    local.box = Image("box.png");
-    local.lock = Image("lock.png");
-    local.entry = Image("entry.png");
-    return 0;
-}
-
+# NOTE: sprite refs MUST live in global scope. Plymouth releases sprites whose
+# script-side references go out of scope, so storing them in a function-local
+# `dialog.foo` hash makes them vanish the instant the callback returns — the
+# classic symptom is that the splash hides but no password UI ever appears.
 fun display_password_callback(prompt, bullets) {
-    # Dialog mode on: hide the boot splash so the prompt is the only thing
-    # on screen and it's obvious the system is waiting for input.
     global.dialog_active = 1;
     title_sprite.SetOpacity(0);
     subtitle_sprite.SetOpacity(0);
@@ -69,29 +64,33 @@ fun display_password_callback(prompt, bullets) {
     if (!prompt) {
         prompt = "Enter passphrase:";
     }
-    dialog.prompt_image = Image.Text(prompt, {{ colors.fg | rgb_float }}, 1, "Sans 16");
-    dialog.prompt_sprite = Sprite(dialog.prompt_image);
-    dialog.prompt_sprite.SetX(screen_width / 2 - dialog.prompt_image.GetWidth() / 2);
-    dialog.prompt_sprite.SetY(screen_height / 2 - 20);
+    global.prompt_image = Image.Text(prompt, {{ colors.fg | rgb_float }}, 1, "Sans 16");
+    global.prompt_sprite = Sprite(global.prompt_image);
+    global.prompt_sprite.SetPosition(
+        screen_width / 2 - global.prompt_image.GetWidth() / 2,
+        screen_height / 2 - 20,
+        100);
 
     dots = "";
     for (i = 0; i < bullets; i++) {
         dots = dots + "●";
     }
-    dialog.dots_image = Image.Text(dots, {{ colors[plymouth.pulse_color] | rgb_float }}, 1, "Sans 18");
-    dialog.dots_sprite = Sprite(dialog.dots_image);
-    dialog.dots_sprite.SetX(screen_width / 2 - dialog.dots_image.GetWidth() / 2);
-    dialog.dots_sprite.SetY(screen_height / 2 + 16);
-    global.dialog = 1;
+    global.dots_image = Image.Text(dots, {{ colors[plymouth.pulse_color] | rgb_float }}, 1, "Sans 18");
+    global.dots_sprite = Sprite(global.dots_image);
+    global.dots_sprite.SetPosition(
+        screen_width / 2 - global.dots_image.GetWidth() / 2,
+        screen_height / 2 + 16,
+        100);
 }
 
 Plymouth.SetDisplayPasswordFunction(display_password_callback);
 
 fun display_normal_callback() {
-    if (global.dialog) {
-        dialog.prompt_sprite = NULL;
-        dialog.dots_sprite = NULL;
-        global.dialog = NULL;
+    if (global.prompt_sprite) {
+        global.prompt_sprite.SetOpacity(0);
+    }
+    if (global.dots_sprite) {
+        global.dots_sprite.SetOpacity(0);
     }
     global.dialog_active = 0;
     title_sprite.SetOpacity(1);

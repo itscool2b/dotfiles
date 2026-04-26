@@ -4,9 +4,9 @@
     offset = 12x12
     origin = top-right
     transparency = 0
-    frame_color = "#504945"
+    frame_color = "#45403d"
     frame_width = 0
-    corner_radius = 8
+    corner_radius = 3
     font = Maple Mono NF 11
     padding = 12
     horizontal_padding = 16
@@ -17,18 +17,18 @@
     gap_size = 6
 
 [urgency_low]
-    background = "#282828"
+    background = "#2a2724"
     foreground = "#a89984"
     timeout = 4
 
 [urgency_normal]
-    background = "#32302f"
-    foreground = "#ebdbb2"
-    highlight = "#fabd2f"
+    background = "#322f2c"
+    foreground = "#d4be98"
+    highlight = "#d8a657"
     timeout = 6
 
 [urgency_critical]
-    background = "#32302f"
-    foreground = "#ebdbb2"
-    highlight = "#fb4934"
+    background = "#322f2c"
+    foreground = "#d4be98"
+    highlight = "#ea6962"
     timeout = 0

@@ -2,68 +2,83 @@
 # Change values here, then run: ./theme-generate.py
 
 [meta]
-name = "Gruvbox Blue"
+name = "Gruvbox Cream"
 
 # ════════════════════════════════════════════
-#  COLORS — Gruvbox Material palette (softer, smoother than canonical)
+#  COLORS — Gruvbox Material base + Amber CRT chrome
 # ════════════════════════════════════════════
 
 [colors]
-# ═══ Canonical Gruvbox palette (medium contrast — the ICONIC warm dark) ═══
-# Medium mode is what people picture when they say "Gruvbox": warm parchment
-# dark, not the hard-gray #1d2021. This is the soul of the theme.
-bg0      = "#282828"   # dark0 (medium contrast bg — iconic)
-bg1      = "#32302f"   # dark0_soft (surfaces one step up)
-bg2      = "#3c3836"   # dark1 (deeper surfaces)
-bg3      = "#504945"   # dark2
-bg4      = "#665c54"   # dark3
-gray     = "#928374"   # gray
+# ═══ Gruvbox Material bg/fg — warm dark gray (NOT black) ═══
+# bg0 reads as visible warm gray even when terminal is transparent
+# over a black wallpaper. Slight warm lean (r > b), zero purple.
+bg0      = "#2a2724"   # warm dark gray (NOT black — visible at 80% opacity)
+bg1      = "#322f2c"   # surface
+bg2      = "#3a3633"   # raised
+bg3      = "#45403d"   # borders / dividers
+bg4      = "#504945"   # hover
+gray     = "#928374"   # disabled / muted
 
-# Foregrounds (canonical Gruvbox cream — full three-tier hierarchy)
-fg       = "#ebdbb2"   # light1 — canonical fg
-fg_mid   = "#d5c4a1"   # light2 — middle tier
-fg_dim   = "#a89984"   # light4 — muted cream
-fg_light = "#fbf1c7"   # light0 — brightest
+# Foregrounds — cream with Material softening
+fg       = "#d4be98"   # material fg (softer cream)
+fg_mid   = "#bdae93"   # secondary
+fg_dim   = "#a89984"   # tertiary
+fg_light = "#ebdbb2"   # brightest (canonical fg)
 
-# Normal ANSI (canonical Gruvbox dark mode)
-red      = "#cc241d"
-green    = "#98971a"
-yellow   = "#d79921"
-blue     = "#458588"
-purple   = "#b16286"
-cyan     = "#689d6a"
-orange   = "#d65d0e"
+# ═══ Gruvbox Material ANSI — vivid but earthy, distinct rainbow ═══
+# Normal ANSI — Material palette
+red      = "#ea6962"   # material red (warm clay)
+green    = "#a9b665"   # material green (sage)
+yellow   = "#d8a657"   # material yellow (gold)
+blue     = "#7daea3"   # material blue (teal — fastfetch logo hue)
+purple   = "#d3869b"   # material purple (dusty rose)
+cyan     = "#89b482"   # material aqua (soft aqua)
+orange   = "#e78a4e"   # material orange (pumpkin)
 
-# Bright ANSI (canonical Gruvbox neon — yellow + orange = the hero pair)
-bright_red     = "#fb4934"
-bright_green   = "#b8bb26"
-bright_yellow  = "#fabd2f"   # hero — canonical Gruvbox neon yellow
-bright_blue    = "#83a598"
+# Bright ANSI — slightly elevated for fetch rainbow distinction
+bright_red     = "#ea6962"
+bright_green   = "#a9b665"
+bright_yellow  = "#d8a657"
+bright_blue    = "#7daea3"   # terminal blue — fastfetch logo
 bright_purple  = "#d3869b"
-bright_cyan    = "#8ec07c"   # aqua (Gruvbox calls this "aqua")
-bright_orange  = "#fe8019"   # warm secondary
+bright_cyan    = "#89b482"
+bright_orange  = "#e78a4e"
 
-# Faded (canonical — darker saturated variants for selections + highlights)
-faded_red      = "#9d0006"
-faded_green    = "#79740e"
-faded_yellow   = "#b57614"
-faded_blue     = "#076678"
-faded_purple   = "#8f3f71"
-faded_cyan     = "#427b58"
-faded_orange   = "#af3a03"
+# Faded — darker Material-derived variants for selections
+faded_red      = "#a84040"
+faded_green    = "#74814c"
+faded_yellow   = "#a0832e"
+faded_blue     = "#4a7670"
+faded_purple   = "#a05971"
+faded_cyan     = "#5d7e54"
+faded_orange   = "#a45930"
+
+# ═══ UI chrome hero — Gruvbox cream (no hue, classic Mac white outline) ═══
+# Decoupled from bright_blue so chrome stays cream while terminal
+# ANSI bright_blue is Gruvbox Material teal-blue. Referenced by
+# border, rofi, wofi, swaync, hyprlock, sddm, swayosd, firefox, kde,
+# plymouth, swappy — see [accents.*] below.
+# Variable kept named "steel" for stability; hex = Gruvbox brightest cream.
+steel    = "#ebdbb2"
 
 # ════════════════════════════════════════════
 #  FONTS
 # ════════════════════════════════════════════
 
 [fonts]
-mono         = "Maple Mono NF"
-mono_display = "Maple Mono NF"
+# Maple Mono NF (Regular) everywhere — terminal, UI chrome, GTK/Qt apps, Obsidian.
+# Only the browser is exempt via fontconfig prgname scoping (see fontconfig template).
+mono         = "Maple Mono NF"             # terminal, Obsidian, code editors
+mono_display = "Maple Mono NF"             # waybar, dunst, swaync, rofi items, wofi, hyprlock
 mono_fallback = "JetBrainsMono Nerd Font"
-sans         = "Maple Mono NF"
+sans         = "Maple Mono NF"             # GTK / Qt / xsettings / fontconfig generic sans-serif
+browser      = "Maple Mono NF Light"       # browser web content — scoped via prgname in fontconfig
+# prgname values fontconfig sees via /proc/self/comm (15-char truncated).
+# Google Chrome reports "chrome"; Chromium reports "chromium"; Firefox reports "firefox".
+browser_prgnames = ["firefox", "chrome", "chromium"]
 
 [fonts.size]
-terminal       = 12
+terminal       = 13
 bar            = 12
 bar_clock      = 12
 bar_title      = 12
@@ -90,10 +105,10 @@ hyprlock_date   = 20
 theme              = "Bibata-Modern-Classic"
 size               = 24
 kitty_shape        = "beam"
-kitty_blink        = 0.5
-kitty_thickness    = 1.8
-kitty_trail        = 3
-kitty_trail_decay  = "0.1 0.3"
+kitty_blink        = 0.4
+kitty_thickness    = 2.6
+kitty_trail        = 8
+kitty_trail_decay  = "0.06 0.5"
 alacritty_shape    = "Beam"
 alacritty_blinking = "On"
 alacritty_thickness = 0.15
@@ -112,48 +127,48 @@ xsettings_theme = "Breeze-Dark"
 # ════════════════════════════════════════════
 
 [wallpaper]
-path = "~/.config/wallpapers/wallpaper.png"
+path = "~/.config/wallpapers/wallhaven-k9rqp7.jpg"
 
 # ════════════════════════════════════════════
 #  GEOMETRY — Gaps, borders, radii, padding
 # ════════════════════════════════════════════
 
 [geometry]
-# Hyprland — warm retro curves, not editorial-sharp
-gaps_in            = 6
-gaps_out           = 16
-border_size        = 1
-rounding           = 8
+# Hyprland — Mac OS Platinum: sharper corners, heavier frames, tighter gaps
+gaps_in            = 5
+gaps_out           = 14
+border_size        = 2
+rounding           = 3
 
-# Terminal padding
-terminal_pad_x     = 18
-terminal_pad_y     = 14
+# Terminal padding — editorial breathing room
+terminal_pad_x     = 36
+terminal_pad_y     = 28
 
 # Waybar — ghost strip, blends into wallpaper
 bar_height         = 22
 bar_margin_top     = 0
 bar_margin_side    = 0
 bar_radius         = 0
-bar_tooltip_radius = 6
+bar_tooltip_radius = 2
 
 # Dunst
 dunst_width        = 350
 dunst_height       = 100
 dunst_offset       = "12x12"
-dunst_radius       = 8
+dunst_radius       = 3
 dunst_frame_width  = 0
 dunst_padding      = 12
 dunst_h_padding    = 16
 dunst_gap          = 6
 
-# Rofi — sharpen
+# Rofi — Mac Platinum: sharper radii, heavier frame
 rofi_width           = 550
 rofi_padding         = 14
-rofi_radius          = 10
-rofi_inputbar_radius = 6
+rofi_radius          = 4
+rofi_inputbar_radius = 2
 rofi_inputbar_pad_v  = 10
 rofi_inputbar_pad_h  = 16
-rofi_element_radius  = 4
+rofi_element_radius  = 2
 rofi_element_pad_v   = 8
 rofi_element_pad_h   = 16
 rofi_element_spacing = 4
@@ -161,27 +176,27 @@ rofi_icon_size       = 22
 rofi_lines           = 6
 
 # Wofi
-wofi_border        = 1
-wofi_radius        = 12
-wofi_input_radius  = 8
-wofi_entry_radius  = 8
+wofi_border        = 2
+wofi_radius        = 4
+wofi_input_radius  = 3
+wofi_entry_radius  = 3
 
-# Swaync — flat panel, sharp cards
-swaync_cc_radius    = 10
-swaync_notif_radius = 8
+# Swaync — Mac Platinum: sharp cards
+swaync_cc_radius    = 4
+swaync_notif_radius = 3
 swaync_cc_width     = 400
 swaync_notif_width  = 360
 
 # Hyprlock
 hyprlock_input_width  = 320
 hyprlock_input_height = 50
-hyprlock_input_border = 1
-hyprlock_input_radius = 6
+hyprlock_input_border = 2
+hyprlock_input_radius = 2
 
 # SDDM
-sddm_login_radius  = 8
-sddm_input_radius  = 6
-sddm_button_radius = 6
+sddm_login_radius  = 3
+sddm_input_radius  = 3
+sddm_button_radius = 3
 
 # ════════════════════════════════════════════
 #  OPACITY & BLUR — Glass effect
@@ -190,7 +205,7 @@ sddm_button_radius = 6
 [opacity]
 terminal         = 0.82
 inactive_window  = 0.92
-kitty_dim        = 0.75
+kitty_dim        = 0.6
 bar_module_bg    = 0.0         # bar background — transparent, blends into wallpaper
 bar_module_hover = 0.12
 bar_tooltip      = 1.0
@@ -222,11 +237,11 @@ sddm_radius            = 56
 # ════════════════════════════════════════════
 
 [shadow]
-hypr_range        = 22
-hypr_render_power = 3
-hypr_offset       = "0 4"
-hypr_scale        = 0.96
-hypr_alpha        = "99"
+hypr_range        = 28
+hypr_render_power = 4
+hypr_offset       = "0 0"
+hypr_scale        = 1.0
+hypr_alpha        = "66"
 
 # ════════════════════════════════════════════
 #  GLASS — 1px inner highlight across transparent surfaces
@@ -335,14 +350,14 @@ progress_height  = 6
 progress_radius  = 3
 bg_alpha         = 0.95
 # Accent (use a color name from [colors])
-accent           = "bright_blue"
+accent           = "steel"
 
 # ════════════════════════════════════════════
 #  BORDER — Subtle muted gradient
 # ════════════════════════════════════════════
 
 [border]
-active_colors  = ["bright_blue"]
+active_colors  = ["steel"]
 active_angle   = ""
 inactive_alpha = "00"
 
@@ -365,19 +380,20 @@ media            = "fg_dim"
 notification     = "fg_mid"
 
 [accents.fetch]
-# v5 Rainbow — each module takes a different gruvbox bright so the
-# palette is on equal display. OS stays blue (CachyOS signature).
-os       = "bright_blue"
-kernel   = "bright_purple"
-packages = "bright_yellow"
-shell    = "bright_green"
-uptime   = "bright_cyan"
-wm       = "bright_blue"
-terminal = "bright_orange"
-cpu      = "bright_red"
-gpu      = "bright_purple"
-memory   = "bright_yellow"
-disk     = "bright_cyan"
+# Scattered palette — no adjacent hues touch, no visible R→O→Y→G cascade.
+# Each color picked for semantic fit, not wheel position. All 7 brights
+# still used; reads as identity, not as a pride flag.
+os       = "bright_yellow"    # CachyOS — warm gold branding
+kernel   = "bright_red"       # kernel — hot core
+packages = "bright_cyan"      # pkgs — soft aqua (package boxes)
+shell    = "bright_purple"    # shell — fish prompt tradition
+uptime   = "bright_green"     # uptime — alive / running
+wm       = "bright_blue"      # wm — Hyprland teal hero
+terminal = "bright_orange"    # term — warm cursor
+cpu      = "bright_red"       # cpu — compute heat (rhymes w/ kernel)
+gpu      = "bright_green"     # gpu — NVIDIA green
+memory   = "bright_purple"    # mem — density (rhymes w/ shell)
+disk     = "bright_yellow"    # disk — storage gold (rhymes w/ os)
 
 [accents.starship]
 # v5 Rainbow — every segment a different gruvbox bright, each
@@ -392,24 +408,24 @@ nodejs      = "bright_green"
 rust        = "bright_red"
 
 [accents.rofi]
-selection = "bright_blue"
+selection = "steel"
 
 [accents.wofi]
-focus       = "bright_blue"
-selection   = "bright_blue"
+focus       = "steel"
+selection   = "steel"
 selected_bg = "bg2"
 selected_fg = "fg_light"
 
 [accents.swaync]
 title         = "fg"              # bold fg, no hue
 summary       = "fg"
-dnd_switch    = "bright_blue"
+dnd_switch    = "steel"
 close_ambient = "fg_dim"
 close_hover   = "fg"              # no red in chrome
-timestamp     = "bright_blue"     # single hero
+timestamp     = "steel"           # single hero
 
 [accents.hyprlock]
-outer = "bright_blue"  # chrome hero
+outer = "steel"  # chrome hero
 check = "bright_green"   # semantic
 fail  = "bright_red"     # semantic
 
@@ -434,21 +450,21 @@ inactive_tab_fg = "fg_dim"
 inactive_tab_bg = "bg1"
 
 [accents.sddm]
-login_button = "bright_blue"   # retained for back-compat (yellowBright in QML)
-chrome       = "bright_blue"   # primary SDDM accent — clock, greeting, focus, button bg
+login_button = "steel"         # retained for back-compat (yellowBright in QML)
+chrome       = "steel"         # primary SDDM accent — clock, greeting, focus, button bg
 chrome_hover = "fg_light"      # subtle hover lift — cream, not a hue swap
 
 [accents.swayosd]
-progress = "bright_blue"
+progress = "steel"
 icon     = "fg"
 text     = "fg"
 
 [accents.firefox]
-tab_accent   = "bright_blue"
+tab_accent   = "steel"
 close_hover  = "fg_dim"
-menu_hover   = "bright_blue"
-urlbar_focus = "bright_blue"
-urlbar_url   = "bright_blue"
+menu_hover   = "steel"
+urlbar_focus = "steel"
+urlbar_url   = "steel"
 
 [accents.cava]
 # Standalone CLI only (cava not in bar). Monochromatic blue fade.
@@ -456,7 +472,7 @@ gradient = ["bright_blue", "blue", "fg_dim"]
 
 [accents.kde]
 color_scheme = "Gruvbox"       # generated to ~/.local/share/color-schemes/Gruvbox.colors
-chrome       = "bright_blue"   # KDE accent — selection, focus, decoration in Dolphin etc.
+chrome       = "steel"         # KDE accent — selection, focus, decoration in Dolphin etc.
 cursor       = "Bibata-Modern-Classic"
 icons        = "Papirus-Dark"
 
@@ -479,7 +495,7 @@ skip_empty       = false
 # Disabled — upstream currently fails to build against current Hyprland release.
 # Re-enable after hyprwm/hyprland-plugins ships a fix.
 enabled    = false
-color      = "bright_blue"
+color      = "steel"
 color_alpha = "aa"
 bezier     = "snappy"
 points     = 3
@@ -518,7 +534,7 @@ noise_reduction = 0.77
 
 [plymouth]
 theme_name  = "gruvbox-refined"
-pulse_color = "bright_blue"
+pulse_color = "steel"
 logo_text   = "CACHYOS"
 title       = "itscool2b"
 
@@ -531,7 +547,7 @@ save_dir  = "~/Pictures/Screenshots"
 line_size = 5
 text_size = 30
 text_font = "JetBrainsMono Nerd Font"
-line_color  = "bright_blue"           # color name → resolved hex in template
+line_color  = "steel"                 # color name → resolved hex in template
 
 # ════════════════════════════════════════════
 #  FASTFETCH LOGO — custom ASCII art

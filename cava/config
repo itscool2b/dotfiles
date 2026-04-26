@@ -28,6 +28,6 @@ noise_reduction = 0.77
 # Not used in raw mode, but kept for reference / future terminal use.
 gradient = 1
 gradient_count = 3
-gradient_color_1 = '#83a598'
-gradient_color_2 = '#458588'
+gradient_color_1 = '#7daea3'
+gradient_color_2 = '#7daea3'
 gradient_color_3 = '#a89984'

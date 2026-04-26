@@ -13,6 +13,23 @@
     <edit mode="assign" name="autohint"><bool>false</bool></edit>
   </match>
 
+  <!-- Browser exemption: keep web content off the global rice font.
+       These run BEFORE the generic aliases so the strong assign overrides the
+       weak prepend. prgname is set by fontconfig from /proc/self/comm — Firefox
+       reports "firefox", Google Chrome reports "chrome", Chromium reports
+       "chromium". Covers both generic (sans-serif/serif) requests and explicit
+       web families that web pages commonly specify. -->
+{%- set browser_families = ["sans-serif", "serif", "Helvetica", "Arial", "Segoe UI", "Roboto", "Cantarell"] %}
+{%- for prg in fonts.browser_prgnames %}
+{%- for family in browser_families %}
+  <match target="pattern">
+    <test name="prgname"><string>{{ prg }}</string></test>
+    <test qual="any" name="family"><string>{{ family }}</string></test>
+    <edit name="family" mode="assign" binding="strong"><string>{{ fonts.browser }}</string></edit>
+  </match>
+{%- endfor %}
+{%- endfor %}
+
   <!-- Preferred generic families -->
   <alias>
     <family>sans-serif</family>

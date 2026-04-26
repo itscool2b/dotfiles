@@ -1,13 +1,13 @@
-/* ━━━ Gruvbox Blue Waybar — v5 Ghost — dissolves into wallpaper ━━━ */
+/* ━━━ Gruvbox Cream Waybar — v5 Ghost — dissolves into wallpaper ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
-@define-color bg0       #282828;
-@define-color bg1       #32302f;
-@define-color fg        #ebdbb2;
-@define-color fg_mid    #d5c4a1;
+@define-color bg0       #2a2724;
+@define-color bg1       #322f2c;
+@define-color fg        #d4be98;
+@define-color fg_mid    #bdae93;
 @define-color fg_dim    #a89984;
-@define-color fg_light  #fbf1c7;
-@define-color orange    #fe8019;
+@define-color fg_light  #ebdbb2;
+@define-color orange    #e78a4e;
 
 * {
     font-family: "Maple Mono NF", "Maple Mono NF", monospace;
@@ -132,7 +132,7 @@ window#waybar {
 tooltip {
     background: @bg1;
     border: 1px solid alpha(@fg_dim, 0.2);
-    border-radius: 6px;
+    border-radius: 2px;
     color: @fg;
     padding: 6px 10px;
 }

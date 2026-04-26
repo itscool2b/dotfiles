@@ -8,51 +8,51 @@ opacity = 0.82
 decorations_theme_variant = "Dark"
 
 [window.padding]
-x = 18
-y = 14
+x = 36
+y = 28
 
 [scrolling]
 history = 10000
 multiplier = 3
 
 [colors.primary]
-background = "#282828"
-foreground = "#ebdbb2"
+background = "#2a2724"
+foreground = "#d4be98"
 
 [colors.normal]
-black = "#32302f"
-red = "#cc241d"
-green = "#98971a"
-yellow = "#d79921"
-blue = "#458588"
-magenta = "#b16286"
-cyan = "#689d6a"
+black = "#322f2c"
+red = "#ea6962"
+green = "#a9b665"
+yellow = "#d8a657"
+blue = "#7daea3"
+magenta = "#d3869b"
+cyan = "#89b482"
 white = "#a89984"
 
 [colors.bright]
 black = "#928374"
-red = "#fb4934"
-green = "#b8bb26"
-yellow = "#fabd2f"
-blue = "#83a598"
+red = "#ea6962"
+green = "#a9b665"
+yellow = "#d8a657"
+blue = "#7daea3"
 magenta = "#d3869b"
-cyan = "#8ec07c"
-white = "#ebdbb2"
+cyan = "#89b482"
+white = "#d4be98"
 
 [colors.selection]
-background = "#ebdbb2"
-text = "#282828"
+background = "#d4be98"
+text = "#2a2724"
 
 [colors.cursor]
-cursor = "#fabd2f"
-text   = "#282828"
+cursor = "#d8a657"
+text   = "#2a2724"
 
 [colors.vi_mode_cursor]
-cursor = "#fabd2f"
-text   = "#282828"
+cursor = "#d8a657"
+text   = "#2a2724"
 
 [font]
-size = 12.0
+size = 13.0
 
 [font.normal]
 family = "Maple Mono NF"

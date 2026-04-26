@@ -10,3 +10,8 @@ fish_add_path $PYENV_ROOT/bin
 pyenv init - | source
 
 starship init fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/itscool2b/.lmstudio/bin
+# End of LM Studio CLI section
+

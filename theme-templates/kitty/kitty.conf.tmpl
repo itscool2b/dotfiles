@@ -1,11 +1,16 @@
 # ━━━ Kitty — {{ meta.name }} ━━━
 
 font_family      {{ fonts.mono }}
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
+bold_font        {{ fonts.mono }} Bold
+italic_font      {{ fonts.mono }} Italic
+bold_italic_font {{ fonts.mono }} Bold Italic
 font_size        {{ fonts.size.terminal }}.0
-font_features    JetBrainsMonoNF +liga +calt
+font_features    MapleMonoNF-Regular +liga +calt +ss01 +ss02 +ss03 +cv01 +cv02
+font_features    MapleMonoNF-Bold +liga +calt +ss01 +ss02 +ss03 +cv01 +cv02
+font_features    MapleMonoNF-Italic +liga +calt +ss01 +ss02 +ss03 +cv01 +cv02
+font_features    MapleMonoNF-BoldItalic +liga +calt +ss01 +ss02 +ss03 +cv01 +cv02
+modify_font      cell_height 112%
+modify_font      baseline 2
 
 # Cursor
 cursor                {{ colors.bright_yellow }}
@@ -16,13 +21,20 @@ cursor_beam_thickness {{ cursor.kitty_thickness }}
 cursor_trail          {{ cursor.kitty_trail }}
 cursor_trail_decay    {{ cursor.kitty_trail_decay }}
 
-# Window
+# Window — deep glass + heavy blur
 window_padding_width    {{ geometry.terminal_pad_y }} {{ geometry.terminal_pad_x }}
 background_opacity      {{ opacity.terminal }}
-background_blur         1
+background_blur         48
+background_tint         0.2
+background_tint_gaps    -20
 dim_opacity             {{ opacity.kitty_dim }}
 confirm_os_window_close 0
 hide_window_decorations yes
+
+# Subtle inner edge — lifts terminal off the wallpaper blur
+window_margin_width     0
+single_window_margin_width -1
+placement_strategy      center
 
 # Bell
 enable_audio_bell no
@@ -75,13 +87,20 @@ selection_background {{ colors.fg }}
 url_color {{ accents.kitty.url_color }}
 url_style curly
 
-# Tab bar
-tab_bar_style           powerline
-tab_powerline_style     angled
-tab_bar_min_tabs        1
-tab_bar_edge            top
-active_tab_foreground   {{ accents.kitty.active_tab_fg }}
-active_tab_background   {{ accents.kitty.active_tab_bg }}
-active_tab_font_style   bold
-inactive_tab_foreground {{ accents.kitty.inactive_tab_fg }}
-inactive_tab_background {{ accents.kitty.inactive_tab_bg }}
+# Tab bar — sexy powerline with fade
+tab_bar_style            powerline
+tab_powerline_style      slanted
+tab_bar_min_tabs         2
+tab_bar_edge             top
+tab_bar_align            center
+tab_bar_margin_width     6
+tab_bar_margin_height    4 0
+tab_separator            " ┇ "
+tab_fade                 0.25 0.5 0.75 1
+tab_title_template       "{fmt.fg._89b482}{index}{fmt.fg.default} {title[:30]}"
+active_tab_foreground    {{ accents.kitty.active_tab_fg }}
+active_tab_background    {{ accents.kitty.active_tab_bg }}
+active_tab_font_style    bold
+inactive_tab_foreground  {{ accents.kitty.inactive_tab_fg }}
+inactive_tab_background  {{ accents.kitty.inactive_tab_bg }}
+inactive_tab_font_style  normal
