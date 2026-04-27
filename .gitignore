@@ -50,6 +50,7 @@
 !xsettingsd/**
 !theme.toml
 !theme-generate.py
+!gamemode.ini
 !theme-templates/
 !theme-templates/**
 # Intermediate artifacts from theme-generate.py (pre-sudo-cp staging)
