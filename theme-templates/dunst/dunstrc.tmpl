@@ -1,34 +1,45 @@
 [global]
-    width = 350
-    height = 100
-    offset = 12x12
+    width = {{ geometry.dunst_width }}
+    height = {{ geometry.dunst_height }}
+    offset = {{ geometry.dunst_offset }}
     origin = top-right
     transparency = 0
-    frame_color = "{{ colors.bg3 }}"
+    frame_color = "{{ colors.steel }}"
     frame_width = {{ geometry.dunst_frame_width }}
     corner_radius = {{ geometry.dunst_radius }}
     font = {{ fonts.mono_display }} {{ fonts.size.dunst }}
     padding = {{ geometry.dunst_padding }}
     horizontal_padding = {{ geometry.dunst_h_padding }}
-    icon_position = off
-    max_icon_size = 0
-    separator_color = auto
+    text_icon_padding = 12
+    icon_position = left
+    min_icon_size = 28
+    max_icon_size = 42
+    separator_color = frame
     separator_height = 1
     gap_size = {{ geometry.dunst_gap }}
+    markup = full
+    format = "<b>%s</b>\n<span foreground='{{ colors.fg_dim }}'>%b</span>"
+    alignment = left
+    vertical_alignment = center
+    ellipsize = middle
+    line_height = 2
 
 [urgency_low]
     background = "{{ colors.bg0 }}"
     foreground = "{{ colors.fg_dim }}"
+    frame_color = "{{ colors.bg3 }}"
     timeout = 4
 
 [urgency_normal]
     background = "{{ colors.bg1 }}"
-    foreground = "{{ colors.fg }}"
+    foreground = "{{ colors.fg_light }}"
+    frame_color = "{{ colors.steel }}"
     highlight = "{{ colors.bright_yellow }}"
     timeout = 6
 
 [urgency_critical]
     background = "{{ colors.bg1 }}"
-    foreground = "{{ colors.fg }}"
+    foreground = "{{ colors.fg_light }}"
+    frame_color = "{{ colors.bright_red }}"
     highlight = "{{ colors.bright_red }}"
     timeout = 0

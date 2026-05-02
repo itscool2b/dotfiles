@@ -1,10 +1,11 @@
-/* ━━━ Gruvbox Cream — swaync: flat editorial notifications ━━━ */
+/* ━━━ Gruvbox Cream — swaync: premium floating notifications ━━━ */
 /* Generated from theme.toml — do not edit directly */
 
 @define-color bg0      #2a2724;
 @define-color bg1      #322f2c;
 @define-color bg2      #3a3633;
 @define-color bg3      #45403d;
+@define-color bg4      #504945;
 @define-color fg       #d4be98;
 @define-color fg_dim   #a89984;
 @define-color fg_light #ebdbb2;
@@ -12,148 +13,189 @@
 @define-color orange   #e78a4e;
 @define-color red      #ea6962;
 
-@define-color sn_title    #d4be98;
-@define-color sn_summary  #d4be98;
-@define-color sn_dnd      #ebdbb2;
+@define-color sn_title    #ebdbb2;
+@define-color sn_summary  #ebdbb2;
+@define-color sn_dnd      #d8a657;
+@define-color sn_action   #d8a657;
 @define-color sn_ambient  #a89984;
-@define-color sn_close    #d4be98;
-@define-color sn_time     #ebdbb2;
+@define-color sn_close    #ebdbb2;
+@define-color sn_time     #d8a657;
 
 * {
     font-family: "Maple Mono NF", "Maple Mono NF", sans-serif;
     font-size: 13px;
 }
 
-/* ━━━ Control center — flat panel, sharp edges ━━━ */
+/* ━━━ Control center — warm glass panel with depth ━━━ */
 .control-center {
-    background: alpha(@bg0, 0.92);
-    border: 1px solid alpha(@fg_dim, 0.15);
-    border-radius: 4px;
-    padding: 12px;
-    box-shadow: none;
+    background: alpha(@bg0, 0.88);
+    border: 1px solid alpha(@fg_light, 0.18);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 18px 48px alpha(@bg0, 0.50), inset 0 1px alpha(@fg_light, 0.08);
 }
 
 @keyframes notif-enter {
-    from { opacity: 0; margin-top: -4px; }
+    from { opacity: 0; margin-top: -8px; }
     to   { opacity: 1; margin-top: 0; }
 }
 
 .notification-row {
     outline: none;
-    margin: 3px 0;
+    margin: 6px 0;
     animation: notif-enter 340ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
 }
 
 .notification {
-    background: alpha(@bg1, 0.95);
-    border: 1px solid alpha(@fg_dim, 0.12);
-    border-radius: 3px;
-    padding: 8px;
-    margin: 3px;
-    box-shadow: none;
-    transition: border-color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
+    background: alpha(@bg1, 0.9);
+    border: 1px solid alpha(@fg_light, 0.14);
+    border-radius: 14px;
+    padding: 10px;
+    margin: 4px;
+    box-shadow: 0 10px 30px alpha(@bg0, 0.38), inset 0 1px alpha(@fg_light, 0.07);
+    transition: background 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+                border-color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+                box-shadow 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
 }
 
 .notification:hover {
-    border-color: alpha(@fg_dim, 0.3);
+    background: alpha(@bg2, 0.92);
+    border-color: alpha(@yellow, 0.40);
+    box-shadow: 0 14px 36px alpha(@bg0, 0.46), inset 0 1px alpha(@fg_light, 0.10);
 }
 
 .notification-content {
-    padding: 6px 10px;
+    padding: 8px 12px;
 }
 
-/* Title: fg bold — orange is reserved for the timestamp */
 .summary {
     color: @sn_summary;
-    font-weight: 700;
-    font-size: 13px;
+    font-weight: 800;
+    font-size: 14px;
     letter-spacing: 0.02em;
 }
 
-/* Body: fg_dim regular */
 .body {
     color: @fg_dim;
     font-size: 12px;
-    margin-top: 2px;
+    margin-top: 4px;
+    line-height: 1.35;
 }
 
-/* Timestamp: the single warm hue on the card */
 .time {
     color: @sn_time;
     font-size: 10px;
-    letter-spacing: 0.08em;
-    font-weight: 500;
+    letter-spacing: 0.10em;
+    font-weight: 700;
 }
 
-/* Close button: ambient fg_dim → fg on hover. No red. */
+.image,
+.notification image {
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
 .close-button {
-    background: transparent;
+    background: alpha(@bg2, 0.35);
     color: @sn_ambient;
-    border-radius: 4px;
-    padding: 2px 8px;
-    border: none;
-    transition: color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
+    border-radius: 999px;
+    padding: 3px 8px;
+    border: 1px solid alpha(@fg_light, 0.08);
+    box-shadow: inset 0 1px alpha(@fg_light, 0.05);
+    transition: background 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+                color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+                border-color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
 }
 
 .close-button:hover {
-    background: transparent;
+    background: alpha(@bg4, 0.65);
     color: @sn_close;
+    border-color: alpha(@fg_light, 0.18);
 }
 
-/* Critical keeps a thin red left-border — semantic, not chrome */
-.notification.critical {
-    border-left: 2px solid @red;
+.notification-action,
+.notification-default-action {
+    border-radius: 10px;
 }
 
+.notification-action button {
+    background: alpha(@bg2, 0.45);
+    color: @sn_action;
+    border: 1px solid alpha(@yellow, 0.16);
+    border-radius: 10px;
+    padding: 6px 10px;
+}
+
+.notification-action button:hover,
+.notification-default-action:hover {
+    background: alpha(@yellow, 0.12);
+    border-color: alpha(@yellow, 0.34);
+}
+
+/* Semantic states: low recedes, critical gets a clear red rail. */
 .notification.low {
-    border-color: alpha(@fg_dim, 0.06);
+    background: alpha(@bg0, 0.82);
+    border-color: alpha(@fg_dim, 0.08);
+    box-shadow: 0 8px 22px alpha(@bg0, 0.28), inset 0 1px alpha(@fg_light, 0.04);
+}
+
+.notification.critical {
+    border-left: 4px solid @red;
+    border-color: alpha(@red, 0.42);
+    box-shadow: 0 12px 34px alpha(@bg0, 0.44), 0 0 0 1px alpha(@red, 0.12), inset 0 1px alpha(@fg_light, 0.08);
 }
 
 /* ━━━ Panel header ━━━ */
 .widget-title {
     color: @sn_title;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 8px 4px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 10px 6px;
 }
 
 .widget-title button {
-    background: transparent;
+    background: alpha(@bg2, 0.42);
     color: @fg_dim;
-    border-radius: 4px;
-    padding: 4px 12px;
-    border: 1px solid alpha(@fg_dim, 0.2);
-    transition: color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+    border-radius: 999px;
+    padding: 5px 14px;
+    border: 1px solid alpha(@fg_light, 0.12);
+    box-shadow: inset 0 1px alpha(@fg_light, 0.06);
+    transition: background 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
+                color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0),
                 border-color 220ms cubic-bezier(0.2, 0.0, 0.0, 1.0);
 }
 
 .widget-title button:hover {
-    color: @fg;
-    border-color: alpha(@fg_dim, 0.4);
+    background: alpha(@yellow, 0.12);
+    color: @fg_light;
+    border-color: alpha(@yellow, 0.35);
 }
 
 /* ━━━ DND toggle ━━━ */
 .widget-dnd {
     color: @fg_dim;
-    padding: 8px 4px;
+    padding: 8px 6px 12px;
     font-size: 12px;
     letter-spacing: 0.04em;
 }
 
 .widget-dnd > switch {
-    background: @bg2;
-    border-radius: 10px;
-    border: 1px solid alpha(@fg_dim, 0.15);
-    transition: background 260ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
+    background: alpha(@bg2, 0.75);
+    border-radius: 999px;
+    border: 1px solid alpha(@fg_light, 0.14);
+    box-shadow: inset 0 1px alpha(@fg_light, 0.05);
+    transition: background 260ms cubic-bezier(0.05, 0.7, 0.1, 1.0),
+                border-color 260ms cubic-bezier(0.05, 0.7, 0.1, 1.0);
 }
 
 .widget-dnd > switch:checked {
-    background: @sn_dnd;
+    background: alpha(@sn_dnd, 0.88);
     border-color: @sn_dnd;
 }
 
 .widget-dnd > switch slider {
-    background: @fg;
+    background: @fg_light;
     border-radius: 50%;
+    box-shadow: 0 2px 8px alpha(@bg0, 0.35);
 }

@@ -151,15 +151,15 @@ bar_margin_side    = 0
 bar_radius         = 0
 bar_tooltip_radius = 2
 
-# Dunst
-dunst_width        = 350
-dunst_height       = 100
-dunst_offset       = "12x12"
-dunst_radius       = 3
-dunst_frame_width  = 0
-dunst_padding      = 12
-dunst_h_padding    = 16
-dunst_gap          = 6
+# Dunst — premium floating cards
+dunst_width        = 380
+dunst_height       = 110
+dunst_offset       = "16x16"
+dunst_radius       = 12
+dunst_frame_width  = 1
+dunst_padding      = 14
+dunst_h_padding    = 18
+dunst_gap          = 10
 
 # Rofi — Mac Platinum: sharper radii, heavier frame
 rofi_width           = 550
@@ -181,11 +181,11 @@ wofi_radius        = 4
 wofi_input_radius  = 3
 wofi_entry_radius  = 3
 
-# Swaync — Mac Platinum: sharp cards
-swaync_cc_radius    = 4
-swaync_notif_radius = 3
-swaync_cc_width     = 400
-swaync_notif_width  = 360
+# Swaync — premium floating glass cards
+swaync_cc_radius    = 16
+swaync_notif_radius = 14
+swaync_cc_width     = 420
+swaync_notif_width  = 384
 
 # Hyprlock
 hyprlock_input_width  = 320
@@ -212,8 +212,8 @@ bar_tooltip      = 1.0
 rofi_bg_alpha    = "f2"        # near-opaque — editorial, no glass
 rofi_glass_input = 0           # no glass wash on input
 rofi_glass_sel   = 0           # no glass wash on selection
-swaync_cc        = 0.92
-swaync_notif     = 0.95
+swaync_cc        = 0.88
+swaync_notif     = 0.90
 sddm_login_box   = 0.72
 sddm_overlay     = 0.55
 
@@ -261,7 +261,7 @@ inner_highlight_color = "fg_light"   # resolved to hex in CSS via alpha()
 # Cohesive motion language: asymmetric in/out, gentle overshoot on
 # entrance, decisive acceleration on exit.
 bar_transition      = "0.28s"
-swaync_transition   = 320
+swaync_transition   = 340
 sddm_clock_fade     = 800
 sddm_box_fade       = 900
 sddm_buttons_fade   = 1000
@@ -417,12 +417,13 @@ selected_bg = "bg2"
 selected_fg = "fg_light"
 
 [accents.swaync]
-title         = "fg"              # bold fg, no hue
-summary       = "fg"
-dnd_switch    = "steel"
+title         = "fg_light"        # elevated cream for panel/header chrome
+summary       = "fg_light"
+dnd_switch    = "bright_yellow"   # warm gold accent
+action        = "bright_yellow"
 close_ambient = "fg_dim"
-close_hover   = "fg"              # no red in chrome
-timestamp     = "steel"           # single hero
+close_hover   = "fg_light"        # no red in chrome
+timestamp     = "bright_yellow"   # single warm hero
 
 [accents.hyprlock]
 outer = "steel"  # chrome hero
